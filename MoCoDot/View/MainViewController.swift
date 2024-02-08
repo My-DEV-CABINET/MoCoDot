@@ -8,7 +8,7 @@
 import UIKit
 
 final class MainViewController: UIViewController {
-    var viewModel: MainViewModel!
+//    var viewModel: MainViewModel!
 }
 
 extension MainViewController {
