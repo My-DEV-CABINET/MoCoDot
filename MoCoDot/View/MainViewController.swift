@@ -5,9 +5,10 @@
 //  Created by 준우의 MacBook 16 on 1/11/24.
 //
 
-import SnapKit
 import SwiftUI
 import UIKit
+
+import SnapKit
 
 final class MainViewController: UIViewController {
     var isTapped = false
@@ -17,6 +18,15 @@ final class MainViewController: UIViewController {
     let morseCodeView = CustomTextView(frame: .zero) // 모스코드 변환 뷰
     let changPositionViewButton = CustomButton(frame: .zero) // Input <-> Output 변환
     let translateButton = CustomButton(frame: .zero) // 변환 버튼
+
+    // MARK: - 버튼 모아놓는 스택뷰
+
+    let morseCodeButtonStackView = CustomStackView(frame: .zero)
+
+    let tapticButton = CustomButton(frame: .zero) // 진동 버튼
+    let flashButton = CustomButton(frame: .zero) // 라이트 버튼
+    let soundButton = CustomButton(frame: .zero) // 소리 버튼
+    let playButton = CustomButton(frame: .zero) // 재생 버튼
 }
 
 extension MainViewController {
@@ -29,17 +39,36 @@ extension MainViewController {
 extension MainViewController {
     private func setupUI() {
         view.backgroundColor = .systemBackground
+        addView()
+        createInputView()
+        createChangePositionViewButton()
+        createOutputView()
+        createTranslateButton()
+
+        createMorseCodeStackView()
+        createTapticButton()
+        createFlashButton()
+        createSoundButton()
+        createPlayButton()
+    }
+
+    private func addView() {
+        // MARK: - View 에 등록
 
         [textInputView, morseCodeView, changPositionViewButton, translateButton].forEach {
             view.addSubview($0)
         }
 
-        createInputView()
-        createChangePositionViewButton()
-        createOutputView()
-        createTranslateButton()
+        // MARK: - MorseCodeView 에 등록
+
+        morseCodeView.addSubview(morseCodeButtonStackView)
+        [tapticButton, flashButton, soundButton, playButton].forEach {
+            morseCodeButtonStackView.addArrangedSubview($0)
+        }
     }
 }
+
+// MARK: - Create Componenets And Make Constraints
 
 extension MainViewController {
     private func createInputView() {
@@ -94,8 +123,74 @@ extension MainViewController {
         translateButton.snp.makeConstraints { make in
             make.centerX.equalTo(view.snp.centerX)
             make.leading.equalTo(view.snp.leading).offset(22)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(6)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-15)
             make.height.equalTo(50)
+        }
+    }
+
+    // MARK: - MorseCodeView 위에 올라가는 버튼들 제약
+
+    // 스택뷰
+    private func createMorseCodeStackView() {
+        morseCodeButtonStackView.configure(axis: .horizontal, alignment: .fill, distribution: .fillEqually, spacing: 10)
+
+        morseCodeButtonStackView.snp.makeConstraints { make in
+            make.bottom.equalTo(morseCodeView.snp.bottom).offset(275)
+            make.right.equalTo(morseCodeView.snp.right).offset(340)
+            make.height.equalTo(50)
+            make.width.equalTo(230)
+        }
+    }
+
+    private func createTapticButton() {
+        tapticButton.backgroundColor = .systemMint
+        tapticButton.tintColor = .white
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
+        let buttonImage = UIImage(systemName: "waveform", withConfiguration: imageConfig)
+        tapticButton.setImage(buttonImage, for: .normal)
+        tapticButton.layer.cornerRadius = 25
+
+        tapticButton.snp.makeConstraints { make in
+            make.width.equalTo(50)
+        }
+    }
+
+    private func createFlashButton() {
+        flashButton.backgroundColor = .systemMint
+        flashButton.tintColor = .white
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
+        let buttonImage = UIImage(systemName: "lightbulb.fill", withConfiguration: imageConfig)
+        flashButton.setImage(buttonImage, for: .normal)
+        flashButton.layer.cornerRadius = 25
+
+        flashButton.snp.makeConstraints { make in
+            make.width.equalTo(50)
+        }
+    }
+
+    private func createSoundButton() {
+        soundButton.backgroundColor = .systemMint
+        soundButton.tintColor = .white
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
+        let buttonImage = UIImage(systemName: "speaker", withConfiguration: imageConfig)
+        soundButton.setImage(buttonImage, for: .normal)
+        soundButton.layer.cornerRadius = 25
+
+        soundButton.snp.makeConstraints { make in
+            make.width.equalTo(50)
+        }
+    }
+
+    private func createPlayButton() {
+        playButton.backgroundColor = .systemMint
+        playButton.tintColor = .white
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
+        let buttonImage = UIImage(systemName: "play.fill", withConfiguration: imageConfig)
+        playButton.setImage(buttonImage, for: .normal)
+        playButton.layer.cornerRadius = 25
+
+        playButton.snp.makeConstraints { make in
+            make.width.equalTo(50)
         }
     }
 }

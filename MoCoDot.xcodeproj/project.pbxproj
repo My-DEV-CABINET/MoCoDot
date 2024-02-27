@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E9681392B8DC98700E14E3C /* EnglishMorse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9681362B8DC98700E14E3C /* EnglishMorse.swift */; };
+		4E96813A2B8DC98700E14E3C /* KoreanMorse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9681372B8DC98700E14E3C /* KoreanMorse.swift */; };
+		4E96813B2B8DC98700E14E3C /* MorseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9681382B8DC98700E14E3C /* MorseProtocol.swift */; };
 		4EA599422B4EF3800064726E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA599412B4EF3800064726E /* AppDelegate.swift */; };
 		4EA599442B4EF3800064726E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA599432B4EF3800064726E /* SceneDelegate.swift */; };
 		4EA599462B4EF3800064726E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA599452B4EF3800064726E /* MainViewController.swift */; };
@@ -20,9 +23,13 @@
 		4ED734382B7497EF00071FEF /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 4ED734372B7497EF00071FEF /* SnapKit-Dynamic */; };
 		4ED7343A2B749A5C00071FEF /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED734392B749A5C00071FEF /* CustomButton.swift */; };
 		4ED7343C2B749A6800071FEF /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED7343B2B749A6800071FEF /* CustomTextView.swift */; };
+		4EF230E12B7626DA001B4186 /* CustomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF230E02B7626DA001B4186 /* CustomStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E9681362B8DC98700E14E3C /* EnglishMorse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnglishMorse.swift; sourceTree = "<group>"; };
+		4E9681372B8DC98700E14E3C /* KoreanMorse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KoreanMorse.swift; sourceTree = "<group>"; };
+		4E9681382B8DC98700E14E3C /* MorseProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorseProtocol.swift; sourceTree = "<group>"; };
 		4EA5993E2B4EF3800064726E /* MoCoDot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoCoDot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EA599412B4EF3800064726E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EA599432B4EF3800064726E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +43,7 @@
 		4ED734322B74971F00071FEF /* TranslateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateProtocol.swift; sourceTree = "<group>"; };
 		4ED734392B749A5C00071FEF /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		4ED7343B2B749A6800071FEF /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
+		4EF230E02B7626DA001B4186 /* CustomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +118,9 @@
 			isa = PBXGroup;
 			children = (
 				4ED734322B74971F00071FEF /* TranslateProtocol.swift */,
+				4E9681382B8DC98700E14E3C /* MorseProtocol.swift */,
+				4E9681362B8DC98700E14E3C /* EnglishMorse.swift */,
+				4E9681372B8DC98700E14E3C /* KoreanMorse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -130,6 +141,7 @@
 			children = (
 				4ED734392B749A5C00071FEF /* CustomButton.swift */,
 				4ED7343B2B749A6800071FEF /* CustomTextView.swift */,
+				4EF230E02B7626DA001B4186 /* CustomStackView.swift */,
 			);
 			path = Subcomponents;
 			sourceTree = "<group>";
@@ -211,13 +223,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EF230E12B7626DA001B4186 /* CustomStackView.swift in Sources */,
 				4EA599462B4EF3800064726E /* MainViewController.swift in Sources */,
 				4ED734332B74971F00071FEF /* TranslateProtocol.swift in Sources */,
 				4ED7343C2B749A6800071FEF /* CustomTextView.swift in Sources */,
 				4EA599422B4EF3800064726E /* AppDelegate.swift in Sources */,
+				4E9681392B8DC98700E14E3C /* EnglishMorse.swift in Sources */,
+				4E96813A2B8DC98700E14E3C /* KoreanMorse.swift in Sources */,
 				4ED7342D2B74964500071FEF /* DIContainer.swift in Sources */,
 				4ED7343A2B749A5C00071FEF /* CustomButton.swift in Sources */,
 				4EA599442B4EF3800064726E /* SceneDelegate.swift in Sources */,
+				4E96813B2B8DC98700E14E3C /* MorseProtocol.swift in Sources */,
 				4ED7342F2B74965200071FEF /* DICProtocol.swift in Sources */,
 				4ED734282B74950400071FEF /* MainViewModel.swift in Sources */,
 			);
