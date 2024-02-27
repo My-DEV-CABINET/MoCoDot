@@ -10,9 +10,9 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     let container = DIContainer.shared
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-//        container.register(type: <#T##T.Type#>, service: <#T##Any#>)
+        container.register(type: TranslateProtocol.self, service: EnglishTranslateService())
         return true
     }
 

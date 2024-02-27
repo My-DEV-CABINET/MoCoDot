@@ -91,8 +91,8 @@
 		4ED734292B74950900071FEF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4ED7343D2B749A7D00071FEF /* Subcomponents */,
 				4EA599452B4EF3800064726E /* MainViewController.swift */,
+				4ED7343D2B749A7D00071FEF /* Subcomponents */,
 			);
 			path = View;
 			sourceTree = "<group>";
