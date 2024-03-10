@@ -11,9 +11,9 @@ import UIKit
 import SnapKit
 
 final class MainViewController: UIViewController {
-    var isTapped = false
+    var viewModel: MainViewModel!
 
-//    var viewModel: MainViewModel!
+//    var isTapped = false
     let textInputView = CustomTextView(frame: .zero) // 한/영 뷰
     let morseCodeView = CustomTextView(frame: .zero) // 모스코드 변환 뷰
     let changPositionViewButton = CustomButton(frame: .zero) // Input <-> Output 변환
@@ -61,7 +61,7 @@ extension MainViewController {
 
         // MARK: - MorseCodeView 에 등록
 
-        morseCodeView.addSubview(morseCodeButtonStackView)
+        view.addSubview(morseCodeButtonStackView)
         [tapticButton, flashButton, soundButton, playButton].forEach {
             morseCodeButtonStackView.addArrangedSubview($0)
         }
@@ -87,7 +87,7 @@ extension MainViewController {
 
     private func createChangePositionViewButton() {
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .bold)
-        let buttonImage = UIImage(systemName: "arrow.up.arrow.down", withConfiguration: imageConfig)
+        let buttonImage = UIImage(systemName: "arrow.down", withConfiguration: imageConfig)
         changPositionViewButton.setImage(buttonImage, for: .normal)
         changPositionViewButton.tintColor = .systemMint
         changPositionViewButton.addTarget(self, action: #selector(didTappedChangeButton), for: .touchUpInside)
@@ -135,8 +135,8 @@ extension MainViewController {
         morseCodeButtonStackView.configure(axis: .horizontal, alignment: .fill, distribution: .fillEqually, spacing: 10)
 
         morseCodeButtonStackView.snp.makeConstraints { make in
-            make.bottom.equalTo(morseCodeView.snp.bottom).offset(275)
-            make.right.equalTo(morseCodeView.snp.right).offset(340)
+            make.bottom.equalTo(morseCodeView.snp.bottom).offset(-10)
+            make.right.equalTo(morseCodeView.snp.right).offset(-10)
             make.height.equalTo(50)
             make.width.equalTo(230)
         }
@@ -172,7 +172,7 @@ extension MainViewController {
         soundButton.backgroundColor = .systemMint
         soundButton.tintColor = .white
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
-        let buttonImage = UIImage(systemName: "speaker", withConfiguration: imageConfig)
+        let buttonImage = UIImage(systemName: "speaker.wave.3", withConfiguration: imageConfig)
         soundButton.setImage(buttonImage, for: .normal)
         soundButton.layer.cornerRadius = 25
 
@@ -197,41 +197,42 @@ extension MainViewController {
 
 extension MainViewController {
     @objc func didTappedChangeButton() {
-        isTapped.toggle()
-
-        if isTapped {
-            morseCodeView.snp.remakeConstraints { make in
-                make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-                make.centerX.equalTo(view.snp.centerX)
-                make.leading.equalTo(view.snp.leading).offset(22)
-                make.height.equalTo(UIScreen.main.bounds.height / 3)
-            }
-
-            textInputView.snp.remakeConstraints { make in
-                make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(UIScreen.main.bounds.height / 3 + 72)
-                make.centerX.equalTo(view.snp.centerX)
-                make.leading.equalTo(view.snp.leading).offset(22)
-                make.height.equalTo(UIScreen.main.bounds.height / 3)
-            }
-        } else {
-            textInputView.snp.remakeConstraints { make in
-                make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-                make.centerX.equalTo(view.snp.centerX)
-                make.leading.equalTo(view.snp.leading).offset(22)
-                make.height.equalTo(UIScreen.main.bounds.height / 3)
-            }
-
-            morseCodeView.snp.remakeConstraints { make in
-                make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(UIScreen.main.bounds.height / 3 + 72)
-                make.centerX.equalTo(view.snp.centerX)
-                make.leading.equalTo(view.snp.leading).offset(22)
-                make.height.equalTo(UIScreen.main.bounds.height / 3)
-            }
-        }
+//        isTapped.toggle()
+//
+//        if isTapped {
+//            morseCodeView.snp.remakeConstraints { make in
+//                make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+//                make.centerX.equalTo(view.snp.centerX)
+//                make.leading.equalTo(view.snp.leading).offset(22)
+//                make.height.equalTo(UIScreen.main.bounds.height / 3)
+//            }
+//
+//            textInputView.snp.remakeConstraints { make in
+//                make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(UIScreen.main.bounds.height / 3 + 72)
+//                make.centerX.equalTo(view.snp.centerX)
+//                make.leading.equalTo(view.snp.leading).offset(22)
+//                make.height.equalTo(UIScreen.main.bounds.height / 3)
+//            }
+//        } else {
+//            textInputView.snp.remakeConstraints { make in
+//                make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+//                make.centerX.equalTo(view.snp.centerX)
+//                make.leading.equalTo(view.snp.leading).offset(22)
+//                make.height.equalTo(UIScreen.main.bounds.height / 3)
+//            }
+//
+//            morseCodeView.snp.remakeConstraints { make in
+//                make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(UIScreen.main.bounds.height / 3 + 72)
+//                make.centerX.equalTo(view.snp.centerX)
+//                make.leading.equalTo(view.snp.leading).offset(22)
+//                make.height.equalTo(UIScreen.main.bounds.height / 3)
+//            }
+//        }
     }
 
-    @objc func didTappedTranslateButton() {
-        print("#### \(#function)")
+    @objc func didTappedTranslateButton(_ sender: UIButton) {
+        viewModel.reset()
+        morseCodeView.text = viewModel.requestInputTextArr(at: textInputView.text)
     }
 }
 

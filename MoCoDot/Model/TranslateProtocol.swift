@@ -7,10 +7,13 @@
 
 import Foundation
 
+/// 문자 -> 모스코드 변환 프로토콜
 protocol TranslateProtocol {
+    var inputText: String { get }
     var transResult: String { get set }
     var morseList: [MorseProtocol] { get }
 
-    func translateMorse(at inputTexts: [String]) -> String
+    func requestInputTextArr(at inputText: String) -> String
+    func translateMorse(at inputTexts: String) -> String
     func reset()
 }

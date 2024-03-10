@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E79A8F22B8EE5EE000E4CCD /* EnglishTranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E79A8F12B8EE5EE000E4CCD /* EnglishTranslateService.swift */; };
 		4E9681392B8DC98700E14E3C /* EnglishMorse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9681362B8DC98700E14E3C /* EnglishMorse.swift */; };
 		4E96813A2B8DC98700E14E3C /* KoreanMorse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9681372B8DC98700E14E3C /* KoreanMorse.swift */; };
 		4E96813B2B8DC98700E14E3C /* MorseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9681382B8DC98700E14E3C /* MorseProtocol.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E79A8F12B8EE5EE000E4CCD /* EnglishTranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnglishTranslateService.swift; sourceTree = "<group>"; };
 		4E9681362B8DC98700E14E3C /* EnglishMorse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnglishMorse.swift; sourceTree = "<group>"; };
 		4E9681372B8DC98700E14E3C /* KoreanMorse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KoreanMorse.swift; sourceTree = "<group>"; };
 		4E9681382B8DC98700E14E3C /* MorseProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorseProtocol.swift; sourceTree = "<group>"; };
@@ -59,6 +61,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E79A8F02B8EE5CB000E4CCD /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4E79A8F12B8EE5EE000E4CCD /* EnglishTranslateService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		4EA599352B4EF3800064726E = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +118,7 @@
 		4ED7342B2B74962700071FEF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				4E79A8F02B8EE5CB000E4CCD /* Services */,
 				4ED7342E2B74965200071FEF /* DICProtocol.swift */,
 				4ED7342C2B74964500071FEF /* DIContainer.swift */,
 			);
@@ -224,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EF230E12B7626DA001B4186 /* CustomStackView.swift in Sources */,
+				4E79A8F22B8EE5EE000E4CCD /* EnglishTranslateService.swift in Sources */,
 				4EA599462B4EF3800064726E /* MainViewController.swift in Sources */,
 				4ED734332B74971F00071FEF /* TranslateProtocol.swift in Sources */,
 				4ED7343C2B749A6800071FEF /* CustomTextView.swift in Sources */,

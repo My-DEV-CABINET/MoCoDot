@@ -13,29 +13,16 @@ final class MainViewModel {
     init(translateService: TranslateProtocol!) {
         self.translateService = translateService
     }
-}
 
-final class EnglishTranslateService: TranslateProtocol {
-    var transResult: String = ""
-    var morseList: [MorseProtocol] = EnglishMorse.morseList
-
-    func translateMorse(at inputTexts: [String]) -> String {
-        for inputIndex in 0 ..< inputTexts.count {
-            for morseIndex in 0 ..< morseList.count {
-                if inputTexts[inputIndex] == morseList[morseIndex].alphabetName {
-                    transResult += morseList[morseIndex].morseCode + " "
-
-                    if inputTexts[inputIndex] == "\n" {
-                        transResult += "\n"
-                    }
-                }
-            }
-        }
-
-        return transResult
+    func translateMorse(at inputTexts: String) -> String {
+        return translateService.translateMorse(at: inputTexts)
     }
 
     func reset() {
-        transResult = ""
+        translateService.reset()
+    }
+
+    func requestInputTextArr(at inputText: String) -> String {
+        return translateService.requestInputTextArr(at: inputText)
     }
 }
