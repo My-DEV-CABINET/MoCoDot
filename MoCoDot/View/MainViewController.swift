@@ -13,7 +13,7 @@ import SnapKit
 final class MainViewController: UIViewController {
     var viewModel: MainViewModel!
 
-//    var isTapped = false
+    let translateLanguageButton = CustomButton(frame: .zero) // 한/영 언어 변환 버튼
     let textInputView = CustomTextView(frame: .zero) // 한/영 뷰
     let morseCodeView = CustomTextView(frame: .zero) // 모스코드 변환 뷰
     let changPositionViewButton = CustomButton(frame: .zero) // Input <-> Output 변환
@@ -40,6 +40,8 @@ extension MainViewController {
     private func setupUI() {
         view.backgroundColor = .systemBackground
         addView()
+
+        createTranslateLanguageButton()
         createInputView()
         createChangePositionViewButton()
         createOutputView()
@@ -55,15 +57,15 @@ extension MainViewController {
     private func addView() {
         // MARK: - View 에 등록
 
-        [textInputView, morseCodeView, changPositionViewButton, translateButton].forEach {
-            view.addSubview($0)
+        for item in [translateLanguageButton, textInputView, morseCodeView, changPositionViewButton, translateButton] {
+            view.addSubview(item)
         }
 
         // MARK: - MorseCodeView 에 등록
 
         view.addSubview(morseCodeButtonStackView)
-        [tapticButton, flashButton, soundButton, playButton].forEach {
-            morseCodeButtonStackView.addArrangedSubview($0)
+        for item in [tapticButton, flashButton, soundButton, playButton] {
+            morseCodeButtonStackView.addArrangedSubview(item)
         }
     }
 }
@@ -71,17 +73,51 @@ extension MainViewController {
 // MARK: - Create Componenets And Make Constraints
 
 extension MainViewController {
+    private func createTranslateLanguageButton() {
+        translateLanguageButton.layer.cornerRadius = 10
+        translateLanguageButton.setTitle("영어", for: .normal)
+        translateLanguageButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        translateLanguageButton.titleEdgeInsets = .init(top: 0, left: -80, bottom: 0, right: 0)
+        translateLanguageButton.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: -100)
+
+        translateLanguageButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
+        translateLanguageButton.tintColor = .white
+        translateLanguageButton.backgroundColor = .systemMint
+        translateLanguageButton.showsMenuAsPrimaryAction = true
+
+        #warning("To do stuff")
+        let seletedPriority = { (action: UIAction) in
+            self.translateLanguageButton.setTitle(action.title, for: .normal)
+        }
+
+        translateLanguageButton.menu = UIMenu(children: [
+            UIAction(title: "영어", state: .off, handler: seletedPriority),
+            UIAction(title: "한글", state: .off, handler: seletedPriority),
+        ])
+
+        translateLanguageButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.bottom.equalTo(textInputView.snp.top).offset(-10)
+            make.leading.equalTo(textInputView.snp.leading)
+            make.width.equalTo(120)
+            make.height.equalTo(40)
+        }
+    }
+
     private func createInputView() {
         textInputView.layer.cornerRadius = 10
         textInputView.backgroundColor = .systemGray5
         textInputView.text = "한/영"
         textInputView.tag = 1
+        textInputView.textColor = .systemGray
+        textInputView.font = .systemFont(ofSize: 30, weight: .bold)
+        textInputView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
 
         textInputView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(translateLanguageButton.snp.bottom)
             make.centerX.equalTo(view.snp.centerX)
             make.leading.equalTo(view.snp.leading).offset(22)
-            make.height.equalTo(UIScreen.main.bounds.height / 3)
+            make.height.equalTo(UIScreen.main.bounds.height / 3 - 30)
         }
     }
 
@@ -93,7 +129,7 @@ extension MainViewController {
         changPositionViewButton.addTarget(self, action: #selector(didTappedChangeButton), for: .touchUpInside)
 
         changPositionViewButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(UIScreen.main.bounds.height / 3 + 6)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(UIScreen.main.bounds.height / 3 + 14)
             make.centerX.equalTo(view.snp.centerX)
             make.height.width.equalTo(60)
         }
@@ -104,12 +140,15 @@ extension MainViewController {
         morseCodeView.backgroundColor = .systemGray5
         morseCodeView.text = "모스코드"
         morseCodeView.tag = 2
+        morseCodeView.textColor = .systemGray
+        morseCodeView.font = .systemFont(ofSize: 30, weight: .bold)
+        morseCodeView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
 
         morseCodeView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(UIScreen.main.bounds.height / 3 + 72)
             make.centerX.equalTo(view.snp.centerX)
             make.leading.equalTo(view.snp.leading).offset(22)
-            make.height.equalTo(UIScreen.main.bounds.height / 3)
+            make.height.equalTo(UIScreen.main.bounds.height / 3 - 30)
         }
     }
 
