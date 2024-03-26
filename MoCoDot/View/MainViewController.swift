@@ -13,6 +13,10 @@ import SnapKit
 final class MainViewController: UIViewController {
     var viewModel: MainViewModel!
 
+    var isTappedPlayButton: Bool = false
+    var placeholder = "영어"
+    var morsePlaceholder = "모스코드"
+
     let translateLanguageButton = CustomButton(frame: .zero) // 한/영 언어 변환 버튼
     let textInputView = CustomTextView(frame: .zero) // 한/영 뷰
     let morseCodeView = CustomTextView(frame: .zero) // 모스코드 변환 뷰
@@ -33,6 +37,10 @@ extension MainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
 }
 
@@ -87,7 +95,10 @@ extension MainViewController {
 
         #warning("To do stuff")
         let seletedPriority = { (action: UIAction) in
+            self.view.endEditing(true)
             self.translateLanguageButton.setTitle(action.title, for: .normal)
+            self.textInputView.text = action.title
+            self.placeholder = action.title
         }
 
         translateLanguageButton.menu = UIMenu(children: [
@@ -107,11 +118,12 @@ extension MainViewController {
     private func createInputView() {
         textInputView.layer.cornerRadius = 10
         textInputView.backgroundColor = .systemGray5
-        textInputView.text = "한/영"
+        textInputView.text = placeholder
         textInputView.tag = 1
         textInputView.textColor = .systemGray
         textInputView.font = .systemFont(ofSize: 30, weight: .bold)
         textInputView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        textInputView.delegate = self
 
         textInputView.snp.makeConstraints { make in
             make.top.equalTo(translateLanguageButton.snp.bottom)
@@ -138,11 +150,12 @@ extension MainViewController {
     private func createOutputView() {
         morseCodeView.layer.cornerRadius = 10
         morseCodeView.backgroundColor = .systemGray5
-        morseCodeView.text = "모스코드"
+        morseCodeView.text = morsePlaceholder
         morseCodeView.tag = 2
         morseCodeView.textColor = .systemGray
         morseCodeView.font = .systemFont(ofSize: 30, weight: .bold)
         morseCodeView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        morseCodeView.isEditable = false
 
         morseCodeView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(UIScreen.main.bounds.height / 3 + 72)
@@ -188,10 +201,17 @@ extension MainViewController {
         let buttonImage = UIImage(systemName: "waveform", withConfiguration: imageConfig)
         tapticButton.setImage(buttonImage, for: .normal)
         tapticButton.layer.cornerRadius = 25
+        tapticButton.alpha = 0
+
+        tapticButton.addTarget(self, action: #selector(didTappedTapticButton), for: .touchUpInside)
 
         tapticButton.snp.makeConstraints { make in
             make.width.equalTo(50)
         }
+    }
+
+    @objc func didTappedTapticButton(_ sender: UIButton) {
+        print("Taptic 눌렀다.")
     }
 
     private func createFlashButton() {
@@ -201,6 +221,7 @@ extension MainViewController {
         let buttonImage = UIImage(systemName: "lightbulb.fill", withConfiguration: imageConfig)
         flashButton.setImage(buttonImage, for: .normal)
         flashButton.layer.cornerRadius = 25
+        flashButton.alpha = 0
 
         flashButton.snp.makeConstraints { make in
             make.width.equalTo(50)
@@ -214,6 +235,7 @@ extension MainViewController {
         let buttonImage = UIImage(systemName: "speaker.wave.3", withConfiguration: imageConfig)
         soundButton.setImage(buttonImage, for: .normal)
         soundButton.layer.cornerRadius = 25
+        soundButton.alpha = 0
 
         soundButton.snp.makeConstraints { make in
             make.width.equalTo(50)
@@ -224,12 +246,74 @@ extension MainViewController {
         playButton.backgroundColor = .systemMint
         playButton.tintColor = .white
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
-        let buttonImage = UIImage(systemName: "play.fill", withConfiguration: imageConfig)
+        let buttonImage = UIImage(systemName: "plus", withConfiguration: imageConfig)
         playButton.setImage(buttonImage, for: .normal)
         playButton.layer.cornerRadius = 25
 
+        playButton.addTarget(self, action: #selector(willShowActionsButtons), for: .touchUpInside)
+
         playButton.snp.makeConstraints { make in
             make.width.equalTo(50)
+        }
+    }
+
+    private func didTapFloatingButton() {
+        isTappedPlayButton.toggle()
+    }
+
+    private func rotateFloatingButton() {
+        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+        let fromValue = isTappedPlayButton ? 0 : CGFloat.pi / 4
+        let toValue = isTappedPlayButton ? CGFloat.pi / 4 : 0
+        animation.fromValue = fromValue
+        animation.toValue = toValue
+        animation.duration = 0.3
+        animation.fillMode = .forwards
+        animation.isRemovedOnCompletion = false
+        playButton.layer.add(animation, forKey: nil)
+    }
+
+    @objc func willShowActionsButtons(_ sender: UIButton) {
+        didTapFloatingButton()
+        rotateFloatingButton()
+
+        lazy var buttons: [UIButton] = [self.tapticButton, self.flashButton, self.soundButton]
+
+        if isTappedPlayButton == true {
+            buttons.forEach { [weak self] button in
+                button.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
+                UIView.animate(withDuration: 0.3, delay: 0.2, usingSpringWithDamping: 0.55, initialSpringVelocity: 0.3, options: [.curveEaseInOut]) {
+                    button.layer.transform = CATransform3DIdentity
+                    button.alpha = 1
+                }
+                self?.view.layoutIfNeeded()
+            }
+        } else {
+            for button in buttons.reversed() {
+                UIView.animate(withDuration: 0.3, delay: 0.2, usingSpringWithDamping: 0.55, initialSpringVelocity: 0.3, options: [.curveEaseInOut]) {
+                    button.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
+                    button.alpha = 0
+                }
+                view.layoutIfNeeded()
+            }
+        }
+    }
+}
+
+// MARK: - UITextViewDelegate
+
+extension MainViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == placeholder {
+            textView.text = nil
+            textView.textColor = .black
+        }
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            textView.text = placeholder
+            textView.textColor = .systemGray
         }
     }
 }
