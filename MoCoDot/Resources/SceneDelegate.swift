@@ -16,8 +16,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: windowScene)
 
         let rootViewController = MorseTranslateVC()
+        let englishTranslateService = self.container.resolve(type: EnglishToMorseTranslateProtocol.self)!
+        let koreanTranslateService = self.container.resolve(type: KoreanToMorseTranslateProtocol.self)!
+
         // 의존성 주입
-        rootViewController.viewModel = MorseTranslateViewModel(translateService: self.container.resolve(type: EnglishToMorseTranslateProtocol.self)!)
+        rootViewController.viewModel = MorseTranslateViewModel(englishTranslateService: englishTranslateService, koreanTranslateService: koreanTranslateService)
+
         let rootNavigationController = UINavigationController(rootViewController: rootViewController)
 
         self.window?.rootViewController = rootNavigationController

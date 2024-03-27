@@ -17,6 +17,9 @@
 		4EA5994B2B4EF3810064726E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EA5994A2B4EF3810064726E /* Assets.xcassets */; };
 		4EA5994E2B4EF3810064726E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EA5994C2B4EF3810064726E /* LaunchScreen.storyboard */; };
 		4ECA99162BB48D4B007C5870 /* TranslateEnglishToMorseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECA99152BB48D4B007C5870 /* TranslateEnglishToMorseTests.swift */; };
+		4ECA99182BB49357007C5870 /* KoreanToMorseTranslateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECA99172BB49357007C5870 /* KoreanToMorseTranslateProtocol.swift */; };
+		4ECA991A2BB4936F007C5870 /* KoreanToMorseTranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECA99192BB4936F007C5870 /* KoreanToMorseTranslateService.swift */; };
+		4ECA991C2BB49915007C5870 /* TranslateKoreanToMorseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECA991B2BB49915007C5870 /* TranslateKoreanToMorseTests.swift */; };
 		4ED734282B74950400071FEF /* MorseTranslateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED734272B74950400071FEF /* MorseTranslateViewModel.swift */; };
 		4ED7342D2B74964500071FEF /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED7342C2B74964500071FEF /* DIContainer.swift */; };
 		4ED7342F2B74965200071FEF /* DICProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED7342E2B74965200071FEF /* DICProtocol.swift */; };
@@ -51,6 +54,9 @@
 		4EA5994D2B4EF3810064726E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4EA5994F2B4EF3810064726E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4ECA99152BB48D4B007C5870 /* TranslateEnglishToMorseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateEnglishToMorseTests.swift; sourceTree = "<group>"; };
+		4ECA99172BB49357007C5870 /* KoreanToMorseTranslateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreanToMorseTranslateProtocol.swift; sourceTree = "<group>"; };
+		4ECA99192BB4936F007C5870 /* KoreanToMorseTranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreanToMorseTranslateService.swift; sourceTree = "<group>"; };
+		4ECA991B2BB49915007C5870 /* TranslateKoreanToMorseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateKoreanToMorseTests.swift; sourceTree = "<group>"; };
 		4ED734272B74950400071FEF /* MorseTranslateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorseTranslateViewModel.swift; sourceTree = "<group>"; };
 		4ED7342C2B74964500071FEF /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		4ED7342E2B74965200071FEF /* DICProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DICProtocol.swift; sourceTree = "<group>"; };
@@ -83,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				4ECA99152BB48D4B007C5870 /* TranslateEnglishToMorseTests.swift */,
+				4ECA991B2BB49915007C5870 /* TranslateKoreanToMorseTests.swift */,
 			);
 			path = MoCoDotTests;
 			sourceTree = "<group>";
@@ -91,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				4E79A8F12B8EE5EE000E4CCD /* EnglishToMorseTranslateService.swift */,
+				4ECA99192BB4936F007C5870 /* KoreanToMorseTranslateService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -157,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				4ED734322B74971F00071FEF /* EnglishToMorseTranslateProtocol.swift */,
+				4ECA99172BB49357007C5870 /* KoreanToMorseTranslateProtocol.swift */,
 				4E9681382B8DC98700E14E3C /* MorseProtocol.swift */,
 				4E9681362B8DC98700E14E3C /* EnglishMorse.swift */,
 				4E9681372B8DC98700E14E3C /* KoreanMorse.swift */,
@@ -291,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ECA991C2BB49915007C5870 /* TranslateKoreanToMorseTests.swift in Sources */,
 				4ECA99162BB48D4B007C5870 /* TranslateEnglishToMorseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,8 +315,10 @@
 				4ED734332B74971F00071FEF /* EnglishToMorseTranslateProtocol.swift in Sources */,
 				4ED7343C2B749A6800071FEF /* CustomTextView.swift in Sources */,
 				4EA599422B4EF3800064726E /* AppDelegate.swift in Sources */,
+				4ECA99182BB49357007C5870 /* KoreanToMorseTranslateProtocol.swift in Sources */,
 				4E9681392B8DC98700E14E3C /* EnglishMorse.swift in Sources */,
 				4E96813A2B8DC98700E14E3C /* KoreanMorse.swift in Sources */,
+				4ECA991A2BB4936F007C5870 /* KoreanToMorseTranslateService.swift in Sources */,
 				4ED7342D2B74964500071FEF /* DIContainer.swift in Sources */,
 				4ED7343A2B749A5C00071FEF /* CustomButton.swift in Sources */,
 				4EA599442B4EF3800064726E /* SceneDelegate.swift in Sources */,

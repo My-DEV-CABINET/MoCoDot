@@ -9,7 +9,8 @@ import Combine
 import Foundation
 
 final class MorseTranslateViewModel {
-    let translateService: EnglishToMorseTranslateProtocol!
+    let englishTranslateService: EnglishToMorseTranslateProtocol!
+    let koreanTranslateService: KoreanToMorseTranslateProtocol!
 
     var isTappedPublisher = CurrentValueSubject<Bool, Never>(false)
     var placeholderPublisher = CurrentValueSubject<String, Never>("English")
@@ -18,25 +19,42 @@ final class MorseTranslateViewModel {
     var subscriptions = Set<AnyCancellable>()
 
     private var isToggle: Bool = false
-    var morsePlaceholder = "모스코드"
+    private var morsePlaceholder = "모스코드"
     var placeholder = "English"
 
-    init(translateService: EnglishToMorseTranslateProtocol!) {
-        self.translateService = translateService
+    init(englishTranslateService: EnglishToMorseTranslateProtocol, koreanTranslateService: KoreanToMorseTranslateProtocol) {
+        self.englishTranslateService = englishTranslateService
+        self.koreanTranslateService = koreanTranslateService
     }
+}
 
-    func translateMorse(at inputTexts: String) -> String {
-        return translateService.translateMorse(at: inputTexts)
-    }
+// MARK: - EnglishToMorseTranslateProtocol Method
 
-    func reset() {
-        translateService.reset()
-    }
-
+extension MorseTranslateViewModel {
     func requestInputTextArr(at inputText: String) -> String {
-        return translateService.requestInputTextArr(at: inputText)
+        return englishTranslateService.requestInputTextArr(at: inputText)
     }
 
+    func englishReset() {
+        englishTranslateService.reset()
+    }
+}
+
+// MARK: - KoreanToMorseTranslateProtocol Method
+
+extension MorseTranslateViewModel {
+    func translateKoreanToMorse(at inputTexts: String) -> String {
+        return koreanTranslateService.translateMorse(at: inputTexts)
+    }
+
+    func koreanReset() {
+        koreanTranslateService.reset()
+    }
+}
+
+// MARK: - ViewModel's Original Method
+
+extension MorseTranslateViewModel {
     func changeIsToggle() {
         isToggle.toggle()
         isTappedPublisher.send(isToggle)

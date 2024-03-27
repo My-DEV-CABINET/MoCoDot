@@ -82,10 +82,14 @@ extension MorseTranslateVC {
         translateLanguageButton.layer.cornerRadius = 10
         translateLanguageButton.setTitle("English", for: .normal)
         translateLanguageButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-        translateLanguageButton.titleEdgeInsets = .init(top: 0, left: -80, bottom: 0, right: 0)
-        translateLanguageButton.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: -100)
+        translateLanguageButton.titleEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 0)
+        translateLanguageButton.imageEdgeInsets = .init(top: 0, left: 10, bottom: 0, right: 0)
+
+        translateLanguageButton.contentVerticalAlignment = .center
+        translateLanguageButton.contentHorizontalAlignment = .leading
 
         translateLanguageButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
+
         translateLanguageButton.tintColor = .white
         translateLanguageButton.backgroundColor = .systemMint
         translateLanguageButton.showsMenuAsPrimaryAction = true
@@ -94,6 +98,7 @@ extension MorseTranslateVC {
         let seletedPriority = { (action: UIAction) in
             self.translateLanguageButton.setTitle(action.title, for: .normal)
             self.textInputView.text = action.title
+            self.textInputView.textColor = .systemGray
             self.viewModel.changePlaceholder(at: action.title)
             self.view.endEditing(true)
         }
@@ -372,8 +377,13 @@ extension MorseTranslateVC {
     }
 
     @objc func didTappedTranslateButton(_ sender: UIButton) {
-        viewModel.reset()
-        morseCodeView.text = viewModel.requestInputTextArr(at: textInputView.text)
+        if viewModel.placeholder == LanguageModel.english.type {
+            viewModel.englishReset()
+            morseCodeView.text = viewModel.requestInputTextArr(at: textInputView.text)
+        } else {
+            viewModel.koreanReset()
+            morseCodeView.text = viewModel.translateKoreanToMorse(at: textInputView.text)
+        }
     }
 }
 

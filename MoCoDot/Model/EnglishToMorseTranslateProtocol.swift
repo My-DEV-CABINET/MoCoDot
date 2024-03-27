@@ -17,10 +17,3 @@ protocol EnglishToMorseTranslateProtocol {
     func translateMorse(at inputTexts: String) -> String
     func reset()
 }
-
-/// 한글 -> 모스코드 변환 프로토콜
-protocol KoreanToMorseTranslateProtocol {
-    var inputText: String { get }
-    var transResult: String { get set }
-    var morseList: [MorseProtocol] { get }
-}

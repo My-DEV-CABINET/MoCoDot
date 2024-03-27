@@ -53,7 +53,7 @@ extension KoreanMorse {
         KoreanMorse(alphabetName: "ㅑ", morseCode: "..", isChoSung: false, isJungSung: true, isJongSung: false), // 2
         KoreanMorse(alphabetName: "ㅒ", morseCode: ".. ..-", isChoSung: false, isJungSung: true, isJongSung: false), // 3
         KoreanMorse(alphabetName: "ㅓ", morseCode: "-", isChoSung: false, isJungSung: true, isJongSung: false), // 4
-        KoreanMorse(alphabetName: "ㅔ", morseCode: "- .--", isChoSung: false, isJungSung: true, isJongSung: false), // 5
+        KoreanMorse(alphabetName: "ㅔ", morseCode: "-.--", isChoSung: false, isJungSung: true, isJongSung: false), // 5
         KoreanMorse(alphabetName: "ㅕ", morseCode: "...", isChoSung: false, isJungSung: true, isJongSung: false), // 6
         KoreanMorse(alphabetName: "ㅖ", morseCode: "... ..-", isChoSung: false, isJungSung: true, isJongSung: false), // 7
         KoreanMorse(alphabetName: "ㅗ", morseCode: ".-", isChoSung: false, isJungSung: true, isJongSung: false), // 8
@@ -74,7 +74,7 @@ extension KoreanMorse {
 
     static let koreanMorseJongSungList: [KoreanMorse] = [
         // 종성
-        KoreanMorse(alphabetName: "ㄱ", morseCode: "-.--", isChoSung: false, isJungSung: false, isJongSung: true), // 0
+        KoreanMorse(alphabetName: "ㄱ", morseCode: ".-..", isChoSung: false, isJungSung: false, isJongSung: true), // 0
         KoreanMorse(alphabetName: "ㄲ", morseCode: "-.---.--", isChoSung: false, isJungSung: false, isJongSung: true), // 1
         KoreanMorse(alphabetName: "ㄱㅅ", morseCode: "-.----.", isChoSung: false, isJungSung: false, isJongSung: true), // 2
         KoreanMorse(alphabetName: "ㄴ", morseCode: "..-.", isChoSung: false, isJungSung: false, isJongSung: true), // 3

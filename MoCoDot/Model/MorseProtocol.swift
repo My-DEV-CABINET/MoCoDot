@@ -20,12 +20,12 @@ enum LanguageModel {
     case english
     case korean
 
-    var type: MorseProtocol {
+    var type: String {
         switch self {
         case .english:
-            return EnglishMorse.morseList as! MorseProtocol
+            return "English"
         case .korean:
-            return KoreanMorse.koreanMorseList as! MorseProtocol
+            return "한글"
         }
     }
 }
