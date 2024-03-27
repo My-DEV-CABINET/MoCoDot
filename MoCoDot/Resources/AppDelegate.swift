@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // DIContainer 의존성 등록
-        container.register(type: TranslateProtocol.self, service: EnglishTranslateService())
+        container.register(type: EnglishToMorseTranslateProtocol.self, service: EnglishToMorseTranslateService())
 
         return true
     }

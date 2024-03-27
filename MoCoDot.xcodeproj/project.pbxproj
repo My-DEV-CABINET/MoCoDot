@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4E79A8F22B8EE5EE000E4CCD /* EnglishTranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E79A8F12B8EE5EE000E4CCD /* EnglishTranslateService.swift */; };
+		4E79A8F22B8EE5EE000E4CCD /* EnglishToMorseTranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E79A8F12B8EE5EE000E4CCD /* EnglishToMorseTranslateService.swift */; };
 		4E9681392B8DC98700E14E3C /* EnglishMorse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9681362B8DC98700E14E3C /* EnglishMorse.swift */; };
 		4E96813A2B8DC98700E14E3C /* KoreanMorse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9681372B8DC98700E14E3C /* KoreanMorse.swift */; };
 		4E96813B2B8DC98700E14E3C /* MorseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9681382B8DC98700E14E3C /* MorseProtocol.swift */; };
 		4EA599422B4EF3800064726E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA599412B4EF3800064726E /* AppDelegate.swift */; };
 		4EA599442B4EF3800064726E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA599432B4EF3800064726E /* SceneDelegate.swift */; };
-		4EA599462B4EF3800064726E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA599452B4EF3800064726E /* MainViewController.swift */; };
+		4EA599462B4EF3800064726E /* MorseTranslateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA599452B4EF3800064726E /* MorseTranslateVC.swift */; };
 		4EA5994B2B4EF3810064726E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EA5994A2B4EF3810064726E /* Assets.xcassets */; };
 		4EA5994E2B4EF3810064726E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EA5994C2B4EF3810064726E /* LaunchScreen.storyboard */; };
-		4ED734282B74950400071FEF /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED734272B74950400071FEF /* MainViewModel.swift */; };
+		4ED734282B74950400071FEF /* MorseTranslateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED734272B74950400071FEF /* MorseTranslateViewModel.swift */; };
 		4ED7342D2B74964500071FEF /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED7342C2B74964500071FEF /* DIContainer.swift */; };
 		4ED7342F2B74965200071FEF /* DICProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED7342E2B74965200071FEF /* DICProtocol.swift */; };
-		4ED734332B74971F00071FEF /* TranslateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED734322B74971F00071FEF /* TranslateProtocol.swift */; };
+		4ED734332B74971F00071FEF /* EnglishToMorseTranslateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED734322B74971F00071FEF /* EnglishToMorseTranslateProtocol.swift */; };
 		4ED734362B7497EF00071FEF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4ED734352B7497EF00071FEF /* SnapKit */; };
 		4ED734382B7497EF00071FEF /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 4ED734372B7497EF00071FEF /* SnapKit-Dynamic */; };
 		4ED7343A2B749A5C00071FEF /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED734392B749A5C00071FEF /* CustomButton.swift */; };
@@ -28,21 +28,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4E79A8F12B8EE5EE000E4CCD /* EnglishTranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnglishTranslateService.swift; sourceTree = "<group>"; };
+		4E79A8F12B8EE5EE000E4CCD /* EnglishToMorseTranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnglishToMorseTranslateService.swift; sourceTree = "<group>"; };
 		4E9681362B8DC98700E14E3C /* EnglishMorse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnglishMorse.swift; sourceTree = "<group>"; };
 		4E9681372B8DC98700E14E3C /* KoreanMorse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KoreanMorse.swift; sourceTree = "<group>"; };
 		4E9681382B8DC98700E14E3C /* MorseProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorseProtocol.swift; sourceTree = "<group>"; };
 		4EA5993E2B4EF3800064726E /* MoCoDot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoCoDot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EA599412B4EF3800064726E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EA599432B4EF3800064726E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4EA599452B4EF3800064726E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		4EA599452B4EF3800064726E /* MorseTranslateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorseTranslateVC.swift; sourceTree = "<group>"; };
 		4EA5994A2B4EF3810064726E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4EA5994D2B4EF3810064726E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4EA5994F2B4EF3810064726E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4ED734272B74950400071FEF /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		4ED734272B74950400071FEF /* MorseTranslateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorseTranslateViewModel.swift; sourceTree = "<group>"; };
 		4ED7342C2B74964500071FEF /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		4ED7342E2B74965200071FEF /* DICProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DICProtocol.swift; sourceTree = "<group>"; };
-		4ED734322B74971F00071FEF /* TranslateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateProtocol.swift; sourceTree = "<group>"; };
+		4ED734322B74971F00071FEF /* EnglishToMorseTranslateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnglishToMorseTranslateProtocol.swift; sourceTree = "<group>"; };
 		4ED734392B749A5C00071FEF /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		4ED7343B2B749A6800071FEF /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		4EF230E02B7626DA001B4186 /* CustomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStackView.swift; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 		4E79A8F02B8EE5CB000E4CCD /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				4E79A8F12B8EE5EE000E4CCD /* EnglishTranslateService.swift */,
+				4E79A8F12B8EE5EE000E4CCD /* EnglishToMorseTranslateService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -101,7 +101,7 @@
 		4ED734292B74950900071FEF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4EA599452B4EF3800064726E /* MainViewController.swift */,
+				4EA599452B4EF3800064726E /* MorseTranslateVC.swift */,
 				4ED7343D2B749A7D00071FEF /* Subcomponents */,
 			);
 			path = View;
@@ -110,7 +110,7 @@
 		4ED7342A2B74951600071FEF /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				4ED734272B74950400071FEF /* MainViewModel.swift */,
+				4ED734272B74950400071FEF /* MorseTranslateViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -128,7 +128,7 @@
 		4ED734302B7496EC00071FEF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4ED734322B74971F00071FEF /* TranslateProtocol.swift */,
+				4ED734322B74971F00071FEF /* EnglishToMorseTranslateProtocol.swift */,
 				4E9681382B8DC98700E14E3C /* MorseProtocol.swift */,
 				4E9681362B8DC98700E14E3C /* EnglishMorse.swift */,
 				4E9681372B8DC98700E14E3C /* KoreanMorse.swift */,
@@ -235,9 +235,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EF230E12B7626DA001B4186 /* CustomStackView.swift in Sources */,
-				4E79A8F22B8EE5EE000E4CCD /* EnglishTranslateService.swift in Sources */,
-				4EA599462B4EF3800064726E /* MainViewController.swift in Sources */,
-				4ED734332B74971F00071FEF /* TranslateProtocol.swift in Sources */,
+				4E79A8F22B8EE5EE000E4CCD /* EnglishToMorseTranslateService.swift in Sources */,
+				4EA599462B4EF3800064726E /* MorseTranslateVC.swift in Sources */,
+				4ED734332B74971F00071FEF /* EnglishToMorseTranslateProtocol.swift in Sources */,
 				4ED7343C2B749A6800071FEF /* CustomTextView.swift in Sources */,
 				4EA599422B4EF3800064726E /* AppDelegate.swift in Sources */,
 				4E9681392B8DC98700E14E3C /* EnglishMorse.swift in Sources */,
@@ -247,7 +247,7 @@
 				4EA599442B4EF3800064726E /* SceneDelegate.swift in Sources */,
 				4E96813B2B8DC98700E14E3C /* MorseProtocol.swift in Sources */,
 				4ED7342F2B74965200071FEF /* DICProtocol.swift in Sources */,
-				4ED734282B74950400071FEF /* MainViewModel.swift in Sources */,
+				4ED734282B74950400071FEF /* MorseTranslateViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

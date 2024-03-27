@@ -13,3 +13,19 @@ protocol MorseProtocol {
     var alphabetName: String { get }
     var morseCode: String { get }
 }
+
+// MARK: - 언어 모델
+
+enum LanguageModel {
+    case english
+    case korean
+
+    var type: MorseProtocol {
+        switch self {
+        case .english:
+            return EnglishMorse.morseList as! MorseProtocol
+        case .korean:
+            return KoreanMorse.koreanMorseList as! MorseProtocol
+        }
+    }
+}

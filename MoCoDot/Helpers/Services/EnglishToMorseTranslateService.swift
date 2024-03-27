@@ -8,7 +8,7 @@
 import Foundation
 
 /// 영어 -> 모스코드 변환 프로토콜
-final class EnglishTranslateService: TranslateProtocol {
+final class EnglishToMorseTranslateService: EnglishToMorseTranslateProtocol {
     var inputText: String = ""
     var transResult: String = ""
     var morseList: [MorseProtocol] = EnglishMorse.morseList

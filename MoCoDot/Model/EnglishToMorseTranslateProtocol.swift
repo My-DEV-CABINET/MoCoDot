@@ -7,8 +7,8 @@
 
 import Foundation
 
-/// 문자 -> 모스코드 변환 프로토콜
-protocol TranslateProtocol {
+/// 영어 -> 모스코드 변환 프로토콜
+protocol EnglishToMorseTranslateProtocol {
     var inputText: String { get }
     var transResult: String { get set }
     var morseList: [MorseProtocol] { get }
@@ -16,4 +16,11 @@ protocol TranslateProtocol {
     func requestInputTextArr(at inputText: String) -> String
     func translateMorse(at inputTexts: String) -> String
     func reset()
+}
+
+/// 한글 -> 모스코드 변환 프로토콜
+protocol KoreanToMorseTranslateProtocol {
+    var inputText: String { get }
+    var transResult: String { get set }
+    var morseList: [MorseProtocol] { get }
 }

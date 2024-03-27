@@ -16,6 +16,12 @@ struct KoreanMorse: MorseProtocol {
 }
 
 extension KoreanMorse {
+    static let koreanMorseList: [[KoreanMorse]] = [
+        koreanMorseChosungList,
+        koreanMorseJungsungList,
+        koreanMorseJongSungList,
+    ]
+
     static let koreanMorseChosungList: [KoreanMorse] = [
         // 초성
         KoreanMorse(alphabetName: "ㄱ", morseCode: ".-..", isChoSung: true, isJungSung: false, isJongSung: false), // 0

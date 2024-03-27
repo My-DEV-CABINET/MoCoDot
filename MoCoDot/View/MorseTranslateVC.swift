@@ -5,17 +5,14 @@
 //  Created by 준우의 MacBook 16 on 1/11/24.
 //
 
+import Combine
 import SwiftUI
 import UIKit
 
 import SnapKit
 
-final class MainViewController: UIViewController {
-    var viewModel: MainViewModel!
-
-    var isTappedPlayButton: Bool = false
-    var placeholder = "영어"
-    var morsePlaceholder = "모스코드"
+final class MorseTranslateVC: UIViewController {
+    var viewModel: MorseTranslateViewModel!
 
     let translateLanguageButton = CustomButton(frame: .zero) // 한/영 언어 변환 버튼
     let textInputView = CustomTextView(frame: .zero) // 한/영 뷰
@@ -33,7 +30,7 @@ final class MainViewController: UIViewController {
     let playButton = CustomButton(frame: .zero) // 재생 버튼
 }
 
-extension MainViewController {
+extension MorseTranslateVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -44,7 +41,7 @@ extension MainViewController {
     }
 }
 
-extension MainViewController {
+extension MorseTranslateVC {
     private func setupUI() {
         view.backgroundColor = .systemBackground
         addView()
@@ -80,10 +77,10 @@ extension MainViewController {
 
 // MARK: - Create Componenets And Make Constraints
 
-extension MainViewController {
+extension MorseTranslateVC {
     private func createTranslateLanguageButton() {
         translateLanguageButton.layer.cornerRadius = 10
-        translateLanguageButton.setTitle("영어", for: .normal)
+        translateLanguageButton.setTitle("English", for: .normal)
         translateLanguageButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
         translateLanguageButton.titleEdgeInsets = .init(top: 0, left: -80, bottom: 0, right: 0)
         translateLanguageButton.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: -100)
@@ -95,14 +92,14 @@ extension MainViewController {
 
         #warning("To do stuff")
         let seletedPriority = { (action: UIAction) in
-            self.view.endEditing(true)
             self.translateLanguageButton.setTitle(action.title, for: .normal)
             self.textInputView.text = action.title
-            self.placeholder = action.title
+            self.viewModel.changePlaceholder(at: action.title)
+            self.view.endEditing(true)
         }
 
         translateLanguageButton.menu = UIMenu(children: [
-            UIAction(title: "영어", state: .off, handler: seletedPriority),
+            UIAction(title: "English", state: .off, handler: seletedPriority),
             UIAction(title: "한글", state: .off, handler: seletedPriority),
         ])
 
@@ -118,7 +115,8 @@ extension MainViewController {
     private func createInputView() {
         textInputView.layer.cornerRadius = 10
         textInputView.backgroundColor = .systemGray5
-        textInputView.text = placeholder
+        textInputView.text = viewModel.placeholder
+
         textInputView.tag = 1
         textInputView.textColor = .systemGray
         textInputView.font = .systemFont(ofSize: 30, weight: .bold)
@@ -150,7 +148,15 @@ extension MainViewController {
     private func createOutputView() {
         morseCodeView.layer.cornerRadius = 10
         morseCodeView.backgroundColor = .systemGray5
-        morseCodeView.text = morsePlaceholder
+        morseCodeView.text = "모스코드"
+
+        viewModel.morsePlaceholderPublisher
+            .receive(on: RunLoop.main)
+            .sink { str in
+                self.morseCodeView.text = str
+            }
+            .store(in: &viewModel.subscriptions)
+
         morseCodeView.tag = 2
         morseCodeView.textColor = .systemGray
         morseCodeView.font = .systemFont(ofSize: 30, weight: .bold)
@@ -258,15 +264,22 @@ extension MainViewController {
     }
 
     private func didTapFloatingButton() {
-        isTappedPlayButton.toggle()
+        viewModel.changeIsToggle()
     }
 
     private func rotateFloatingButton() {
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
-        let fromValue = isTappedPlayButton ? 0 : CGFloat.pi / 4
-        let toValue = isTappedPlayButton ? CGFloat.pi / 4 : 0
-        animation.fromValue = fromValue
-        animation.toValue = toValue
+        viewModel.isTappedPublisher
+            .receive(on: RunLoop.main)
+            .sink { boolean in
+                print(boolean)
+                let fromValue = boolean ? 0 : CGFloat.pi / 4
+                let toValue = boolean ? CGFloat.pi / 4 : 0
+                animation.fromValue = fromValue
+                animation.toValue = toValue
+            }
+            .store(in: &viewModel.subscriptions)
+
         animation.duration = 0.3
         animation.fillMode = .forwards
         animation.isRemovedOnCompletion = false
@@ -279,32 +292,37 @@ extension MainViewController {
 
         lazy var buttons: [UIButton] = [self.tapticButton, self.flashButton, self.soundButton]
 
-        if isTappedPlayButton == true {
-            buttons.forEach { [weak self] button in
-                button.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
-                UIView.animate(withDuration: 0.3, delay: 0.2, usingSpringWithDamping: 0.55, initialSpringVelocity: 0.3, options: [.curveEaseInOut]) {
-                    button.layer.transform = CATransform3DIdentity
-                    button.alpha = 1
+        viewModel.isTappedPublisher
+            .receive(on: RunLoop.main)
+            .sink { isTapped in
+                if isTapped == true {
+                    buttons.forEach { [weak self] button in
+                        button.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
+                        UIView.animate(withDuration: 0.3, delay: 0.2, usingSpringWithDamping: 0.55, initialSpringVelocity: 0.3, options: [.curveEaseInOut]) {
+                            button.layer.transform = CATransform3DIdentity
+                            button.alpha = 1
+                        }
+                        self?.view.layoutIfNeeded()
+                    }
+                } else {
+                    for button in buttons.reversed() {
+                        UIView.animate(withDuration: 0.3, delay: 0.2, usingSpringWithDamping: 0.55, initialSpringVelocity: 0.3, options: [.curveEaseInOut]) {
+                            button.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
+                            button.alpha = 0
+                        }
+                        self.view.layoutIfNeeded()
+                    }
                 }
-                self?.view.layoutIfNeeded()
             }
-        } else {
-            for button in buttons.reversed() {
-                UIView.animate(withDuration: 0.3, delay: 0.2, usingSpringWithDamping: 0.55, initialSpringVelocity: 0.3, options: [.curveEaseInOut]) {
-                    button.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
-                    button.alpha = 0
-                }
-                view.layoutIfNeeded()
-            }
-        }
+            .store(in: &viewModel.subscriptions)
     }
 }
 
 // MARK: - UITextViewDelegate
 
-extension MainViewController: UITextViewDelegate {
+extension MorseTranslateVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == placeholder {
+        if textView.text == viewModel.placeholder {
             textView.text = nil
             textView.textColor = .black
         }
@@ -312,13 +330,13 @@ extension MainViewController: UITextViewDelegate {
 
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            textView.text = placeholder
+            textView.text = viewModel.placeholder
             textView.textColor = .systemGray
         }
     }
 }
 
-extension MainViewController {
+extension MorseTranslateVC {
     @objc func didTappedChangeButton() {
 //        isTapped.toggle()
 //
@@ -361,32 +379,32 @@ extension MainViewController {
 
 // MARK: - SWIFT UI PREVIEWS
 
-#if DEBUG
-import SwiftUI
-
-@available(iOS 13, *)
-extension UIViewController {
-    private struct Preview: UIViewControllerRepresentable {
-        // this variable is used for injecting the current view controller
-        let viewController: UIViewController
-
-        func makeUIViewController(context: Context) -> UIViewController {
-            return viewController
-        }
-
-        func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
-    }
-
-    func toPreview() -> some View {
-        // inject self (the current view controller) for the preview
-        Preview(viewController: self)
-    }
-}
-
-@available(iOS 13.0, *)
-struct MainViewController_Preview: PreviewProvider {
-    static var previews: some View {
-        MainViewController().toPreview()
-    }
-}
-#endif
+// #if DEBUG
+// import SwiftUI
+//
+// @available(iOS 13, *)
+// extension UIViewController {
+//    private struct Preview: UIViewControllerRepresentable {
+//        // this variable is used for injecting the current view controller
+//        let viewController: UIViewController
+//
+//        func makeUIViewController(context: Context) -> UIViewController {
+//            return viewController
+//        }
+//
+//        func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
+//    }
+//
+//    func toPreview() -> some View {
+//        // inject self (the current view controller) for the preview
+//        Preview(viewController: self)
+//    }
+// }
+//
+// @available(iOS 13.0, *)
+// struct MainViewController_Preview: PreviewProvider {
+//    static var previews: some View {
+//        MorseTranslateVC().toPreview()
+//    }
+// }
+// #endif
