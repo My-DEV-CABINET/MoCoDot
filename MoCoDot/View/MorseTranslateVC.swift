@@ -221,7 +221,7 @@ extension MorseTranslateVC {
     }
 
     @objc func didTappedTapticButton(_ sender: UIButton) {
-        print("Taptic 눌렀다.")
+        viewModel.playHaptic(at: morseCodeView.text, durations: [0], powers: [0.5])
     }
 
     private func createFlashButton() {

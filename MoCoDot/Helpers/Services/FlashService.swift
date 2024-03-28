@@ -17,13 +17,22 @@ class FlashService: FlashServiceProtocol {
 
     func generatingMorseCodeFlashlight(at inputTexts: String) {
         for i in inputTexts {
+            toggleTorch(on: false)
+            Thread.sleep(forTimeInterval: 0.5)
+            print("#### \(i)")
             if i == "." {
                 toggleTorch(on: true)
-                Thread.sleep(forTimeInterval: 1.0)
-            }
+                Thread.sleep(forTimeInterval: 0.5)
 
-            toggleTorch(on: false)
-            Thread.sleep(forTimeInterval: 1.0)
+            } else if i == "-" {
+                toggleTorch(on: true)
+                Thread.sleep(forTimeInterval: 1.5)
+
+            } else {
+                toggleTorch(on: false)
+                Thread.sleep(forTimeInterval: 1.0)
+                continue
+            }
         }
     }
 

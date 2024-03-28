@@ -13,6 +13,7 @@ final class MorseTranslateViewModel {
     let koreanTranslateService: KoreanToMorseTranslateProtocol
     let soundService: SoundServiceProtocol
     let flashService: FlashServiceProtocol
+    let tapticService: TapticServiceProtocol
 
     var isTappedPublisher = CurrentValueSubject<Bool, Never>(false)
     var placeholderPublisher = CurrentValueSubject<String, Never>("English")
@@ -24,11 +25,18 @@ final class MorseTranslateViewModel {
     private var morsePlaceholder = "모스코드"
     var placeholder = "English"
 
-    init(englishTranslateService: EnglishToMorseTranslateProtocol, koreanTranslateService: KoreanToMorseTranslateProtocol, soundService: SoundServiceProtocol, flashService: FlashServiceProtocol) {
+    init(
+        englishTranslateService: EnglishToMorseTranslateProtocol,
+        koreanTranslateService: KoreanToMorseTranslateProtocol,
+        soundService: SoundServiceProtocol,
+        flashService: FlashServiceProtocol,
+        tapticService: TapticServiceProtocol
+    ) {
         self.englishTranslateService = englishTranslateService
         self.koreanTranslateService = koreanTranslateService
         self.soundService = soundService
         self.flashService = flashService
+        self.tapticService = tapticService
     }
 }
 
@@ -69,6 +77,18 @@ extension MorseTranslateViewModel {
 extension MorseTranslateViewModel {
     func generatingMorseCodeFlashlight(at inputTexts: String) {
         flashService.generatingMorseCodeFlashlight(at: inputTexts)
+    }
+}
+
+// MARK: - TapticServiceProtocol Method
+
+extension MorseTranslateViewModel {
+    func stopHaptic() {
+        tapticService.stopHaptic()
+    }
+
+    func playHaptic(at inputTexts: String, durations: [Double], powers: [Float]) {
+        tapticService.playHaptic(at: inputTexts, durations: durations, powers: powers)
     }
 }
 

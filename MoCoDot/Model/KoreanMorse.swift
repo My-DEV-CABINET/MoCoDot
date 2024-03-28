@@ -43,7 +43,7 @@ extension KoreanMorse {
         KoreanMorse(alphabetName: "ㅌ", morseCode: "--..", isChoSung: true, isJungSung: false, isJongSung: false), // 16
         KoreanMorse(alphabetName: "ㅍ", morseCode: "---", isChoSung: true, isJungSung: false, isJongSung: false), // 17
         KoreanMorse(alphabetName: "ㅎ", morseCode: ".---", isChoSung: true, isJungSung: false, isJongSung: false), // 18
-        KoreanMorse(alphabetName: " ", morseCode: " / ", isChoSung: true, isJungSung: false, isJongSung: false), // 19
+        KoreanMorse(alphabetName: " ", morseCode: " ", isChoSung: true, isJungSung: false, isJongSung: false), // 19
     ]
 
     static let koreanMorseJungsungList: [KoreanMorse] = [
@@ -69,7 +69,7 @@ extension KoreanMorse {
         KoreanMorse(alphabetName: "ㅡ", morseCode: "-..", isChoSung: false, isJungSung: true, isJongSung: false), // 18
         KoreanMorse(alphabetName: "ㅢ", morseCode: "-.. ..-", isChoSung: false, isJungSung: true, isJongSung: false), // 19
         KoreanMorse(alphabetName: "ㅣ", morseCode: "..-", isChoSung: false, isJungSung: true, isJongSung: false), // 20
-        KoreanMorse(alphabetName: " ", morseCode: " / ", isChoSung: false, isJungSung: true, isJongSung: false), // 21
+        KoreanMorse(alphabetName: " ", morseCode: " ", isChoSung: false, isJungSung: true, isJongSung: false), // 21
     ]
 
     static let koreanMorseJongSungList: [KoreanMorse] = [
@@ -101,6 +101,6 @@ extension KoreanMorse {
         KoreanMorse(alphabetName: "ㅌ", morseCode: "--..", isChoSung: false, isJungSung: false, isJongSung: true), // 24
         KoreanMorse(alphabetName: "ㅍ", morseCode: "---", isChoSung: false, isJungSung: false, isJongSung: true), // 25
         KoreanMorse(alphabetName: "ㅎ", morseCode: ".---", isChoSung: false, isJungSung: false, isJongSung: true), // 26
-        KoreanMorse(alphabetName: " ", morseCode: "/", isChoSung: false, isJungSung: false, isJongSung: true), // 27
+        KoreanMorse(alphabetName: " ", morseCode: " ", isChoSung: false, isJungSung: false, isJongSung: true), // 27
     ]
 }

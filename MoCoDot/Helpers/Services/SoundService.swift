@@ -8,17 +8,6 @@
 import AVFoundation
 import Foundation
 
-enum SoundServiceError: Error {
-    case invalidFileURL
-
-    var message: String {
-        switch self {
-        case .invalidFileURL:
-            return "Beep file URLs are not available"
-        }
-    }
-}
-
 class SoundService: SoundServiceProtocol {
     var player: AVQueuePlayer = .init()
 
