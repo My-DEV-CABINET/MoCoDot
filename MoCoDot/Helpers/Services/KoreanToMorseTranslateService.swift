@@ -52,11 +52,11 @@ final class KoreanToMorseTranslateService: KoreanToMorseTranslateProtocol {
             answer += z ? morseList[2][utfList[2]].morseCode + " " : ""
 
             if i == " " {
-                answer += "  "
+                answer += " "
             } else if i == "\n" {
                 answer += "\n"
             } else {
-                answer += "  "
+                answer += " "
             }
         }
 

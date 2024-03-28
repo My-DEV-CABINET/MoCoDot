@@ -33,7 +33,7 @@ final class EnglishToMorseTranslateService: EnglishToMorseTranslateProtocol {
     func translateMorse(at inputTexts: String) -> String {
         for morseIndex in 0 ..< morseList.count {
             if inputTexts == morseList[morseIndex].alphabetName {
-                transResult += morseList[morseIndex].morseCode + "  "
+                transResult += morseList[morseIndex].morseCode + " "
 
                 if inputTexts == "\n" {
                     transResult += "\n"
