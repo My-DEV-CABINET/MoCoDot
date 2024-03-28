@@ -9,8 +9,9 @@ import Combine
 import Foundation
 
 final class MorseTranslateViewModel {
-    let englishTranslateService: EnglishToMorseTranslateProtocol!
-    let koreanTranslateService: KoreanToMorseTranslateProtocol!
+    let englishTranslateService: EnglishToMorseTranslateProtocol
+    let koreanTranslateService: KoreanToMorseTranslateProtocol
+    let soundService: SoundServiceProtocol
 
     var isTappedPublisher = CurrentValueSubject<Bool, Never>(false)
     var placeholderPublisher = CurrentValueSubject<String, Never>("English")
@@ -22,9 +23,10 @@ final class MorseTranslateViewModel {
     private var morsePlaceholder = "모스코드"
     var placeholder = "English"
 
-    init(englishTranslateService: EnglishToMorseTranslateProtocol, koreanTranslateService: KoreanToMorseTranslateProtocol) {
+    init(englishTranslateService: EnglishToMorseTranslateProtocol, koreanTranslateService: KoreanToMorseTranslateProtocol, soundService: SoundServiceProtocol) {
         self.englishTranslateService = englishTranslateService
         self.koreanTranslateService = koreanTranslateService
+        self.soundService = soundService
     }
 }
 
@@ -49,6 +51,14 @@ extension MorseTranslateViewModel {
 
     func koreanReset() {
         koreanTranslateService.reset()
+    }
+}
+
+// MARK: - SoundServiceProtocol Method
+
+extension MorseTranslateViewModel {
+    func generatingMorseCodeSounds(at message: String) {
+        soundService.generatingMorseCodeSounds(at: message)
     }
 }
 

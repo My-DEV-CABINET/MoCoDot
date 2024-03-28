@@ -94,7 +94,6 @@ extension MorseTranslateVC {
         translateLanguageButton.backgroundColor = .systemMint
         translateLanguageButton.showsMenuAsPrimaryAction = true
 
-        #warning("To do stuff")
         let seletedPriority = { (action: UIAction) in
             self.translateLanguageButton.setTitle(action.title, for: .normal)
             self.textInputView.text = action.title
@@ -165,7 +164,7 @@ extension MorseTranslateVC {
         morseCodeView.tag = 2
         morseCodeView.textColor = .systemGray
         morseCodeView.font = .systemFont(ofSize: 30, weight: .bold)
-        morseCodeView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        morseCodeView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: -10)
         morseCodeView.isEditable = false
 
         morseCodeView.snp.makeConstraints { make in
@@ -248,9 +247,15 @@ extension MorseTranslateVC {
         soundButton.layer.cornerRadius = 25
         soundButton.alpha = 0
 
+        soundButton.addTarget(self, action: #selector(didTappedSoundButton), for: .touchUpInside)
+
         soundButton.snp.makeConstraints { make in
             make.width.equalTo(50)
         }
+    }
+
+    @objc func didTappedSoundButton(_ sender: UIButton) {
+        viewModel.generatingMorseCodeSounds(at: morseCodeView.text)
     }
 
     private func createPlayButton() {
@@ -272,18 +277,13 @@ extension MorseTranslateVC {
         viewModel.changeIsToggle()
     }
 
-    private func rotateFloatingButton() {
+    private func rotateFloatingButton(_ isTapped: Bool) {
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
-        viewModel.isTappedPublisher
-            .receive(on: RunLoop.main)
-            .sink { boolean in
-                print(boolean)
-                let fromValue = boolean ? 0 : CGFloat.pi / 4
-                let toValue = boolean ? CGFloat.pi / 4 : 0
-                animation.fromValue = fromValue
-                animation.toValue = toValue
-            }
-            .store(in: &viewModel.subscriptions)
+
+        let fromValue = isTapped ? 0 : CGFloat.pi / 4
+        let toValue = isTapped ? CGFloat.pi / 4 : 0
+        animation.fromValue = fromValue
+        animation.toValue = toValue
 
         animation.duration = 0.3
         animation.fillMode = .forwards
@@ -292,18 +292,17 @@ extension MorseTranslateVC {
     }
 
     @objc func willShowActionsButtons(_ sender: UIButton) {
-        didTapFloatingButton()
-        rotateFloatingButton()
-
         lazy var buttons: [UIButton] = [self.tapticButton, self.flashButton, self.soundButton]
+        didTapFloatingButton()
 
         viewModel.isTappedPublisher
             .receive(on: RunLoop.main)
             .sink { isTapped in
+                self.rotateFloatingButton(isTapped)
                 if isTapped == true {
                     buttons.forEach { [weak self] button in
-                        button.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
-                        UIView.animate(withDuration: 0.3, delay: 0.2, usingSpringWithDamping: 0.55, initialSpringVelocity: 0.3, options: [.curveEaseInOut]) {
+                        button.layer.transform = CATransform3DMakeScale(0.3, 0.3, 1)
+                        UIView.animate(withDuration: 0.3, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.3, options: [.curveEaseInOut]) {
                             button.layer.transform = CATransform3DIdentity
                             button.alpha = 1
                         }
@@ -311,8 +310,8 @@ extension MorseTranslateVC {
                     }
                 } else {
                     for button in buttons.reversed() {
-                        UIView.animate(withDuration: 0.3, delay: 0.2, usingSpringWithDamping: 0.55, initialSpringVelocity: 0.3, options: [.curveEaseInOut]) {
-                            button.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
+                        UIView.animate(withDuration: 0.3, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.3, options: [.curveEaseInOut]) {
+                            button.layer.transform = CATransform3DMakeScale(0.3, 0.3, 1)
                             button.alpha = 0
                         }
                         self.view.layoutIfNeeded()

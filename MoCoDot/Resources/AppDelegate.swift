@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // DIContainer 의존성 등록
         container.register(type: EnglishToMorseTranslateProtocol.self, service: EnglishToMorseTranslateService())
         container.register(type: KoreanToMorseTranslateProtocol.self, service: KoreanToMorseTranslateService())
+        container.register(type: SoundServiceProtocol.self, service: SoundService())
 
         return true
     }

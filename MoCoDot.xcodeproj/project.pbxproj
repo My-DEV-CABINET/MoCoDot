@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E01C76C2BB565A600C55EC6 /* SoundServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E01C76B2BB565A600C55EC6 /* SoundServiceProtocol.swift */; };
+		4E01C76E2BB5660600C55EC6 /* SoundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E01C76D2BB5660600C55EC6 /* SoundService.swift */; };
+		4E01C7712BB5665D00C55EC6 /* beep_long.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4E01C76F2BB5665D00C55EC6 /* beep_long.mp3 */; };
+		4E01C7722BB5665D00C55EC6 /* beep_short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4E01C7702BB5665D00C55EC6 /* beep_short.mp3 */; };
 		4E79A8F22B8EE5EE000E4CCD /* EnglishToMorseTranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E79A8F12B8EE5EE000E4CCD /* EnglishToMorseTranslateService.swift */; };
 		4E9681392B8DC98700E14E3C /* EnglishMorse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9681362B8DC98700E14E3C /* EnglishMorse.swift */; };
 		4E96813A2B8DC98700E14E3C /* KoreanMorse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9681372B8DC98700E14E3C /* KoreanMorse.swift */; };
@@ -41,6 +45,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E01C76B2BB565A600C55EC6 /* SoundServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundServiceProtocol.swift; sourceTree = "<group>"; };
+		4E01C76D2BB5660600C55EC6 /* SoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
+		4E01C76F2BB5665D00C55EC6 /* beep_long.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep_long.mp3; sourceTree = "<group>"; };
+		4E01C7702BB5665D00C55EC6 /* beep_short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep_short.mp3; sourceTree = "<group>"; };
 		4E48083F2BB47C6900FBF06D /* MoCoDotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoCoDotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E79A8F12B8EE5EE000E4CCD /* EnglishToMorseTranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnglishToMorseTranslateService.swift; sourceTree = "<group>"; };
 		4E9681362B8DC98700E14E3C /* EnglishMorse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnglishMorse.swift; sourceTree = "<group>"; };
@@ -99,6 +107,7 @@
 			children = (
 				4E79A8F12B8EE5EE000E4CCD /* EnglishToMorseTranslateService.swift */,
 				4ECA99192BB4936F007C5870 /* KoreanToMorseTranslateService.swift */,
+				4E01C76D2BB5660600C55EC6 /* SoundService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -130,6 +139,8 @@
 				4ED734292B74950900071FEF /* View */,
 				4ED7342A2B74951600071FEF /* ViewModel */,
 				4EA5994F2B4EF3810064726E /* Info.plist */,
+				4E01C76F2BB5665D00C55EC6 /* beep_long.mp3 */,
+				4E01C7702BB5665D00C55EC6 /* beep_short.mp3 */,
 			);
 			path = MoCoDot;
 			sourceTree = "<group>";
@@ -166,6 +177,7 @@
 			children = (
 				4ED734322B74971F00071FEF /* EnglishToMorseTranslateProtocol.swift */,
 				4ECA99172BB49357007C5870 /* KoreanToMorseTranslateProtocol.swift */,
+				4E01C76B2BB565A600C55EC6 /* SoundServiceProtocol.swift */,
 				4E9681382B8DC98700E14E3C /* MorseProtocol.swift */,
 				4E9681362B8DC98700E14E3C /* EnglishMorse.swift */,
 				4E9681372B8DC98700E14E3C /* KoreanMorse.swift */,
@@ -289,7 +301,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EA5994E2B4EF3810064726E /* LaunchScreen.storyboard in Resources */,
+				4E01C7712BB5665D00C55EC6 /* beep_long.mp3 in Resources */,
 				4EA5994B2B4EF3810064726E /* Assets.xcassets in Resources */,
+				4E01C7722BB5665D00C55EC6 /* beep_short.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +330,7 @@
 				4ED7343C2B749A6800071FEF /* CustomTextView.swift in Sources */,
 				4EA599422B4EF3800064726E /* AppDelegate.swift in Sources */,
 				4ECA99182BB49357007C5870 /* KoreanToMorseTranslateProtocol.swift in Sources */,
+				4E01C76E2BB5660600C55EC6 /* SoundService.swift in Sources */,
 				4E9681392B8DC98700E14E3C /* EnglishMorse.swift in Sources */,
 				4E96813A2B8DC98700E14E3C /* KoreanMorse.swift in Sources */,
 				4ECA991A2BB4936F007C5870 /* KoreanToMorseTranslateService.swift in Sources */,
@@ -323,6 +338,7 @@
 				4ED7343A2B749A5C00071FEF /* CustomButton.swift in Sources */,
 				4EA599442B4EF3800064726E /* SceneDelegate.swift in Sources */,
 				4E96813B2B8DC98700E14E3C /* MorseProtocol.swift in Sources */,
+				4E01C76C2BB565A600C55EC6 /* SoundServiceProtocol.swift in Sources */,
 				4ED7342F2B74965200071FEF /* DICProtocol.swift in Sources */,
 				4ED734282B74950400071FEF /* MorseTranslateViewModel.swift in Sources */,
 			);

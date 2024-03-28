@@ -50,7 +50,7 @@ extension EnglishMorse {
         EnglishMorse(alphabetName: "7", morseCode: "--..."),
         EnglishMorse(alphabetName: "8", morseCode: "---.."),
         EnglishMorse(alphabetName: "9", morseCode: "----."),
-        EnglishMorse(alphabetName: " ", morseCode: " / "),
+        EnglishMorse(alphabetName: " ", morseCode: "  "),
         EnglishMorse(alphabetName: "\n", morseCode: ""),
     ]
 }
