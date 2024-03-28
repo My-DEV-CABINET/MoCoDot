@@ -12,6 +12,7 @@ final class MorseTranslateViewModel {
     let englishTranslateService: EnglishToMorseTranslateProtocol
     let koreanTranslateService: KoreanToMorseTranslateProtocol
     let soundService: SoundServiceProtocol
+    let flashService: FlashServiceProtocol
 
     var isTappedPublisher = CurrentValueSubject<Bool, Never>(false)
     var placeholderPublisher = CurrentValueSubject<String, Never>("English")
@@ -23,10 +24,11 @@ final class MorseTranslateViewModel {
     private var morsePlaceholder = "모스코드"
     var placeholder = "English"
 
-    init(englishTranslateService: EnglishToMorseTranslateProtocol, koreanTranslateService: KoreanToMorseTranslateProtocol, soundService: SoundServiceProtocol) {
+    init(englishTranslateService: EnglishToMorseTranslateProtocol, koreanTranslateService: KoreanToMorseTranslateProtocol, soundService: SoundServiceProtocol, flashService: FlashServiceProtocol) {
         self.englishTranslateService = englishTranslateService
         self.koreanTranslateService = koreanTranslateService
         self.soundService = soundService
+        self.flashService = flashService
     }
 }
 
@@ -59,6 +61,14 @@ extension MorseTranslateViewModel {
 extension MorseTranslateViewModel {
     func generatingMorseCodeSounds(at message: String) {
         soundService.generatingMorseCodeSounds(at: message)
+    }
+}
+
+// MARK: - FlashServiceProtocol Method
+
+extension MorseTranslateViewModel {
+    func generatingMorseCodeFlashlight(at inputTexts: String) {
+        flashService.generatingMorseCodeFlashlight(at: inputTexts)
     }
 }
 

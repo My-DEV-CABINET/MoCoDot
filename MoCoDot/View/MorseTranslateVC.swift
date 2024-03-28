@@ -233,9 +233,15 @@ extension MorseTranslateVC {
         flashButton.layer.cornerRadius = 25
         flashButton.alpha = 0
 
+        flashButton.addTarget(self, action: #selector(didTappedFlashButton), for: .touchUpInside)
+
         flashButton.snp.makeConstraints { make in
             make.width.equalTo(50)
         }
+    }
+
+    @objc func didTappedFlashButton(_ sender: UIButton) {
+        viewModel.generatingMorseCodeFlashlight(at: morseCodeView.text)
     }
 
     private func createSoundButton() {
