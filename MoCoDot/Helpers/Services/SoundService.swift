@@ -8,6 +8,17 @@
 import AVFoundation
 import Foundation
 
+enum SoundServiceError: Error {
+    case invalidFileURL
+
+    var message: String {
+        switch self {
+        case .invalidFileURL:
+            return "Beep file URLs are not available"
+        }
+    }
+}
+
 class SoundService: SoundServiceProtocol {
     var player: AVQueuePlayer = .init()
 
@@ -18,7 +29,7 @@ class SoundService: SoundServiceProtocol {
         let shortBeepURL = Bundle.main.url(forResource: "beep_short", withExtension: "mp3")
 
         guard let longBeepURL = longBeepURL, let shortBeepURL = shortBeepURL else {
-            print("Beep file URLs are not available")
+            print(SoundServiceError.invalidFileURL.message)
             return
         }
 
