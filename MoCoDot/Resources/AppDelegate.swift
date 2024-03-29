@@ -18,10 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         container.register(type: SoundServiceProtocol.self, service: SoundService())
         container.register(type: FlashServiceProtocol.self, service: FlashService())
 
-        #if TEST
-        container.register(type: TapticServiceProtocol.self, service: MockupTapticService())
-        #else
+        #if DEVELOPMENT
         container.register(type: TapticServiceProtocol.self, service: TapticService())
+        print("# I am Development")
+        #else
+        container.register(type: TapticServiceProtocol.self, service: MockupTapticService())
+
+        print("# I am DEBUG")
         #endif
 
         return true

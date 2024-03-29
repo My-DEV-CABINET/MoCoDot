@@ -25,11 +25,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // 핸드폰 불빛 On/Off 서비스
         let flashService = self.container.resolve(type: FlashServiceProtocol.self)!
 
-        #if TEST
-        // MockUP
+        #if DEVELOPMENT
+        // 핸드폰 진동 On/Off 서비스
         let tapticService = self.container.resolve(type: TapticServiceProtocol.self)!
         #else
-        // 핸드폰 진동 On/Off 서비스
+        // MockUP
         let tapticService = self.container.resolve(type: TapticServiceProtocol.self)!
         #endif
 
