@@ -9,7 +9,7 @@ import CoreHaptics
 import Foundation
 
 protocol TapticServiceProtocol {
-    var hapticEngine: CHHapticEngine { get }
+    var hapticEngine: CHHapticEngine? { get }
     var hapticAdvancedPlayer: CHHapticAdvancedPatternPlayer? { get }
 
     func stopHaptic()

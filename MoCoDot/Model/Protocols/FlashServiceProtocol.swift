@@ -9,7 +9,7 @@ import AVFoundation
 import Foundation
 
 protocol FlashServiceProtocol {
-    var avDevice: AVCaptureDevice { get }
+    var avDevice: AVCaptureDevice? { get }
 
     func toggleTorch(on: Bool)
     func generatingMorseCodeFlashlight(at inputTexts: String)

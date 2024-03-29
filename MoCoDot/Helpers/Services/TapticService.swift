@@ -9,7 +9,7 @@ import CoreHaptics
 import Foundation
 
 class TapticService: TapticServiceProtocol {
-    var hapticEngine: CHHapticEngine
+    var hapticEngine: CHHapticEngine?
     var hapticAdvancedPlayer: CHHapticAdvancedPatternPlayer?
 
     init?() {
@@ -28,15 +28,18 @@ class TapticService: TapticServiceProtocol {
         }
     }
 
+    /// 진동 종료
     func stopHaptic() {
         do {
-            hapticEngine.stop()
+            hapticEngine?.stop()
             try hapticAdvancedPlayer?.stop(atTime: 0)
         } catch {
             print("Failed to stopHapric: \(error.localizedDescription)")
         }
     }
 
+    /// 입력받은 모스코드 문자에 맞춰 진동 피드백을 주는 메서드
+    /// - Parameter inputTexts: 변환된 모스코드 문자열
     func playHaptic(at inputTexts: String) {
         do {
             stopHaptic()
@@ -46,22 +49,22 @@ class TapticService: TapticServiceProtocol {
 
             for i in inputTexts {
                 print("#### \(i)")
-                try hapticEngine.start()
+                try hapticEngine?.start()
 
                 if i == "." {
                     let pattern = try makePattern(durations: [0.5], powers: [1.0])
-                    hapticAdvancedPlayer = try hapticEngine.makeAdvancedPlayer(with: pattern)
+                    hapticAdvancedPlayer = try hapticEngine?.makeAdvancedPlayer(with: pattern)
                     try hapticAdvancedPlayer?.start(atTime: 0)
                     // "." 일 때 0.5초 진동 후 대기
                     Thread.sleep(forTimeInterval: 0.5)
                 } else if i == "-" {
                     let pattern = try makePattern(durations: [1.0], powers: [1.0])
-                    hapticAdvancedPlayer = try hapticEngine.makeAdvancedPlayer(with: pattern)
+                    hapticAdvancedPlayer = try hapticEngine?.makeAdvancedPlayer(with: pattern)
                     try hapticAdvancedPlayer?.start(atTime: 0)
                     // "-" 일 때 1.0초 진동 후 대기
                     Thread.sleep(forTimeInterval: 1.0)
                 } else {
-                    hapticEngine.stop()
+                    hapticEngine?.stop()
                     // 다른 문자일 경우 대기하지 않고 진동을 중지합니다.
                     Thread.sleep(forTimeInterval: 0.5)
                 }

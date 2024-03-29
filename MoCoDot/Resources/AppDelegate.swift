@@ -17,8 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         container.register(type: KoreanToMorseTranslateProtocol.self, service: KoreanToMorseTranslateService())
         container.register(type: SoundServiceProtocol.self, service: SoundService())
         container.register(type: FlashServiceProtocol.self, service: FlashService())
+
+        #if TEST
+        container.register(type: TapticServiceProtocol.self, service: MockupTapticService())
+        #else
         container.register(type: TapticServiceProtocol.self, service: TapticService())
+        #endif
 
         return true
+    }
+
+    // 세로 모드 고정
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
     }
 }
