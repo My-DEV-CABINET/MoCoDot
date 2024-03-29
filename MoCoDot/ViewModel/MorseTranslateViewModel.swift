@@ -6,7 +6,7 @@
 //
 
 import Combine
-import Foundation
+import UIKit
 
 final class MorseTranslateViewModel {
     let englishTranslateService: EnglishToMorseTranslateProtocol
@@ -18,6 +18,8 @@ final class MorseTranslateViewModel {
     var isTappedPublisher = CurrentValueSubject<Bool, Never>(false)
     var placeholderPublisher = CurrentValueSubject<String, Never>("English")
     var morsePlaceholderPublisher = CurrentValueSubject<String, Never>("모스코드")
+
+    var isTappedButtonsPublisher = PassthroughSubject<UIButton, Never>()
 
     var subscriptions = Set<AnyCancellable>()
 
@@ -67,8 +69,12 @@ extension MorseTranslateViewModel {
 // MARK: - SoundServiceProtocol Method
 
 extension MorseTranslateViewModel {
-    func generatingMorseCodeSounds(at message: String) {
-        soundService.generatingMorseCodeSounds(at: message)
+    func generatingMorseCodeSounds(at message: String) async {
+        await soundService.generatingMorseCodeSounds(at: message)
+    }
+
+    func pauseMorseCodeSounds() {
+        soundService.pauseMorseCodeSounds()
     }
 }
 
@@ -77,6 +83,10 @@ extension MorseTranslateViewModel {
 extension MorseTranslateViewModel {
     func generatingMorseCodeFlashlight(at inputTexts: String) {
         flashService.generatingMorseCodeFlashlight(at: inputTexts)
+    }
+
+    func toggleFlashOff() {
+        flashService.toggleOff()
     }
 }
 
@@ -87,8 +97,8 @@ extension MorseTranslateViewModel {
         tapticService.stopHaptic()
     }
 
-    func playHaptic(at inputTexts: String, durations: [Double], powers: [Float]) {
-        tapticService.playHaptic(at: inputTexts, durations: durations, powers: powers)
+    func playHaptic(at inputTexts: String) {
+        tapticService.playHaptic(at: inputTexts)
     }
 }
 
@@ -103,5 +113,9 @@ extension MorseTranslateViewModel {
     func changePlaceholder(at str: String) {
         placeholder = str
         placeholderPublisher.send(str)
+    }
+
+    func changeButtonBackgroundColor(at button: UIButton) {
+        isTappedButtonsPublisher.send(button)
     }
 }

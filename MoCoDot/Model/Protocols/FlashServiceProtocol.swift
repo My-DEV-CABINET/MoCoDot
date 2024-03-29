@@ -13,4 +13,5 @@ protocol FlashServiceProtocol {
 
     func toggleTorch(on: Bool)
     func generatingMorseCodeFlashlight(at inputTexts: String)
+    func toggleOff()
 }

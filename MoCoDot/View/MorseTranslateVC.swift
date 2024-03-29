@@ -34,6 +34,7 @@ extension MorseTranslateVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        bind()
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -72,6 +73,85 @@ extension MorseTranslateVC {
         for item in [tapticButton, flashButton, soundButton, playButton] {
             morseCodeButtonStackView.addArrangedSubview(item)
         }
+    }
+}
+
+// MARK: - ViewModel Binding
+
+extension MorseTranslateVC {
+    func bind() {
+        viewModel.isTappedButtonsPublisher
+            .receive(on: RunLoop.main)
+            .sink { button in
+                if button == self.tapticButton {
+                    if button.backgroundColor == .systemMint {
+                        button.backgroundColor = .red
+                        self.flashButton.backgroundColor = .systemMint
+                        self.soundButton.backgroundColor = .systemMint
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { // 0.1초 후에 실행
+                            defer {
+                                self.tapticButton.backgroundColor = .systemMint
+                            }
+
+                            self.viewModel.playHaptic(at: self.morseCodeView.text)
+                        }
+
+                    } else {
+                        button.backgroundColor = .systemMint
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            self.viewModel.stopHaptic()
+                        }
+                    }
+                } else if button == self.flashButton {
+                    if button.backgroundColor == .systemMint {
+                        button.backgroundColor = .red
+                        self.tapticButton.backgroundColor = .systemMint
+                        self.soundButton.backgroundColor = .systemMint
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            defer {
+                                self.flashButton.backgroundColor = .systemMint
+                            }
+
+                            self.viewModel.generatingMorseCodeFlashlight(at: self.morseCodeView.text)
+                        }
+
+                    } else {
+                        button.backgroundColor = .systemMint
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            self.viewModel.toggleFlashOff()
+                        }
+                    }
+                } else {
+                    if button.backgroundColor == .systemMint {
+                        button.backgroundColor = .red
+                        self.tapticButton.backgroundColor = .systemMint
+                        self.flashButton.backgroundColor = .systemMint
+
+                        // generatingMorseCodeSounds 작업을 시작합니다.
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            Task {
+                                await self.viewModel.generatingMorseCodeSounds(at: self.morseCodeView.text)
+
+                                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(self.viewModel.soundService.player.items().count - 2)) {
+                                    button.backgroundColor = .systemMint
+                                }
+                            }
+                        }
+
+                    } else {
+                        button.backgroundColor = .systemMint
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            self.viewModel.pauseMorseCodeSounds()
+                        }
+                    }
+                }
+
+            }.store(in: &viewModel.subscriptions)
     }
 }
 
@@ -212,6 +292,7 @@ extension MorseTranslateVC {
         tapticButton.setImage(buttonImage, for: .normal)
         tapticButton.layer.cornerRadius = 25
         tapticButton.alpha = 0
+        tapticButton.tag = 0
 
         tapticButton.addTarget(self, action: #selector(didTappedTapticButton), for: .touchUpInside)
 
@@ -220,8 +301,10 @@ extension MorseTranslateVC {
         }
     }
 
+    #warning("Taptic Button Action")
     @objc func didTappedTapticButton(_ sender: UIButton) {
-        viewModel.playHaptic(at: morseCodeView.text, durations: [0], powers: [0.5])
+        viewModel.changeButtonBackgroundColor(at: sender)
+//        viewModel.playHaptic(at: morseCodeView.text)
     }
 
     private func createFlashButton() {
@@ -232,6 +315,7 @@ extension MorseTranslateVC {
         flashButton.setImage(buttonImage, for: .normal)
         flashButton.layer.cornerRadius = 25
         flashButton.alpha = 0
+        flashButton.tag = 1
 
         flashButton.addTarget(self, action: #selector(didTappedFlashButton), for: .touchUpInside)
 
@@ -240,8 +324,11 @@ extension MorseTranslateVC {
         }
     }
 
+    #warning("Flash Button Action")
     @objc func didTappedFlashButton(_ sender: UIButton) {
-        viewModel.generatingMorseCodeFlashlight(at: morseCodeView.text)
+        print("\(sender.tag)")
+        viewModel.changeButtonBackgroundColor(at: sender)
+//        viewModel.generatingMorseCodeFlashlight(at: morseCodeView.text)
     }
 
     private func createSoundButton() {
@@ -252,6 +339,7 @@ extension MorseTranslateVC {
         soundButton.setImage(buttonImage, for: .normal)
         soundButton.layer.cornerRadius = 25
         soundButton.alpha = 0
+        soundButton.tag = 2
 
         soundButton.addTarget(self, action: #selector(didTappedSoundButton), for: .touchUpInside)
 
@@ -260,8 +348,10 @@ extension MorseTranslateVC {
         }
     }
 
+    #warning("Sound Button Action")
     @objc func didTappedSoundButton(_ sender: UIButton) {
-        viewModel.generatingMorseCodeSounds(at: morseCodeView.text)
+        viewModel.changeButtonBackgroundColor(at: sender)
+//        viewModel.generatingMorseCodeSounds(at: morseCodeView.text)
     }
 
     private func createPlayButton() {

@@ -11,9 +11,13 @@ import Foundation
 class SoundService: SoundServiceProtocol {
     var player: AVQueuePlayer = .init()
 
+    func pauseMorseCodeSounds() {
+        self.player.pause()
+    }
+
     /// 변환된 모스코드를 재생하는 메서드
     /// - Parameter message: 변환된 모스부호들
-    func generatingMorseCodeSounds(at message: String) {
+    func generatingMorseCodeSounds(at message: String) async {
         var audioItems: [AVPlayerItem] = []
 
         let longBeepURL = Bundle.main.url(forResource: "beep_long", withExtension: "mp3")

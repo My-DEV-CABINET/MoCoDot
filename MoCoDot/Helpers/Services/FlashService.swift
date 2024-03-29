@@ -50,4 +50,8 @@ class FlashService: FlashServiceProtocol {
             }
         }
     }
+
+    func toggleOff() {
+        avDevice.torchMode = .off
+    }
 }
