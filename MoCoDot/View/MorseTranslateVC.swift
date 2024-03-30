@@ -89,14 +89,12 @@ extension MorseTranslateVC {
                         self.flashButton.backgroundColor = .systemMint
                         self.soundButton.backgroundColor = .systemMint
 
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                            self.viewModel.playHaptic(at: self.morseCodeView.text)
-                        }
-
+                        self.viewModel.playHaptic(at: self.morseCodeView.text)
+                        self.viewModel.toggleFlashOff()
+                        self.viewModel.pauseMorseCodeSounds()
                     } else {
-                        button.backgroundColor = .systemMint
-
                         self.viewModel.stopHaptic()
+                        button.backgroundColor = .systemMint
                     }
                 } else if button == self.flashButton {
                     if button.backgroundColor == .systemMint {
@@ -105,7 +103,8 @@ extension MorseTranslateVC {
                         self.soundButton.backgroundColor = .systemMint
 
                         self.viewModel.generatingMorseCodeFlashlight(at: self.morseCodeView.text)
-
+                        self.viewModel.stopHaptic()
+                        self.viewModel.pauseMorseCodeSounds()
                     } else {
                         self.viewModel.toggleFlashOff()
                         button.backgroundColor = .systemMint
@@ -116,23 +115,18 @@ extension MorseTranslateVC {
                         self.tapticButton.backgroundColor = .systemMint
                         self.flashButton.backgroundColor = .systemMint
 
+                        self.viewModel.stopHaptic()
+                        self.viewModel.toggleFlashOff()
                         // generatingMorseCodeSounds 작업을 시작합니다.
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             Task {
                                 await self.viewModel.generatingMorseCodeSounds(at: self.morseCodeView.text)
-
-                                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(self.viewModel.soundService.player.items().count - 2)) {
-                                    button.backgroundColor = .systemMint
-                                }
                             }
                         }
 
                     } else {
+                        self.viewModel.pauseMorseCodeSounds()
                         button.backgroundColor = .systemMint
-
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                            self.viewModel.pauseMorseCodeSounds()
-                        }
                     }
                 }
 
