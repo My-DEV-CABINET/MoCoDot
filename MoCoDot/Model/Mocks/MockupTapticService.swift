@@ -7,8 +7,10 @@
 
 import CoreHaptics
 import Foundation
+import Combine
 
 class MockupTapticService: TapticServiceProtocol {
+    var tapticEndSignPublisher: PassthroughSubject<Bool, Never> = .init()
     var hapticEngine: CHHapticEngine?
     var hapticAdvancedPlayer: CHHapticAdvancedPatternPlayer?
 

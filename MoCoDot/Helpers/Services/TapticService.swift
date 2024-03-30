@@ -5,13 +5,16 @@
 //  Created by 준우의 MacBook 16 on 3/29/24.
 //
 
+import Combine
 import CoreHaptics
 import Foundation
 
 class TapticService: TapticServiceProtocol {
     var hapticEngine: CHHapticEngine?
     var hapticAdvancedPlayer: CHHapticAdvancedPatternPlayer?
+
     private var tapticControlTask: Task<Void, Never>?
+    var tapticEndSignPublisher: PassthroughSubject<Bool, Never> = .init()
 
     init?() {
         let hapticCapability = CHHapticEngine.capabilitiesForHardware()
@@ -46,7 +49,7 @@ class TapticService: TapticServiceProtocol {
         tapticControlTask?.cancel()
 
         tapticControlTask = Task {
-            for i in inputTexts {
+            for i in inputTexts.enumerated() {
                 if tapticControlTask?.isCancelled == true {
                     tapticControlTask?.cancel()
                     stopHaptic()
@@ -60,15 +63,17 @@ class TapticService: TapticServiceProtocol {
 
                     let pattern: CHHapticPattern
                     let duration: TimeInterval
-                    if i == "." {
+                    if i.element == "." {
                         pattern = try makePattern(durations: [0.5], powers: [1.0])
                         duration = 0.5
-                    } else if i == "-" {
+                    } else if i.element == "-" {
                         pattern = try makePattern(durations: [1.0], powers: [1.0])
                         duration = 1.0
-                    } else {
+                    } else if i.element == " " && i.offset < inputTexts.count - 1 {
                         try? await hapticEngine?.stop()
                         try? await Task.sleep(nanoseconds: 500_000_000) // 0.5초 대기
+                        continue
+                    } else {
                         continue
                     }
 
@@ -83,6 +88,7 @@ class TapticService: TapticServiceProtocol {
                 try? await Task.sleep(nanoseconds: 500_000_000)
             }
             stopHaptic()
+            tapticEndSignPublisher.send(true)
         }
     }
 

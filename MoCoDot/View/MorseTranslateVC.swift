@@ -36,6 +36,7 @@ extension MorseTranslateVC {
         super.viewDidLoad()
         setupUI()
         bind()
+        tapticServiceBind()
         soundServiceObserving()
     }
 
@@ -127,8 +128,18 @@ extension MorseTranslateVC {
                         button.backgroundColor = .systemMint
                     }
                 }
-
             }.store(in: &viewModel.subscriptions)
+    }
+
+    private func tapticServiceBind() {
+        viewModel.tapticService.tapticEndSignPublisher
+            .receive(on: RunLoop.main)
+            .sink { b in
+                if b {
+                    self.tapticButton.backgroundColor = .systemMint
+                }
+            }
+            .store(in: &viewModel.subscriptions)
     }
 
     private func soundServiceObserving() {
