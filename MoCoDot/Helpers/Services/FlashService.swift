@@ -6,11 +6,13 @@
 //
 
 import AVFoundation
+import Combine
 import Foundation
 
-class FlashService: FlashServiceProtocol {
+final class FlashService: FlashServiceProtocol {
     var avDevice: AVCaptureDevice?
     private var flashControlTask: Task<Void, Never>?
+    var flashEndSignPublishser: PassthroughSubject<Bool, Never> = .init()
 
     init() {
         if let device = AVCaptureDevice.default(for: .video) {
@@ -27,7 +29,7 @@ class FlashService: FlashServiceProtocol {
         flashControlTask?.cancel()
 
         flashControlTask = Task {
-            for i in inputTexts {
+            for i in inputTexts.enumerated() {
                 if flashControlTask?.isCancelled == true {
                     flashControlTask?.cancel()
                     toggleTorch(on: false)
@@ -37,21 +39,24 @@ class FlashService: FlashServiceProtocol {
                 toggleTorch(on: false)
                 Thread.sleep(forTimeInterval: 0.5)
                 print("#### \(i)")
-                if i == "." {
+                if i.element == "." {
                     toggleTorch(on: true)
                     Thread.sleep(forTimeInterval: 0.5)
 
-                } else if i == "-" {
+                } else if i.element == "-" {
                     toggleTorch(on: true)
                     Thread.sleep(forTimeInterval: 1.5)
 
-                } else {
+                } else if i.element == " " && i.offset < inputTexts.count - 1 {
                     toggleTorch(on: false)
                     Thread.sleep(forTimeInterval: 1.0)
+                    continue
+                } else {
                     continue
                 }
             }
             toggleTorch(on: false)
+            flashEndSignPublishser.send(true)
         }
     }
 

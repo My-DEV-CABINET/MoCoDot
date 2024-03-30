@@ -6,10 +6,12 @@
 //
 
 import AVFoundation
+import Combine
 import Foundation
 
 protocol FlashServiceProtocol {
     var avDevice: AVCaptureDevice? { get }
+    var flashEndSignPublishser: PassthroughSubject<Bool, Never> { get }
 
     func toggleTorch(on: Bool)
     func generatingMorseCodeFlashlight(at inputTexts: String)

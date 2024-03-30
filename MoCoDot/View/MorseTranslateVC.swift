@@ -5,11 +5,11 @@
 //  Created by 준우의 MacBook 16 on 1/11/24.
 //
 
+import AVFoundation
 import Combine
 import SwiftUI
 import UIKit
 
-import AVFoundation
 import SnapKit
 
 final class MorseTranslateVC: UIViewController {
@@ -36,8 +36,6 @@ extension MorseTranslateVC {
         super.viewDidLoad()
         setupUI()
         bind()
-        tapticServiceBind()
-        soundServiceObserving()
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -82,7 +80,14 @@ extension MorseTranslateVC {
 // MARK: - ViewModel Binding
 
 extension MorseTranslateVC {
-    func bind() {
+    private func bind() {
+        isTappedButtonBind()
+        tapticServiceBind()
+        flashServiceBind()
+        soundServiceObserving()
+    }
+
+    private func isTappedButtonBind() {
         viewModel.isTappedButtonsPublisher
             .receive(on: RunLoop.main)
             .sink { button in
@@ -137,6 +142,17 @@ extension MorseTranslateVC {
             .sink { b in
                 if b {
                     self.tapticButton.backgroundColor = .systemMint
+                }
+            }
+            .store(in: &viewModel.subscriptions)
+    }
+
+    private func flashServiceBind() {
+        viewModel.flashService.flashEndSignPublishser
+            .receive(on: RunLoop.main)
+            .sink { b in
+                if b {
+                    self.flashButton.backgroundColor = .systemMint
                 }
             }
             .store(in: &viewModel.subscriptions)
