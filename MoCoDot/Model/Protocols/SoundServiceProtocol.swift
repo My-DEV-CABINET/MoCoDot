@@ -6,11 +6,12 @@
 //
 
 import AVFoundation
+import Combine
 import Foundation
 
 protocol SoundServiceProtocol {
     var player: AVQueuePlayer { get }
 
     func pauseMorseCodeSounds()
-    func generatingMorseCodeSounds(at message: String) async
+    func generatingMorseCodeSounds(at message: String)
 }

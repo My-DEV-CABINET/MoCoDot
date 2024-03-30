@@ -69,8 +69,8 @@ extension MorseTranslateViewModel {
 // MARK: - SoundServiceProtocol Method
 
 extension MorseTranslateViewModel {
-    func generatingMorseCodeSounds(at message: String) async {
-        await soundService.generatingMorseCodeSounds(at: message)
+    func generatingMorseCodeSounds(at message: String) {
+        soundService.generatingMorseCodeSounds(at: message)
     }
 
     func pauseMorseCodeSounds() {

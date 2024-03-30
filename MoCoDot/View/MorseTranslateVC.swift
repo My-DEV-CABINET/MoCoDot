@@ -9,6 +9,7 @@ import Combine
 import SwiftUI
 import UIKit
 
+import AVFoundation
 import SnapKit
 
 final class MorseTranslateVC: UIViewController {
@@ -35,6 +36,7 @@ extension MorseTranslateVC {
         super.viewDidLoad()
         setupUI()
         bind()
+        soundServiceObserving()
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -117,12 +119,8 @@ extension MorseTranslateVC {
 
                         self.viewModel.stopHaptic()
                         self.viewModel.toggleFlashOff()
-                        // generatingMorseCodeSounds 작업을 시작합니다.
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                            Task {
-                                await self.viewModel.generatingMorseCodeSounds(at: self.morseCodeView.text)
-                            }
-                        }
+
+                        self.viewModel.generatingMorseCodeSounds(at: self.morseCodeView.text)
 
                     } else {
                         self.viewModel.pauseMorseCodeSounds()
@@ -131,6 +129,21 @@ extension MorseTranslateVC {
                 }
 
             }.store(in: &viewModel.subscriptions)
+    }
+
+    private func soundServiceObserving() {
+        // SoundService 의 Player 가 끝났는지 관측
+        NotificationCenter.default
+            .addObserver(
+                forName: AVPlayerItem.didPlayToEndTimeNotification,
+                object: viewModel.soundService.player.currentItem,
+                queue: .main)
+        { _ in
+            // CurrentItem 이 [CurrentItem]의 마지막 배열과 같으면, 모스코드 재생이 종료된 것으로 간주하여, 버튼 색상 변경
+            if self.viewModel.soundService.player.currentItem == self.viewModel.soundService.player.items().last {
+                self.soundButton.backgroundColor = .systemMint
+            }
+        }
     }
 }
 
