@@ -18,10 +18,17 @@ final class MorseTranslateVC: UIViewController {
     let translateLanguageButton = CustomButton(frame: .zero) // 한/영 언어 변환 버튼
     let textInputView = CustomTextView(frame: .zero) // 한/영 뷰
     let morseCodeView = CustomTextView(frame: .zero) // 모스코드 변환 뷰
-    let changPositionViewButton = CustomButton(frame: .zero) // Input <-> Output 변환
+    let changPositionViewButton = CustomButton(frame: .zero) // Input
     let translateButton = CustomButton(frame: .zero) // 변환 버튼
 
-    // MARK: - 버튼 모아놓는 스택뷰
+    // MARK: - Input View 버튼 모아놓는 스택뷰
+
+    let inputButtonStackView = CustomStackView(frame: .zero)
+
+    let clearInputButton = CustomButton(frame: .zero) // Input & MorseCode View 내용 동시 삭제
+    let voiceRecognitionButton = CustomButton(frame: .zero) // 음성 인식 Input 버튼
+
+    // MARK: - MorseCode View 버튼 모아놓는 스택뷰
 
     let morseCodeButtonStackView = CustomStackView(frame: .zero)
 
@@ -323,7 +330,6 @@ extension MorseTranslateVC {
     #warning("Taptic Button Action")
     @objc func didTappedTapticButton(_ sender: UIButton) {
         viewModel.changeButtonBackgroundColor(at: sender)
-//        viewModel.playHaptic(at: morseCodeView.text)
     }
 
     private func createFlashButton() {
@@ -345,9 +351,7 @@ extension MorseTranslateVC {
 
     #warning("Flash Button Action")
     @objc func didTappedFlashButton(_ sender: UIButton) {
-        print("\(sender.tag)")
         viewModel.changeButtonBackgroundColor(at: sender)
-//        viewModel.generatingMorseCodeFlashlight(at: morseCodeView.text)
     }
 
     private func createSoundButton() {
@@ -370,7 +374,6 @@ extension MorseTranslateVC {
     #warning("Sound Button Action")
     @objc func didTappedSoundButton(_ sender: UIButton) {
         viewModel.changeButtonBackgroundColor(at: sender)
-//        viewModel.generatingMorseCodeSounds(at: morseCodeView.text)
     }
 
     private func createPlayButton() {
@@ -457,47 +460,36 @@ extension MorseTranslateVC: UITextViewDelegate {
 
 extension MorseTranslateVC {
     @objc func didTappedChangeButton() {
-//        isTapped.toggle()
-//
-//        if isTapped {
-//            morseCodeView.snp.remakeConstraints { make in
-//                make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-//                make.centerX.equalTo(view.snp.centerX)
-//                make.leading.equalTo(view.snp.leading).offset(22)
-//                make.height.equalTo(UIScreen.main.bounds.height / 3)
-//            }
-//
-//            textInputView.snp.remakeConstraints { make in
-//                make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(UIScreen.main.bounds.height / 3 + 72)
-//                make.centerX.equalTo(view.snp.centerX)
-//                make.leading.equalTo(view.snp.leading).offset(22)
-//                make.height.equalTo(UIScreen.main.bounds.height / 3)
-//            }
-//        } else {
-//            textInputView.snp.remakeConstraints { make in
-//                make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-//                make.centerX.equalTo(view.snp.centerX)
-//                make.leading.equalTo(view.snp.leading).offset(22)
-//                make.height.equalTo(UIScreen.main.bounds.height / 3)
-//            }
-//
-//            morseCodeView.snp.remakeConstraints { make in
-//                make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(UIScreen.main.bounds.height / 3 + 72)
-//                make.centerX.equalTo(view.snp.centerX)
-//                make.leading.equalTo(view.snp.leading).offset(22)
-//                make.height.equalTo(UIScreen.main.bounds.height / 3)
-//            }
-//        }
+        // To do task...
     }
 
     @objc func didTappedTranslateButton(_ sender: UIButton) {
+        var result = ""
+        viewModel.englishReset()
+        viewModel.koreanReset()
+
         if viewModel.placeholder == LanguageModel.english.type {
-            viewModel.englishReset()
-            morseCodeView.text = viewModel.requestInputTextArr(at: textInputView.text)
+            result = viewModel.requestInputTextArr(at: textInputView.text)
+
         } else {
-            viewModel.koreanReset()
-            morseCodeView.text = viewModel.translateKoreanToMorse(at: textInputView.text)
+            result = viewModel.translateKoreanToMorse(at: textInputView.text)
         }
+
+        if result.contains(where: { $0 == "." || $0 == "-" }) {
+            morseCodeView.text = result
+        } else {
+            showAlert()
+        }
+    }
+
+    private func showAlert() {
+        let alert = UIAlertController(title: "⚠️주의", message: "변환할 언어를 찾을 수 없습니다.", preferredStyle: .alert)
+
+        let confirm = UIAlertAction(title: "확인", style: .default, handler: { _ in
+            self.morseCodeView.text = self.viewModel.morsePlaceholder
+        })
+        alert.addAction(confirm)
+        present(alert, animated: true)
     }
 }
 

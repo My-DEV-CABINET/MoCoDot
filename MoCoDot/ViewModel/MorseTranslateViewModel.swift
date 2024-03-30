@@ -24,7 +24,7 @@ final class MorseTranslateViewModel {
     var subscriptions = Set<AnyCancellable>()
 
     private var isToggle: Bool = false
-    private var morsePlaceholder = "모스코드"
+    var morsePlaceholder = "모스코드"
     var placeholder = "English"
 
     init(
