@@ -10,7 +10,6 @@ import Foundation
 
 class MockupTapticService: TapticServiceProtocol {
     var hapticEngine: CHHapticEngine?
-
     var hapticAdvancedPlayer: CHHapticAdvancedPatternPlayer?
 
     init() {

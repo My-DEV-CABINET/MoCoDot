@@ -155,6 +155,16 @@
 			path = MoCoDotTests;
 			sourceTree = "<group>";
 		};
+		4E5505B62BB7AF9D00027181 /* Mp3 */ = {
+			isa = PBXGroup;
+			children = (
+				4E01C7732BB56CF800C55EC6 /* silence.mp3 */,
+				4E01C76F2BB5665D00C55EC6 /* beep_long.mp3 */,
+				4E01C7702BB5665D00C55EC6 /* beep_short.mp3 */,
+			);
+			path = Mp3;
+			sourceTree = "<group>";
+		};
 		4E68771F2BB6EC7100EF56DB /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,9 +212,6 @@
 				4ED734292B74950900071FEF /* View */,
 				4ED7342A2B74951600071FEF /* ViewModel */,
 				4EA5994F2B4EF3810064726E /* Info.plist */,
-				4E01C7732BB56CF800C55EC6 /* silence.mp3 */,
-				4E01C76F2BB5665D00C55EC6 /* beep_long.mp3 */,
-				4E01C7702BB5665D00C55EC6 /* beep_short.mp3 */,
 			);
 			path = MoCoDot;
 			sourceTree = "<group>";
@@ -253,6 +260,7 @@
 				4EA599432B4EF3800064726E /* SceneDelegate.swift */,
 				4EA5994A2B4EF3810064726E /* Assets.xcassets */,
 				4EA5994C2B4EF3810064726E /* LaunchScreen.storyboard */,
+				4E5505B62BB7AF9D00027181 /* Mp3 */,
 			);
 			path = Resources;
 			sourceTree = "<group>";

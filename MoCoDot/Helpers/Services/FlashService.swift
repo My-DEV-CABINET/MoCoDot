@@ -10,6 +10,7 @@ import Foundation
 
 class FlashService: FlashServiceProtocol {
     var avDevice: AVCaptureDevice?
+    private var flashControlTask: Task<Void, Never>?
 
     init() {
         if let device = AVCaptureDevice.default(for: .video) {
@@ -23,23 +24,34 @@ class FlashService: FlashServiceProtocol {
     /// 입력받은 모스코드에 맞춰 FlashLight On/Off 하는 메서드
     /// - Parameter inputTexts: 모스코드 문자열
     func generatingMorseCodeFlashlight(at inputTexts: String) {
-        for i in inputTexts {
-            toggleTorch(on: false)
-            Thread.sleep(forTimeInterval: 0.5)
-            print("#### \(i)")
-            if i == "." {
-                toggleTorch(on: true)
-                Thread.sleep(forTimeInterval: 0.5)
+        flashControlTask?.cancel()
 
-            } else if i == "-" {
-                toggleTorch(on: true)
-                Thread.sleep(forTimeInterval: 1.5)
+        flashControlTask = Task {
+            for i in inputTexts {
+                if flashControlTask?.isCancelled == true {
+                    flashControlTask?.cancel()
+                    toggleTorch(on: false)
+                    return
+                }
 
-            } else {
                 toggleTorch(on: false)
-                Thread.sleep(forTimeInterval: 1.0)
-                continue
+                Thread.sleep(forTimeInterval: 0.5)
+                print("#### \(i)")
+                if i == "." {
+                    toggleTorch(on: true)
+                    Thread.sleep(forTimeInterval: 0.5)
+
+                } else if i == "-" {
+                    toggleTorch(on: true)
+                    Thread.sleep(forTimeInterval: 1.5)
+
+                } else {
+                    toggleTorch(on: false)
+                    Thread.sleep(forTimeInterval: 1.0)
+                    continue
+                }
             }
+            toggleTorch(on: false)
         }
     }
 
@@ -61,6 +73,7 @@ class FlashService: FlashServiceProtocol {
     }
 
     func toggleOff() {
-        avDevice?.torchMode = .off
+        flashControlTask?.cancel()
+        toggleTorch(on: false)
     }
 }

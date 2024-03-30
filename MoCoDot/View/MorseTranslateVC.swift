@@ -89,20 +89,14 @@ extension MorseTranslateVC {
                         self.flashButton.backgroundColor = .systemMint
                         self.soundButton.backgroundColor = .systemMint
 
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { // 0.1초 후에 실행
-                            defer {
-                                self.tapticButton.backgroundColor = .systemMint
-                            }
-
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             self.viewModel.playHaptic(at: self.morseCodeView.text)
                         }
 
                     } else {
                         button.backgroundColor = .systemMint
 
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                            self.viewModel.stopHaptic()
-                        }
+                        self.viewModel.stopHaptic()
                     }
                 } else if button == self.flashButton {
                     if button.backgroundColor == .systemMint {
@@ -110,20 +104,11 @@ extension MorseTranslateVC {
                         self.tapticButton.backgroundColor = .systemMint
                         self.soundButton.backgroundColor = .systemMint
 
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                            defer {
-                                self.flashButton.backgroundColor = .systemMint
-                            }
-
-                            self.viewModel.generatingMorseCodeFlashlight(at: self.morseCodeView.text)
-                        }
+                        self.viewModel.generatingMorseCodeFlashlight(at: self.morseCodeView.text)
 
                     } else {
+                        self.viewModel.toggleFlashOff()
                         button.backgroundColor = .systemMint
-
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                            self.viewModel.toggleFlashOff()
-                        }
                     }
                 } else {
                     if button.backgroundColor == .systemMint {
