@@ -9,7 +9,7 @@ import AVFoundation
 import Combine
 import Foundation
 
-class SoundService: SoundServiceProtocol {
+final class SoundService: SoundServiceProtocol {
     var player: AVQueuePlayer = .init()
 
     /// 모스코드 재생을 중지하는 메서드

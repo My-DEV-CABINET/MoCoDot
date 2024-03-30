@@ -9,7 +9,7 @@ import Combine
 import CoreHaptics
 import Foundation
 
-class TapticService: TapticServiceProtocol {
+final class TapticService: TapticServiceProtocol {
     var hapticEngine: CHHapticEngine?
     var hapticAdvancedPlayer: CHHapticAdvancedPatternPlayer?
 

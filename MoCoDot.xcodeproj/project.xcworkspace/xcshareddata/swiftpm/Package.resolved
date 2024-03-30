@@ -1,14 +1,24 @@
 {
+  "originHash" : "c305af4b9720bb5d142f5698163abeff6af49d560a0d36cca94cb887d2cca705",
   "pins" : [
+    {
+      "identity" : "mocodotlibrary",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/My-iOS/MoCoDotLibrary.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "01078ea1cdd3e9d85278f00bfe38a1470696cea3"
+      }
+    },
     {
       "identity" : "snapkit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SnapKit/SnapKit.git",
+      "location" : "https://github.com/SnapKit/SnapKit",
       "state" : {
-        "revision" : "e74fe2a978d1216c3602b129447c7301573cc2d8",
-        "version" : "5.7.0"
+        "revision" : "2842e6e84e82eb9a8dac0100ca90d9444b0307f4",
+        "version" : "5.7.1"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

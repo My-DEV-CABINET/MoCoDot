@@ -35,9 +35,9 @@
 		4ED7342D2B74964500071FEF /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED7342C2B74964500071FEF /* DIContainer.swift */; };
 		4ED7342F2B74965200071FEF /* DICProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED7342E2B74965200071FEF /* DICProtocol.swift */; };
 		4ED734332B74971F00071FEF /* EnglishToMorseTranslateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED734322B74971F00071FEF /* EnglishToMorseTranslateProtocol.swift */; };
-		4ED734362B7497EF00071FEF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4ED734352B7497EF00071FEF /* SnapKit */; };
 		4ED7343A2B749A5C00071FEF /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED734392B749A5C00071FEF /* CustomButton.swift */; };
 		4ED7343C2B749A6800071FEF /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED7343B2B749A6800071FEF /* CustomTextView.swift */; };
+		4EE2FE902BB87B19006882C8 /* MoCoDotLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 4EE2FE8F2BB87B19006882C8 /* MoCoDotLibrary */; };
 		4EF230E12B7626DA001B4186 /* CustomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF230E02B7626DA001B4186 /* CustomStackView.swift */; };
 /* End PBXBuildFile section */
 
@@ -100,7 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4ED734362B7497EF00071FEF /* SnapKit in Frameworks */,
+				4EE2FE902BB87B19006882C8 /* MoCoDotLibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +191,7 @@
 				4EA599402B4EF3800064726E /* MoCoDot */,
 				4E4808402BB47C6900FBF06D /* MoCoDotTests */,
 				4EA5993F2B4EF3800064726E /* Products */,
+				4EE2FE8E2BB87B19006882C8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -275,6 +276,13 @@
 			path = Subcomponents;
 			sourceTree = "<group>";
 		};
+		4EE2FE8E2BB87B19006882C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -310,7 +318,7 @@
 			);
 			name = MoCoDot;
 			packageProductDependencies = (
-				4ED734352B7497EF00071FEF /* SnapKit */,
+				4EE2FE8F2BB87B19006882C8 /* MoCoDotLibrary */,
 			);
 			productName = MoCoDot;
 			productReference = 4EA5993E2B4EF3800064726E /* MoCoDot.app */;
@@ -345,7 +353,7 @@
 			);
 			mainGroup = 4EA599352B4EF3800064726E;
 			packageReferences = (
-				4ED734342B7497EF00071FEF /* XCRemoteSwiftPackageReference "SnapKit" */,
+				4EE2FE8D2BB87815006882C8 /* XCRemoteSwiftPackageReference "MoCoDotLibrary" */,
 			);
 			productRefGroup = 4EA5993F2B4EF3800064726E /* Products */;
 			projectDirPath = "";
@@ -815,21 +823,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4ED734342B7497EF00071FEF /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		4EE2FE8D2BB87815006882C8 /* XCRemoteSwiftPackageReference "MoCoDotLibrary" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			repositoryURL = "https://github.com/My-iOS/MoCoDotLibrary.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.7.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4ED734352B7497EF00071FEF /* SnapKit */ = {
+		4EE2FE8F2BB87B19006882C8 /* MoCoDotLibrary */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4ED734342B7497EF00071FEF /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
+			package = 4EE2FE8D2BB87815006882C8 /* XCRemoteSwiftPackageReference "MoCoDotLibrary" */;
+			productName = MoCoDotLibrary;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
