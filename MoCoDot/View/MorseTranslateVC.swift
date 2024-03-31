@@ -7,7 +7,6 @@
 
 import AVFoundation
 import Combine
-import SwiftUI
 import UIKit
 
 import SnapKit
@@ -25,6 +24,7 @@ final class MorseTranslateVC: UIViewController {
 
     let inputButtonStackView = CustomStackView(frame: .zero)
 
+    let inputViewMenuButton = CustomButton(frame: .zero)
     let clearInputButton = CustomButton(frame: .zero) // Input & MorseCode View 내용 동시 삭제
     let voiceRecognitionButton = CustomButton(frame: .zero) // 음성 인식 Input 버튼
 
@@ -61,6 +61,11 @@ extension MorseTranslateVC {
         createOutputView()
         createTranslateButton()
 
+        createInputButtonStackView()
+        createClearInputButton()
+        creatVoiceRecognitionButton()
+        createInputViewMenuButton()
+
         createMorseCodeStackView()
         createTapticButton()
         createFlashButton()
@@ -71,13 +76,18 @@ extension MorseTranslateVC {
     private func addView() {
         // MARK: - View 에 등록
 
-        for item in [translateLanguageButton, textInputView, morseCodeView, changPositionViewButton, translateButton] {
+        for item in [translateLanguageButton, textInputView, morseCodeView, changPositionViewButton, translateButton, morseCodeButtonStackView, inputButtonStackView] {
             view.addSubview(item)
+        }
+
+        // MARK: - InputView 에 등록
+
+        for button in [clearInputButton, voiceRecognitionButton, inputViewMenuButton] {
+            inputButtonStackView.addArrangedSubview(button)
         }
 
         // MARK: - MorseCodeView 에 등록
 
-        view.addSubview(morseCodeButtonStackView)
         for item in [tapticButton, flashButton, soundButton, playButton] {
             morseCodeButtonStackView.addArrangedSubview(item)
         }
@@ -95,7 +105,7 @@ extension MorseTranslateVC {
     }
 
     private func isTappedButtonBind() {
-        viewModel.isTappedButtonsPublisher
+        viewModel.isTappedMorseFloatingButtonsPublisher
             .receive(on: RunLoop.main)
             .sink { button in
                 if button == self.tapticButton {
@@ -181,7 +191,108 @@ extension MorseTranslateVC {
     }
 }
 
-// MARK: - Create Componenets And Make Constraints
+// MARK: - InputView 위에 올라가는 버튼들 제약
+
+extension MorseTranslateVC {
+    // 스택뷰
+    private func createInputButtonStackView() {
+        inputButtonStackView.configure(axis: .horizontal, alignment: .fill, distribution: .fillEqually, spacing: 10)
+
+        inputButtonStackView.snp.makeConstraints { make in
+            make.bottom.equalTo(textInputView.snp.bottom).offset(-10)
+            make.right.equalTo(textInputView.snp.right).offset(-10)
+            make.height.equalTo(50)
+            make.width.equalTo(170)
+        }
+    }
+
+    private func createClearInputButton() {
+        clearInputButton.backgroundColor = .systemMint
+        clearInputButton.tintColor = .white
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
+        let buttonImage = UIImage(systemName: "eraser", withConfiguration: imageConfig)
+        clearInputButton.setImage(buttonImage, for: .normal)
+        clearInputButton.layer.cornerRadius = 25
+        clearInputButton.alpha = 0
+        clearInputButton.tag = 0
+
+        clearInputButton.addTarget(self, action: #selector(didTappedClearButton), for: .touchUpInside)
+
+        clearInputButton.snp.makeConstraints { make in
+            make.width.equalTo(50)
+        }
+    }
+
+    @objc func didTappedClearButton(_ sender: UIButton) {
+        textInputView.text = nil
+    }
+
+    private func creatVoiceRecognitionButton() {
+        voiceRecognitionButton.backgroundColor = .systemMint
+        voiceRecognitionButton.tintColor = .white
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
+        let buttonImage = UIImage(systemName: "mic", withConfiguration: imageConfig)
+        voiceRecognitionButton.setImage(buttonImage, for: .normal)
+        voiceRecognitionButton.layer.cornerRadius = 25
+        voiceRecognitionButton.alpha = 0
+        voiceRecognitionButton.tag = 1
+
+//        clearInputButton.addTarget(self, action: #selector(didTappedFlashButton), for: .touchUpInside)
+
+        voiceRecognitionButton.snp.makeConstraints { make in
+            make.width.equalTo(50)
+        }
+    }
+
+    private func createInputViewMenuButton() {
+        inputViewMenuButton.backgroundColor = .systemMint
+        inputViewMenuButton.tintColor = .white
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
+        let buttonImage = UIImage(systemName: "plus", withConfiguration: imageConfig)
+        inputViewMenuButton.setImage(buttonImage, for: .normal)
+        inputViewMenuButton.layer.cornerRadius = 25
+        inputViewMenuButton.alpha = 1
+
+        inputViewMenuButton.addTarget(self, action: #selector(willShowInputMenuButtons), for: .touchUpInside)
+
+        inputViewMenuButton.snp.makeConstraints { make in
+            make.width.equalTo(50)
+        }
+    }
+
+    @objc func willShowInputMenuButtons(_ sender: UIButton) {
+        lazy var buttons: [UIButton] = [self.clearInputButton, self.voiceRecognitionButton]
+        didTapInputFloatingButton()
+
+        viewModel.showInputButtonMenuPublisher
+            .receive(on: RunLoop.main)
+            .sink { isTapped in
+                self.rotateMorseButton(isTapped, tag: 0)
+
+                if isTapped == true {
+                    buttons.forEach { [weak self] button in
+                        button.layer.transform = CATransform3DMakeScale(0.3, 0.3, 1)
+                        UIView.animate(withDuration: 0.3, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.3, options: [.curveEaseInOut]) {
+                            button.layer.transform = CATransform3DIdentity
+                            button.alpha = 1
+                        }
+                        self?.view.layoutIfNeeded()
+                    }
+                } else {
+                    for button in buttons.reversed() {
+                        UIView.animate(withDuration: 0.3, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.3, options: [.curveEaseInOut]) {
+                            button.layer.transform = CATransform3DMakeScale(0.3, 0.3, 1)
+                            button.alpha = 0
+                        }
+                        self.view.layoutIfNeeded()
+                    }
+                }
+            }
+            .store(in: &viewModel.subscriptions)
+    }
+}
+
+// MARK: - 기본 베이스 뷰 제약
 
 extension MorseTranslateVC {
     private func createTranslateLanguageButton() {
@@ -314,7 +425,7 @@ extension MorseTranslateVC {
         tapticButton.backgroundColor = .systemMint
         tapticButton.tintColor = .white
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
-        let buttonImage = UIImage(systemName: "waveform", withConfiguration: imageConfig)
+        let buttonImage = UIImage(systemName: "iphone.gen1.radiowaves.left.and.right", withConfiguration: imageConfig)
         tapticButton.setImage(buttonImage, for: .normal)
         tapticButton.layer.cornerRadius = 25
         tapticButton.alpha = 0
@@ -391,11 +502,15 @@ extension MorseTranslateVC {
         }
     }
 
-    private func didTapFloatingButton() {
-        viewModel.changeIsToggle()
+    private func didTapMorseFloatingButton() {
+        viewModel.changeMorseIsToggle()
     }
 
-    private func rotateFloatingButton(_ isTapped: Bool) {
+    private func didTapInputFloatingButton() {
+        viewModel.changeInputIsToggle()
+    }
+
+    private func rotateMorseButton(_ isTapped: Bool, tag: Int) {
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
 
         let fromValue = isTapped ? 0 : CGFloat.pi / 4
@@ -406,17 +521,22 @@ extension MorseTranslateVC {
         animation.duration = 0.3
         animation.fillMode = .forwards
         animation.isRemovedOnCompletion = false
-        playButton.layer.add(animation, forKey: nil)
+
+        if tag == 0 {
+            inputViewMenuButton.layer.add(animation, forKey: nil)
+        } else {
+            playButton.layer.add(animation, forKey: nil)
+        }
     }
 
     @objc func willShowActionsButtons(_ sender: UIButton) {
         lazy var buttons: [UIButton] = [self.tapticButton, self.flashButton, self.soundButton]
-        didTapFloatingButton()
+        didTapMorseFloatingButton()
 
-        viewModel.isTappedPublisher
+        viewModel.showMorseButtonMenuPublisher
             .receive(on: RunLoop.main)
             .sink { isTapped in
-                self.rotateFloatingButton(isTapped)
+                self.rotateMorseButton(isTapped, tag: 1)
                 if isTapped == true {
                     buttons.forEach { [weak self] button in
                         button.layer.transform = CATransform3DMakeScale(0.3, 0.3, 1)
@@ -483,7 +603,7 @@ extension MorseTranslateVC {
     }
 
     private func showAlert() {
-        let alert = UIAlertController(title: "⚠️주의", message: "변환할 언어를 찾을 수 없습니다.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "⚠️주의", message: "입력된 언어를 찾을 수 없습니다.\n변환하고자 하는 언어를 확인해주세요.", preferredStyle: .alert)
 
         let confirm = UIAlertAction(title: "확인", style: .default, handler: { _ in
             self.morseCodeView.text = self.viewModel.morsePlaceholder
@@ -492,35 +612,3 @@ extension MorseTranslateVC {
         present(alert, animated: true)
     }
 }
-
-// MARK: - SWIFT UI PREVIEWS
-
-// #if DEBUG
-// import SwiftUI
-//
-// @available(iOS 13, *)
-// extension UIViewController {
-//    private struct Preview: UIViewControllerRepresentable {
-//        // this variable is used for injecting the current view controller
-//        let viewController: UIViewController
-//
-//        func makeUIViewController(context: Context) -> UIViewController {
-//            return viewController
-//        }
-//
-//        func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
-//    }
-//
-//    func toPreview() -> some View {
-//        // inject self (the current view controller) for the preview
-//        Preview(viewController: self)
-//    }
-// }
-//
-// @available(iOS 13.0, *)
-// struct MainViewController_Preview: PreviewProvider {
-//    static var previews: some View {
-//        MorseTranslateVC().toPreview()
-//    }
-// }
-// #endif

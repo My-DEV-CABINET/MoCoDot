@@ -15,15 +15,20 @@ final class MorseTranslateViewModel {
     let flashService: FlashServiceProtocol
     let tapticService: TapticServiceProtocol
 
-    var isTappedPublisher = CurrentValueSubject<Bool, Never>(false)
+    var showInputButtonMenuPublisher = CurrentValueSubject<Bool, Never>(false)
+    var showMorseButtonMenuPublisher = CurrentValueSubject<Bool, Never>(false)
+
     var placeholderPublisher = CurrentValueSubject<String, Never>("English")
     var morsePlaceholderPublisher = CurrentValueSubject<String, Never>("모스코드")
 
-    var isTappedButtonsPublisher = PassthroughSubject<UIButton, Never>()
+    var isTappedInputFloatingButtonsPublisher = PassthroughSubject<UIButton, Never>()
+    var isTappedMorseFloatingButtonsPublisher = PassthroughSubject<UIButton, Never>()
 
     var subscriptions = Set<AnyCancellable>()
 
-    private var isToggle: Bool = false
+    private var isInputToggle: Bool = false
+    private var isMorseToggle: Bool = false
+
     var morsePlaceholder = "모스코드"
     var placeholder = "English"
 
@@ -105,9 +110,14 @@ extension MorseTranslateViewModel {
 // MARK: - ViewModel's Original Method
 
 extension MorseTranslateViewModel {
-    func changeIsToggle() {
-        isToggle.toggle()
-        isTappedPublisher.send(isToggle)
+    func changeInputIsToggle() {
+        isInputToggle.toggle()
+        showInputButtonMenuPublisher.send(isInputToggle)
+    }
+
+    func changeMorseIsToggle() {
+        isMorseToggle.toggle()
+        showMorseButtonMenuPublisher.send(isMorseToggle)
     }
 
     func changePlaceholder(at str: String) {
@@ -116,6 +126,6 @@ extension MorseTranslateViewModel {
     }
 
     func changeButtonBackgroundColor(at button: UIButton) {
-        isTappedButtonsPublisher.send(button)
+        isTappedMorseFloatingButtonsPublisher.send(button)
     }
 }
