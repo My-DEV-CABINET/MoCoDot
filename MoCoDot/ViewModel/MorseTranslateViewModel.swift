@@ -128,4 +128,16 @@ extension MorseTranslateViewModel {
     func changeButtonBackgroundColor(at button: UIButton) {
         isTappedMorseFloatingButtonsPublisher.send(button)
     }
+
+    func touchEndView() {
+        if isInputToggle == true {
+            isInputToggle = false
+            showInputButtonMenuPublisher.send(isInputToggle)
+        }
+
+        if isMorseToggle == true {
+            isMorseToggle = false
+            showMorseButtonMenuPublisher.send(isMorseToggle)
+        }
+    }
 }

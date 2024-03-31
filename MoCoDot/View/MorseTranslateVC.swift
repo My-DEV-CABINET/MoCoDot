@@ -47,6 +47,7 @@ extension MorseTranslateVC {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+        viewModel.touchEndView()
     }
 }
 
@@ -317,6 +318,7 @@ extension MorseTranslateVC {
             self.textInputView.textColor = .systemGray
             self.viewModel.changePlaceholder(at: action.title)
             self.view.endEditing(true)
+            self.viewModel.touchEndView()
         }
 
         translateLanguageButton.menu = UIMenu(children: [
