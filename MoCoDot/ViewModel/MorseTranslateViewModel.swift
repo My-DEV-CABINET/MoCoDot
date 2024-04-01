@@ -21,8 +21,8 @@ final class MorseTranslateViewModel {
     var showMorseButtonMenuPublisher = CurrentValueSubject<Bool, Never>(false)
 
     // Placeholder 전환 이벤트 전달
-    var languagePlaceholderPublisher = CurrentValueSubject<String, Never>("English")
-    var morsePlaceholderPublisher = CurrentValueSubject<String, Never>("모스코드")
+    var languagePlaceholderPublisher = CurrentValueSubject<String, Never>(LanguageModel.english.type)
+    var morsePlaceholderPublisher = CurrentValueSubject<String, Never>(LanguageModel.morse.type)
 
     // 입력 버튼 감지 이벤트 전달
     var tapLanguageFloatingButtonsPublisher = PassthroughSubject<UIButton, Never>()
@@ -36,8 +36,8 @@ final class MorseTranslateViewModel {
     private var morseToggle: Bool = false
 
     // Placeholder 문구
-    var languagePlaceholder = "English"
-    var morsePlaceholder = "모스코드"
+    var languagePlaceholder = LanguageModel.english.type
+    var morsePlaceholder = LanguageModel.morse.type
 
     init(
         englishTranslateService: EnglishToMorseTranslateProtocol,

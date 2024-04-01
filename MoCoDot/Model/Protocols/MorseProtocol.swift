@@ -14,18 +14,4 @@ protocol MorseProtocol {
     var morseCode: String { get }
 }
 
-// MARK: - 언어 모델
 
-enum LanguageModel {
-    case english
-    case korean
-
-    var type: String {
-        switch self {
-        case .english:
-            return "English"
-        case .korean:
-            return "한글"
-        }
-    }
-}
