@@ -9,28 +9,35 @@ import Combine
 import UIKit
 
 final class MorseTranslateViewModel {
+    // 모듈 서비스
     let englishTranslateService: EnglishToMorseTranslateProtocol
     let koreanTranslateService: KoreanToMorseTranslateProtocol
     let soundService: SoundServiceProtocol
     let flashService: FlashServiceProtocol
     let tapticService: TapticServiceProtocol
 
-    var showInputButtonMenuPublisher = CurrentValueSubject<Bool, Never>(false)
+    // Floating Button 보여주는 이벤트 전달
+    var showLanguageButtonMenuPublisher = CurrentValueSubject<Bool, Never>(false)
     var showMorseButtonMenuPublisher = CurrentValueSubject<Bool, Never>(false)
 
-    var placeholderPublisher = CurrentValueSubject<String, Never>("English")
+    // Placeholder 전환 이벤트 전달
+    var languagePlaceholderPublisher = CurrentValueSubject<String, Never>("English")
     var morsePlaceholderPublisher = CurrentValueSubject<String, Never>("모스코드")
 
-    var isTappedInputFloatingButtonsPublisher = PassthroughSubject<UIButton, Never>()
-    var isTappedMorseFloatingButtonsPublisher = PassthroughSubject<UIButton, Never>()
+    // 입력 버튼 감지 이벤트 전달
+    var tapLanguageFloatingButtonsPublisher = PassthroughSubject<UIButton, Never>()
+    var tapMorseFloatingButtonsPublisher = PassthroughSubject<UIButton, Never>()
 
+    // 이벤트 구독 관리
     var subscriptions = Set<AnyCancellable>()
 
-    private var isInputToggle: Bool = false
-    private var isMorseToggle: Bool = false
+    // Floating Button 입력 Toggle
+    private var languageToggle: Bool = false
+    private var morseToggle: Bool = false
 
+    // Placeholder 문구
+    var languagePlaceholder = "English"
     var morsePlaceholder = "모스코드"
-    var placeholder = "English"
 
     init(
         englishTranslateService: EnglishToMorseTranslateProtocol,
@@ -111,33 +118,33 @@ extension MorseTranslateViewModel {
 
 extension MorseTranslateViewModel {
     func changeInputIsToggle() {
-        isInputToggle.toggle()
-        showInputButtonMenuPublisher.send(isInputToggle)
+        languageToggle.toggle()
+        showLanguageButtonMenuPublisher.send(languageToggle)
     }
 
     func changeMorseIsToggle() {
-        isMorseToggle.toggle()
-        showMorseButtonMenuPublisher.send(isMorseToggle)
+        morseToggle.toggle()
+        showMorseButtonMenuPublisher.send(morseToggle)
     }
 
     func changePlaceholder(at str: String) {
-        placeholder = str
-        placeholderPublisher.send(str)
+        languagePlaceholder = str
+        languagePlaceholderPublisher.send(str)
     }
 
     func changeButtonBackgroundColor(at button: UIButton) {
-        isTappedMorseFloatingButtonsPublisher.send(button)
+        tapMorseFloatingButtonsPublisher.send(button)
     }
 
     func touchEndView() {
-        if isInputToggle == true {
-            isInputToggle = false
-            showInputButtonMenuPublisher.send(isInputToggle)
+        if languageToggle == true {
+            languageToggle = false
+            showLanguageButtonMenuPublisher.send(languageToggle)
         }
 
-        if isMorseToggle == true {
-            isMorseToggle = false
-            showMorseButtonMenuPublisher.send(isMorseToggle)
+        if morseToggle == true {
+            morseToggle = false
+            showMorseButtonMenuPublisher.send(morseToggle)
         }
     }
 }
