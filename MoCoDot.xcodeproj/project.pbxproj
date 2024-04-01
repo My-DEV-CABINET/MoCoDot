@@ -18,6 +18,9 @@
 		4E02DE742BB6AE430039E6DC /* TapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E02DE732BB6AE430039E6DC /* TapticService.swift */; };
 		4E29AC982BB595510023FD4F /* TapticServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E29AC972BB595510023FD4F /* TapticServiceProtocol.swift */; };
 		4E59F6B52BBA880F008D4C37 /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59F6B42BBA880F008D4C37 /* LanguageModel.swift */; };
+		4E59F6B72BBAA840008D4C37 /* ModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59F6B62BBAA840008D4C37 /* ModeManager.swift */; };
+		4E59F6B92BBAA869008D4C37 /* DarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59F6B82BBAA869008D4C37 /* DarkMode.swift */; };
+		4E59F6BC2BBAA8A4008D4C37 /* UIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59F6BB2BBAA8A4008D4C37 /* UIType.swift */; };
 		4E68771E2BB6EC5300EF56DB /* MockupTapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E68771D2BB6EC5300EF56DB /* MockupTapticService.swift */; };
 		4E79A8F22B8EE5EE000E4CCD /* EnglishToMorseTranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E79A8F12B8EE5EE000E4CCD /* EnglishToMorseTranslateService.swift */; };
 		4E9681392B8DC98700E14E3C /* EnglishMorse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9681362B8DC98700E14E3C /* EnglishMorse.swift */; };
@@ -65,6 +68,9 @@
 		4E29AC972BB595510023FD4F /* TapticServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticServiceProtocol.swift; sourceTree = "<group>"; };
 		4E48083F2BB47C6900FBF06D /* MoCoDotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoCoDotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E59F6B42BBA880F008D4C37 /* LanguageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageModel.swift; sourceTree = "<group>"; };
+		4E59F6B62BBAA840008D4C37 /* ModeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeManager.swift; sourceTree = "<group>"; };
+		4E59F6B82BBAA869008D4C37 /* DarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkMode.swift; sourceTree = "<group>"; };
+		4E59F6BB2BBAA8A4008D4C37 /* UIType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIType.swift; sourceTree = "<group>"; };
 		4E68771D2BB6EC5300EF56DB /* MockupTapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockupTapticService.swift; sourceTree = "<group>"; };
 		4E79A8F12B8EE5EE000E4CCD /* EnglishToMorseTranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnglishToMorseTranslateService.swift; sourceTree = "<group>"; };
 		4E9681362B8DC98700E14E3C /* EnglishMorse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnglishMorse.swift; sourceTree = "<group>"; };
@@ -117,14 +123,14 @@
 			path = Errors;
 			sourceTree = "<group>";
 		};
-		4E02DE752BB6AE5D0039E6DC /* Languages */ = {
+		4E02DE752BB6AE5D0039E6DC /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				4E9681362B8DC98700E14E3C /* EnglishMorse.swift */,
-				4E9681372B8DC98700E14E3C /* KoreanMorse.swift */,
 				4E59F6B42BBA880F008D4C37 /* LanguageModel.swift */,
+				4E59F6B82BBAA869008D4C37 /* DarkMode.swift */,
+				4E59F6BB2BBAA8A4008D4C37 /* UIType.swift */,
 			);
-			path = Languages;
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		4E02DE762BB6AE700039E6DC /* DI Container */ = {
@@ -166,6 +172,15 @@
 				4E01C7702BB5665D00C55EC6 /* beep_short.mp3 */,
 			);
 			path = Mp3;
+			sourceTree = "<group>";
+		};
+		4E59F6BA2BBAA883008D4C37 /* Morse */ = {
+			isa = PBXGroup;
+			children = (
+				4E9681362B8DC98700E14E3C /* EnglishMorse.swift */,
+				4E9681372B8DC98700E14E3C /* KoreanMorse.swift */,
+			);
+			path = Morse;
 			sourceTree = "<group>";
 		};
 		4E68771F2BB6EC7100EF56DB /* Mocks */ = {
@@ -240,6 +255,7 @@
 		4ED7342B2B74962700071FEF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				4E59F6B62BBAA840008D4C37 /* ModeManager.swift */,
 				4E01C77B2BB5919800C55EC6 /* Errors */,
 				4E79A8F02B8EE5CB000E4CCD /* Services */,
 				4E02DE762BB6AE700039E6DC /* DI Container */,
@@ -251,7 +267,8 @@
 			isa = PBXGroup;
 			children = (
 				4E29AC992BB595690023FD4F /* Protocols */,
-				4E02DE752BB6AE5D0039E6DC /* Languages */,
+				4E59F6BA2BBAA883008D4C37 /* Morse */,
+				4E02DE752BB6AE5D0039E6DC /* Enums */,
 				4E68771F2BB6EC7100EF56DB /* Mocks */,
 			);
 			path = Model;
@@ -414,13 +431,16 @@
 				4EA599422B4EF3800064726E /* AppDelegate.swift in Sources */,
 				4ECA99182BB49357007C5870 /* KoreanToMorseTranslateProtocol.swift in Sources */,
 				4E01C76E2BB5660600C55EC6 /* SoundService.swift in Sources */,
+				4E59F6BC2BBAA8A4008D4C37 /* UIType.swift in Sources */,
 				4E9681392B8DC98700E14E3C /* EnglishMorse.swift in Sources */,
 				4E02DE742BB6AE430039E6DC /* TapticService.swift in Sources */,
+				4E59F6B72BBAA840008D4C37 /* ModeManager.swift in Sources */,
 				4E96813A2B8DC98700E14E3C /* KoreanMorse.swift in Sources */,
 				4E01C77A2BB5917200C55EC6 /* SoundServiceError.swift in Sources */,
 				4E59F6B52BBA880F008D4C37 /* LanguageModel.swift in Sources */,
 				4ECA991A2BB4936F007C5870 /* KoreanToMorseTranslateService.swift in Sources */,
 				4ED7342D2B74964500071FEF /* DIContainer.swift in Sources */,
+				4E59F6B92BBAA869008D4C37 /* DarkMode.swift in Sources */,
 				4ED7343A2B749A5C00071FEF /* CustomButton.swift in Sources */,
 				4EA599442B4EF3800064726E /* SceneDelegate.swift in Sources */,
 				4E96813B2B8DC98700E14E3C /* MorseProtocol.swift in Sources */,
