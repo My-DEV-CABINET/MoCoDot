@@ -36,27 +36,39 @@ final class KoreanToMorseTranslateService: KoreanToMorseTranslateProtocol {
     /// 입력받은 한글 문자열 -> UTF16 으로 변환 -> Morse 변환 하는 메서드
     /// - Parameter inputTexts: 한글 문자열(ex: 안녕하세요)
     /// - Returns: 모스코드 문자
-    func translateMorse(at inputTexts: String) -> String {
-        let koreanText = inputTexts.split(separator: "").joined()
+    func translateMorse(at input: String) -> String {
+        let koreanText = input.split(separator: "").joined()
         var answer = ""
 
-        for i in koreanText {
-            let utfList = translateKoreanToUtf(at: String(i))
+        for i in koreanText.enumerated() {
+            let utfList = translateKoreanToUtf(at: i.element.description)
             let x = utfList[0] >= 0
-            answer += x ? morseList[0][utfList[0]].morseCode + " " : ""
-
             let y = utfList[1] >= 0
-            answer += y ? morseList[1][utfList[1]].morseCode + " " : ""
-
             let z = utfList[2] >= 0
-            answer += z ? morseList[2][utfList[2]].morseCode + " " : ""
 
-            if i == " " {
+            answer += x ? morseList[0][utfList[0]].morseCode : ""
+            answer += y ? morseList[1][utfList[1]].morseCode : ""
+            answer += z ? morseList[2][utfList[2]].morseCode : ""
+
+            if x == false, y == false, z == false {
+                for d in zip(morseList[0], morseList[1]) {
+                    if d.0.alphabetName == i.element.description {
+                        answer += d.0.morseCode
+                    }
+                    else if d.1.alphabetName == i.element.description {
+                        answer += d.1.morseCode
+                    }
+                }
+            }
+
+            if i.offset < koreanText.count - 1 {
                 answer += " "
-            } else if i == "\n" {
+            }
+            else if i.element == "\n" {
                 answer += "\n"
-            } else {
-                answer += " "
+            }
+            else {
+                answer += ""
             }
         }
 

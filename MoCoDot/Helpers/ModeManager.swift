@@ -11,17 +11,23 @@ final class ModeManager {
     static let shared = ModeManager()
 
     private let defaults = UserDefaults.standard
-    var mode = true
+    private var mode = true
+    var currentMode = UserDefaults.standard.bool(forKey: UserDefaultsKey.mode.str)
 
-    func changeLightMode() {
-        defaults.set(DarkMode.light.type, forKey: "mode")
-        mode = defaults.bool(forKey: "mode")
-    }
-
-    func changeDarkMode() {
-        defaults.set(DarkMode.dark.type, forKey: "mode")
-        mode = defaults.bool(forKey: "mode")
+    func changeMode(_ bool: Bool) {
+        defaults.set(bool, forKey: UserDefaultsKey.mode.str)
     }
 
     private init() {}
+}
+
+enum UserDefaultsKey {
+    case mode
+
+    var str: String {
+        switch self {
+        case .mode:
+            return "mode"
+        }
+    }
 }

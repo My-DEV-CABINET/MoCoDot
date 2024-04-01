@@ -23,7 +23,7 @@ final class TranslateEnglishToMorseTests: XCTestCase {
     func test1() {
         var result = englishTranslateService.translateMorse(at: "H")
 
-        XCTAssertEqual(result, "....", "둘의 출력 결과가 다릅니다")
+        XCTAssertEqual(result, ".... ", "둘의 출력 결과가 다릅니다")
     }
 
     override class func tearDown() {

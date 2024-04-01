@@ -5,7 +5,7 @@
 //  Created by 준우의 MacBook 16 on 4/1/24.
 //
 
-import Foundation
+import UIKit
 
 // MARK: - UI 타입
 
@@ -17,20 +17,20 @@ enum UIType {
     case text
     case placeHolder
 
-    var uiColor: UIColor {
+    func uiColor(forMode isDarkMode: Bool) -> UIColor {
         switch self {
         case .selectButton:
-            return ModeManager.shared.mode ? .systemPink : .systemOrange
+            return isDarkMode ? .systemPink : .systemOrange
         case .unSelectButton:
-            return ModeManager.shared.mode ? .systemTeal : .systemIndigo
+            return isDarkMode ? .systemTeal : .systemIndigo
         case .view:
-            return ModeManager.shared.mode ? .systemGray5 : .systemGray.withAlphaComponent(0.5)
+            return isDarkMode ? .systemGray.withAlphaComponent(0.5) : .systemGray5
         case .background:
-            return ModeManager.shared.mode ? .white : .black
+            return isDarkMode ? .white : .black
         case .text:
-            return ModeManager.shared.mode ? .black : .white
+            return isDarkMode ? .black : .white
         case .placeHolder:
-            return ModeManager.shared.mode ? .systemGray : .systemGray6.withAlphaComponent(0.6)
+            return isDarkMode ? .systemGray6.withAlphaComponent(0.6) : .systemGray
         }
     }
 }

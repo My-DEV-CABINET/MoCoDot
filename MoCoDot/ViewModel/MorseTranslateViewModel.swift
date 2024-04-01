@@ -16,6 +16,9 @@ final class MorseTranslateViewModel {
     let flashService: FlashServiceProtocol
     let tapticService: TapticServiceProtocol
 
+    // 스위치 이벤트 값 전달
+    var switchEventPublisher = CurrentValueSubject<Bool, Never>(ModeManager.shared.currentMode)
+
     // Floating Button 보여주는 이벤트 전달
     var showLanguageButtonMenuPublisher = CurrentValueSubject<Bool, Never>(false)
     var showMorseButtonMenuPublisher = CurrentValueSubject<Bool, Never>(false)
