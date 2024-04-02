@@ -24,4 +24,15 @@ enum LanguageModel {
             return "모스부호"
         }
     }
+    
+    var identifier: String {
+        switch self {
+        case .english:
+            return "en-US"
+        case .korean:
+            return "ko-KR"
+        case .morse:
+            return "N"
+        }
+    }
 }

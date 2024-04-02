@@ -20,10 +20,11 @@
 		4E29AC982BB595510023FD4F /* TapticServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E29AC972BB595510023FD4F /* TapticServiceProtocol.swift */; };
 		4E59F6B52BBA880F008D4C37 /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59F6B42BBA880F008D4C37 /* LanguageModel.swift */; };
 		4E59F6B72BBAA840008D4C37 /* ModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59F6B62BBAA840008D4C37 /* ModeManager.swift */; };
-		4E59F6B92BBAA869008D4C37 /* DarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59F6B82BBAA869008D4C37 /* DarkMode.swift */; };
+		4E59F6B92BBAA869008D4C37 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59F6B82BBAA869008D4C37 /* UserDefaultsKey.swift */; };
 		4E59F6BC2BBAA8A4008D4C37 /* UIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59F6BB2BBAA8A4008D4C37 /* UIType.swift */; };
 		4E68771E2BB6EC5300EF56DB /* MockupTapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E68771D2BB6EC5300EF56DB /* MockupTapticService.swift */; };
 		4E79A8F22B8EE5EE000E4CCD /* EnglishToMorseTranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E79A8F12B8EE5EE000E4CCD /* EnglishToMorseTranslateService.swift */; };
+		4E8DC04C2BBC34A100698238 /* VoiceRecognitionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DC04B2BBC34A100698238 /* VoiceRecognitionService.swift */; };
 		4E9681392B8DC98700E14E3C /* EnglishMorse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9681362B8DC98700E14E3C /* EnglishMorse.swift */; };
 		4E96813A2B8DC98700E14E3C /* KoreanMorse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9681372B8DC98700E14E3C /* KoreanMorse.swift */; };
 		4E96813B2B8DC98700E14E3C /* MorseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9681382B8DC98700E14E3C /* MorseProtocol.swift */; };
@@ -71,10 +72,11 @@
 		4E48083F2BB47C6900FBF06D /* MoCoDotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoCoDotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E59F6B42BBA880F008D4C37 /* LanguageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageModel.swift; sourceTree = "<group>"; };
 		4E59F6B62BBAA840008D4C37 /* ModeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeManager.swift; sourceTree = "<group>"; };
-		4E59F6B82BBAA869008D4C37 /* DarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkMode.swift; sourceTree = "<group>"; };
+		4E59F6B82BBAA869008D4C37 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		4E59F6BB2BBAA8A4008D4C37 /* UIType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIType.swift; sourceTree = "<group>"; };
 		4E68771D2BB6EC5300EF56DB /* MockupTapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockupTapticService.swift; sourceTree = "<group>"; };
 		4E79A8F12B8EE5EE000E4CCD /* EnglishToMorseTranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnglishToMorseTranslateService.swift; sourceTree = "<group>"; };
+		4E8DC04B2BBC34A100698238 /* VoiceRecognitionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecognitionService.swift; sourceTree = "<group>"; };
 		4E9681362B8DC98700E14E3C /* EnglishMorse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnglishMorse.swift; sourceTree = "<group>"; };
 		4E9681372B8DC98700E14E3C /* KoreanMorse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KoreanMorse.swift; sourceTree = "<group>"; };
 		4E9681382B8DC98700E14E3C /* MorseProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorseProtocol.swift; sourceTree = "<group>"; };
@@ -129,7 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				4E59F6B42BBA880F008D4C37 /* LanguageModel.swift */,
-				4E59F6B82BBAA869008D4C37 /* DarkMode.swift */,
+				4E59F6B82BBAA869008D4C37 /* UserDefaultsKey.swift */,
 				4E59F6BB2BBAA8A4008D4C37 /* UIType.swift */,
 			);
 			path = Enums;
@@ -202,6 +204,7 @@
 				4E01C76D2BB5660600C55EC6 /* SoundService.swift */,
 				4E01C7772BB58EDC00C55EC6 /* FlashService.swift */,
 				4E02DE732BB6AE430039E6DC /* TapticService.swift */,
+				4E8DC04B2BBC34A100698238 /* VoiceRecognitionService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -443,7 +446,8 @@
 				4E59F6B52BBA880F008D4C37 /* LanguageModel.swift in Sources */,
 				4ECA991A2BB4936F007C5870 /* KoreanToMorseTranslateService.swift in Sources */,
 				4ED7342D2B74964500071FEF /* DIContainer.swift in Sources */,
-				4E59F6B92BBAA869008D4C37 /* DarkMode.swift in Sources */,
+				4E59F6B92BBAA869008D4C37 /* UserDefaultsKey.swift in Sources */,
+				4E8DC04C2BBC34A100698238 /* VoiceRecognitionService.swift in Sources */,
 				4ED7343A2B749A5C00071FEF /* CustomButton.swift in Sources */,
 				4E112C102BBBDF25000B2C67 /* VoiceRecognitionServiceProtocol.swift in Sources */,
 				4EA599442B4EF3800064726E /* SceneDelegate.swift in Sources */,

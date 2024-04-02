@@ -130,6 +130,10 @@ extension MorseTranslateViewModel {
     func stopRecording() {
         voiceRecognitionService.stopRecording()
     }
+
+    func changeIdentifier(_ identifier: String) {
+        voiceRecognitionService.changeIdentifier(identifier)
+    }
 }
 
 // MARK: - ViewModel's Original Method

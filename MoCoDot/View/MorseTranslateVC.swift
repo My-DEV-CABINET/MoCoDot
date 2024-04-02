@@ -57,6 +57,10 @@ extension MorseTranslateVC {
         view.endEditing(true)
         viewModel.touchEndView()
     }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        viewModel.stopRecording()
+    }
 }
 
 // MARK: - Setup UI
@@ -144,7 +148,6 @@ extension MorseTranslateVC {
             .store(in: &viewModel.subscriptions)
     }
 
-    #warning("작업 예정")
     private func modeSwitchBind() {
         viewModel.switchEventPublisher
             .receive(on: RunLoop.main)
@@ -202,8 +205,9 @@ extension MorseTranslateVC {
                         self.languageClearButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
 
                         self.languageView.text = "말해 보세요. 듣고 있어요!!"
+                        self.languageView.textColor = UIColor(named: UIType.placeHolder.type)
 
-                        DispatchQueue.main.async {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                             self.viewModel.startRecording()
                         }
 
@@ -383,6 +387,8 @@ extension MorseTranslateVC {
         let seletedPriority = { (action: UIAction) in
             self.translateLanguageButton.setTitle(action.title, for: .normal)
 
+            self.viewModel.changeIdentifier(action.title)
+
             if self.languageView.text == self.viewModel.languagePlaceholder || self.languageView.text == nil {
                 self.languageView.textColor = UIColor(named: UIType.placeHolder.type)
             } else if self.languageView.text == nil {
@@ -446,7 +452,6 @@ extension MorseTranslateVC {
     }
 
     @objc private func changeModeSwitch(_ sender: UISwitch) {
-        print("#### VC: \(sender.isOn)")
         viewModel.switchEventPublisher.send(sender.isOn)
     }
 }
@@ -532,8 +537,6 @@ extension MorseTranslateVC {
             viewModel.koreanReset()
             result = viewModel.translateKoreanToMorse(at: languageView.text)
         }
-
-        print("#### \(result) || \(viewModel.languagePlaceholder)")
 
         if result.contains(where: { $0 == "." || $0 == "-" }) == false, (languageView.text == nil || languageView.text == viewModel.languagePlaceholder) {
             showBlankAlert()
@@ -790,7 +793,7 @@ extension MorseTranslateVC: UITextViewDelegate {
     }
 }
 
-// MARK: - <#Section Heading#>
+// MARK: - 작업 예정
 
 extension MorseTranslateVC {
     @objc private func didTappedChangeButton() {

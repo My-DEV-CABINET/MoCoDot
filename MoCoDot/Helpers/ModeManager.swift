@@ -24,13 +24,4 @@ final class ModeManager {
     private init() {}
 }
 
-enum UserDefaultsKey {
-    case mode
 
-    var str: String {
-        switch self {
-        case .mode:
-            return "mode"
-        }
-    }
-}
