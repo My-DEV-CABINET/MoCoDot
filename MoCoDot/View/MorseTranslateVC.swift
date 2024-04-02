@@ -14,6 +14,8 @@ import SnapKit
 final class MorseTranslateVC: UIViewController {
     var viewModel: MorseTranslateViewModel!
 
+    var delegate: MorseTranslateVCDelegate?
+
     // 상단 UI들
     private let translateLanguageButton = CustomButton(frame: .zero) // 한/영 언어 변환 버튼
     private let modeImageView = CustomButton(frame: .zero) // 현재 모드 이미지
@@ -75,6 +77,8 @@ extension MorseTranslateVC {
         createModeImageView()
         createModeSwitch()
 
+        createShowMorseListButton()
+
         // 기본 베이스 UI 들
         createLanguageView()
         createChangeViewPositionButton()
@@ -98,19 +102,39 @@ extension MorseTranslateVC {
     private func addView() {
         // MARK: - View 에 등록
 
-        for item in [translateLanguageButton, modeImageView, modeSwitch, showMorseListButton, languageView, morseCodeView, changPositionViewButton, translateButton, morseFloatingStackView, languageFloatingStackView] {
+        for item in [
+            translateLanguageButton,
+            modeImageView,
+            modeSwitch,
+            showMorseListButton,
+            languageView,
+            morseCodeView,
+            changPositionViewButton,
+            translateButton,
+            morseFloatingStackView,
+            languageFloatingStackView,
+        ] {
             view.addSubview(item)
         }
 
         // MARK: - InputView 에 등록
 
-        for button in [languageClearButton, languageVoiceRecognitionButton, languageFloatingButton] {
+        for button in [
+            languageClearButton,
+            languageVoiceRecognitionButton,
+            languageFloatingButton,
+        ] {
             languageFloatingStackView.addArrangedSubview(button)
         }
 
         // MARK: - MorseCodeView 에 등록
 
-        for item in [morseTapticButton, morseFlashButton, morseSoundButton, morseFloatingButton] {
+        for item in [
+            morseTapticButton,
+            morseFlashButton,
+            morseSoundButton,
+            morseFloatingButton,
+        ] {
             morseFloatingStackView.addArrangedSubview(item)
         }
     }
@@ -192,12 +216,16 @@ extension MorseTranslateVC {
                         button.backgroundColor = UIColor(named: UIType.selectButton.type)
                         self.languageVoiceRecognitionButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
 
+                        self.viewModel.touchEndView()
+
                         self.languageView.text = self.viewModel.languagePlaceholder
                         self.languageView.textColor = UIColor(named: UIType.placeHolder.type)
-                        self.viewModel.touchEndView()
+
                         self.viewModel.stopRecording()
 
                         button.backgroundColor = UIColor(named: UIType.unSelectButton.type)
+
+                        self.view.endEditing(true)
                     }
                 } else if button == self.languageVoiceRecognitionButton {
                     if button.backgroundColor == UIColor(named: UIType.unSelectButton.type) {
@@ -426,14 +454,14 @@ extension MorseTranslateVC {
         let image = UIImage(systemName: "sun.max", withConfiguration: imageConfig)
         modeImageView.setImage(image, for: .normal)
         modeImageView.isEnabled = true
-        modeImageView.tintColor = .systemYellow
+        modeImageView.tintColor = .white
         modeImageView.layer.cornerRadius = 10
         modeImageView.backgroundColor = UIColor(named: UIType.unSelectButton.type)
 
         modeImageView.snp.makeConstraints { make in
             make.top.equalTo(translateLanguageButton.snp.top)
             make.bottom.equalTo(translateLanguageButton.snp.bottom)
-            make.trailing.equalTo(translateLanguageButton.snp.trailing).offset(60)
+            make.trailing.equalTo(translateLanguageButton.snp.trailing).offset(80)
             make.width.height.equalTo(40)
         }
     }
@@ -445,7 +473,7 @@ extension MorseTranslateVC {
         modeSwitch.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(4)
             make.bottom.equalTo(languageView.snp.top).offset(-10)
-            make.leading.equalTo(modeImageView.snp.trailing).offset(15)
+            make.leading.equalTo(modeImageView.snp.trailing).offset(30)
             make.width.equalTo(120)
             make.height.equalTo(40)
         }
@@ -453,6 +481,29 @@ extension MorseTranslateVC {
 
     @objc private func changeModeSwitch(_ sender: UISwitch) {
         viewModel.switchEventPublisher.send(sender.isOn)
+    }
+
+    private func createShowMorseListButton() {
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .bold)
+        let image = UIImage(systemName: "list.bullet", withConfiguration: imageConfig)
+        showMorseListButton.setImage(image, for: .normal)
+        showMorseListButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
+        showMorseListButton.tintColor = .white
+        showMorseListButton.layer.cornerRadius = 10
+
+        showMorseListButton.addTarget(self, action: #selector(didTapShowMorseList), for: .touchUpInside)
+
+        showMorseListButton.snp.makeConstraints { make in
+            make.top.equalTo(modeImageView.snp.top)
+            make.bottom.equalTo(modeImageView.snp.bottom)
+            make.trailing.equalTo(languageView.snp.trailing)
+            make.width.height.equalTo(40)
+        }
+    }
+
+    #warning("Coordinator 패턴 적용해야함. 현재 의존성 주입 X")
+    @objc private func didTapShowMorseList(_ sender: UIButton) {
+        delegate?.showMorseList()
     }
 }
 

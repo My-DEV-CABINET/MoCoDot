@@ -25,6 +25,12 @@
 		4E68771E2BB6EC5300EF56DB /* MockupTapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E68771D2BB6EC5300EF56DB /* MockupTapticService.swift */; };
 		4E79A8F22B8EE5EE000E4CCD /* EnglishToMorseTranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E79A8F12B8EE5EE000E4CCD /* EnglishToMorseTranslateService.swift */; };
 		4E8DC04C2BBC34A100698238 /* VoiceRecognitionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DC04B2BBC34A100698238 /* VoiceRecognitionService.swift */; };
+		4E8DC04E2BBC46D900698238 /* MorseListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DC04D2BBC46D800698238 /* MorseListVC.swift */; };
+		4E8DC0502BBC4BCE00698238 /* MorseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DC04F2BBC4BCE00698238 /* MorseListViewModel.swift */; };
+		4E8DC0522BBC583600698238 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DC0512BBC583600698238 /* AppCoordinator.swift */; };
+		4E8DC0542BBC65C900698238 /* Coordinator+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DC0532BBC65C900698238 /* Coordinator+.swift */; };
+		4E8DC0562BBC65F900698238 /* MorseTranslateCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DC0552BBC65F900698238 /* MorseTranslateCoordinator.swift */; };
+		4E8DC0582BBC661600698238 /* MorseListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DC0572BBC661600698238 /* MorseListCoordinator.swift */; };
 		4E9681392B8DC98700E14E3C /* EnglishMorse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9681362B8DC98700E14E3C /* EnglishMorse.swift */; };
 		4E96813A2B8DC98700E14E3C /* KoreanMorse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9681372B8DC98700E14E3C /* KoreanMorse.swift */; };
 		4E96813B2B8DC98700E14E3C /* MorseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9681382B8DC98700E14E3C /* MorseProtocol.swift */; };
@@ -77,6 +83,12 @@
 		4E68771D2BB6EC5300EF56DB /* MockupTapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockupTapticService.swift; sourceTree = "<group>"; };
 		4E79A8F12B8EE5EE000E4CCD /* EnglishToMorseTranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnglishToMorseTranslateService.swift; sourceTree = "<group>"; };
 		4E8DC04B2BBC34A100698238 /* VoiceRecognitionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecognitionService.swift; sourceTree = "<group>"; };
+		4E8DC04D2BBC46D800698238 /* MorseListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorseListVC.swift; sourceTree = "<group>"; };
+		4E8DC04F2BBC4BCE00698238 /* MorseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorseListViewModel.swift; sourceTree = "<group>"; };
+		4E8DC0512BBC583600698238 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		4E8DC0532BBC65C900698238 /* Coordinator+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinator+.swift"; sourceTree = "<group>"; };
+		4E8DC0552BBC65F900698238 /* MorseTranslateCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorseTranslateCoordinator.swift; sourceTree = "<group>"; };
+		4E8DC0572BBC661600698238 /* MorseListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorseListCoordinator.swift; sourceTree = "<group>"; };
 		4E9681362B8DC98700E14E3C /* EnglishMorse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnglishMorse.swift; sourceTree = "<group>"; };
 		4E9681372B8DC98700E14E3C /* KoreanMorse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KoreanMorse.swift; sourceTree = "<group>"; };
 		4E9681382B8DC98700E14E3C /* MorseProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorseProtocol.swift; sourceTree = "<group>"; };
@@ -245,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				4EA599452B4EF3800064726E /* MorseTranslateVC.swift */,
+				4E8DC04D2BBC46D800698238 /* MorseListVC.swift */,
 				4ED7343D2B749A7D00071FEF /* Subcomponents */,
 			);
 			path = View;
@@ -254,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				4ED734272B74950400071FEF /* MorseTranslateViewModel.swift */,
+				4E8DC04F2BBC4BCE00698238 /* MorseListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -276,6 +290,10 @@
 				4E59F6BA2BBAA883008D4C37 /* Morse */,
 				4E02DE752BB6AE5D0039E6DC /* Enums */,
 				4E68771F2BB6EC7100EF56DB /* Mocks */,
+				4E8DC0512BBC583600698238 /* AppCoordinator.swift */,
+				4E8DC0532BBC65C900698238 /* Coordinator+.swift */,
+				4E8DC0552BBC65F900698238 /* MorseTranslateCoordinator.swift */,
+				4E8DC0572BBC661600698238 /* MorseListCoordinator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -428,6 +446,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E01C7762BB57D8200C55EC6 /* FlashServiceProtocol.swift in Sources */,
+				4E8DC0502BBC4BCE00698238 /* MorseListViewModel.swift in Sources */,
 				4EF230E12B7626DA001B4186 /* CustomStackView.swift in Sources */,
 				4E79A8F22B8EE5EE000E4CCD /* EnglishToMorseTranslateService.swift in Sources */,
 				4EA599462B4EF3800064726E /* MorseTranslateVC.swift in Sources */,
@@ -443,17 +462,22 @@
 				4E59F6B72BBAA840008D4C37 /* ModeManager.swift in Sources */,
 				4E96813A2B8DC98700E14E3C /* KoreanMorse.swift in Sources */,
 				4E01C77A2BB5917200C55EC6 /* SoundServiceError.swift in Sources */,
+				4E8DC0522BBC583600698238 /* AppCoordinator.swift in Sources */,
+				4E8DC0582BBC661600698238 /* MorseListCoordinator.swift in Sources */,
+				4E8DC04E2BBC46D900698238 /* MorseListVC.swift in Sources */,
 				4E59F6B52BBA880F008D4C37 /* LanguageModel.swift in Sources */,
 				4ECA991A2BB4936F007C5870 /* KoreanToMorseTranslateService.swift in Sources */,
 				4ED7342D2B74964500071FEF /* DIContainer.swift in Sources */,
 				4E59F6B92BBAA869008D4C37 /* UserDefaultsKey.swift in Sources */,
 				4E8DC04C2BBC34A100698238 /* VoiceRecognitionService.swift in Sources */,
+				4E8DC0542BBC65C900698238 /* Coordinator+.swift in Sources */,
 				4ED7343A2B749A5C00071FEF /* CustomButton.swift in Sources */,
 				4E112C102BBBDF25000B2C67 /* VoiceRecognitionServiceProtocol.swift in Sources */,
 				4EA599442B4EF3800064726E /* SceneDelegate.swift in Sources */,
 				4E96813B2B8DC98700E14E3C /* MorseProtocol.swift in Sources */,
 				4E29AC982BB595510023FD4F /* TapticServiceProtocol.swift in Sources */,
 				4E01C76C2BB565A600C55EC6 /* SoundServiceProtocol.swift in Sources */,
+				4E8DC0562BBC65F900698238 /* MorseTranslateCoordinator.swift in Sources */,
 				4ED7342F2B74965200071FEF /* DICProtocol.swift in Sources */,
 				4ED734282B74950400071FEF /* MorseTranslateViewModel.swift in Sources */,
 				4E68771E2BB6EC5300EF56DB /* MockupTapticService.swift in Sources */,

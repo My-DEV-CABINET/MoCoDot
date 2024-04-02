@@ -15,39 +15,45 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = scene as? UIWindowScene else { return }
         self.window = UIWindow(windowScene: windowScene)
 
-        let rootViewController = MorseTranslateVC()
-        // 영어 <-> 모스코드 번역 서비스
-        let englishTranslateService = self.container.resolve(type: EnglishToMorseTranslateProtocol.self)!
-        // 한글 <-> 모스코드 번역 서비스
-        let koreanTranslateService = self.container.resolve(type: KoreanToMorseTranslateProtocol.self)!
-        // 모스코드 소리 재생 서비스
-        let soundService = self.container.resolve(type: SoundServiceProtocol.self)!
-        // 핸드폰 불빛 On/Off 서비스
-        let flashService = self.container.resolve(type: FlashServiceProtocol.self)!
-        // 음성 인식 서비스
-        let voiceRecognitionService = self.container.resolve(type: VoiceRecognitionServiceProtocol.self)!
-
-        #if DEVELOPMENT
-        // 핸드폰 진동 On/Off 서비스
-        let tapticService = self.container.resolve(type: TapticServiceProtocol.self)!
-        #else
-        // MockUP
-        let tapticService = self.container.resolve(type: TapticServiceProtocol.self)!
-        #endif
+//        let rootViewController = MorseTranslateVC()
+//        // 영어 <-> 모스코드 번역 서비스
+//        let englishTranslateService = self.container.resolve(type: EnglishToMorseTranslateProtocol.self)!
+//        // 한글 <-> 모스코드 번역 서비스
+//        let koreanTranslateService = self.container.resolve(type: KoreanToMorseTranslateProtocol.self)!
+//        // 모스코드 소리 재생 서비스
+//        let soundService = self.container.resolve(type: SoundServiceProtocol.self)!
+//        // 핸드폰 불빛 On/Off 서비스
+//        let flashService = self.container.resolve(type: FlashServiceProtocol.self)!
+//        // 음성 인식 서비스
+//        let voiceRecognitionService = self.container.resolve(type: VoiceRecognitionServiceProtocol.self)!
+//
+//        #if DEVELOPMENT
+//        // 핸드폰 진동 On/Off 서비스
+//        let tapticService = self.container.resolve(type: TapticServiceProtocol.self)!
+//        #else
+//        // MockUP
+//        let tapticService = self.container.resolve(type: TapticServiceProtocol.self)!
+//        #endif
 
         // 의존성 주입
-        rootViewController.viewModel = MorseTranslateViewModel(
-            englishTranslateService: englishTranslateService,
-            koreanTranslateService: koreanTranslateService,
-            soundService: soundService,
-            flashService: flashService,
-            tapticService: tapticService,
-            voiceRecognitionService: voiceRecognitionService
-        )
+//        rootViewController.viewModel = MorseTranslateViewModel(
+//            englishTranslateService: englishTranslateService,
+//            koreanTranslateService: koreanTranslateService,
+//            soundService: soundService,
+//            flashService: flashService,
+//            tapticService: tapticService,
+//            voiceRecognitionService: voiceRecognitionService
+//        )
 
-        let rootNavigationController = UINavigationController(rootViewController: rootViewController)
+//        let rootNavigationController = UINavigationController(rootViewController: rootViewController)
 
-        self.window?.rootViewController = rootNavigationController
+        let navigationController = UINavigationController()
+        self.window?.rootViewController = navigationController
+
+        let coordinator = AppCoordinator(naviagtionController: navigationController)
+        coordinator.start()
+
+//        self.window?.rootViewController = rootNavigationController
         self.window?.makeKeyAndVisible()
     }
 
