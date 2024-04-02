@@ -13,5 +13,3 @@ protocol MorseProtocol {
     var alphabetName: String { get }
     var morseCode: String { get }
 }
-
-

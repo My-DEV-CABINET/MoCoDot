@@ -16,6 +16,7 @@
 		4E01C7782BB58EDC00C55EC6 /* FlashService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E01C7772BB58EDC00C55EC6 /* FlashService.swift */; };
 		4E01C77A2BB5917200C55EC6 /* SoundServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E01C7792BB5917200C55EC6 /* SoundServiceError.swift */; };
 		4E02DE742BB6AE430039E6DC /* TapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E02DE732BB6AE430039E6DC /* TapticService.swift */; };
+		4E112C102BBBDF25000B2C67 /* VoiceRecognitionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E112C0F2BBBDF25000B2C67 /* VoiceRecognitionServiceProtocol.swift */; };
 		4E29AC982BB595510023FD4F /* TapticServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E29AC972BB595510023FD4F /* TapticServiceProtocol.swift */; };
 		4E59F6B52BBA880F008D4C37 /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59F6B42BBA880F008D4C37 /* LanguageModel.swift */; };
 		4E59F6B72BBAA840008D4C37 /* ModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59F6B62BBAA840008D4C37 /* ModeManager.swift */; };
@@ -65,6 +66,7 @@
 		4E01C7772BB58EDC00C55EC6 /* FlashService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashService.swift; sourceTree = "<group>"; };
 		4E01C7792BB5917200C55EC6 /* SoundServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundServiceError.swift; sourceTree = "<group>"; };
 		4E02DE732BB6AE430039E6DC /* TapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticService.swift; sourceTree = "<group>"; };
+		4E112C0F2BBBDF25000B2C67 /* VoiceRecognitionServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecognitionServiceProtocol.swift; sourceTree = "<group>"; };
 		4E29AC972BB595510023FD4F /* TapticServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticServiceProtocol.swift; sourceTree = "<group>"; };
 		4E48083F2BB47C6900FBF06D /* MoCoDotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoCoDotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E59F6B42BBA880F008D4C37 /* LanguageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageModel.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				4E01C76B2BB565A600C55EC6 /* SoundServiceProtocol.swift */,
 				4E01C7752BB57D8200C55EC6 /* FlashServiceProtocol.swift */,
 				4E29AC972BB595510023FD4F /* TapticServiceProtocol.swift */,
+				4E112C0F2BBBDF25000B2C67 /* VoiceRecognitionServiceProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				4ED7342D2B74964500071FEF /* DIContainer.swift in Sources */,
 				4E59F6B92BBAA869008D4C37 /* DarkMode.swift in Sources */,
 				4ED7343A2B749A5C00071FEF /* CustomButton.swift in Sources */,
+				4E112C102BBBDF25000B2C67 /* VoiceRecognitionServiceProtocol.swift in Sources */,
 				4EA599442B4EF3800064726E /* SceneDelegate.swift in Sources */,
 				4E96813B2B8DC98700E14E3C /* MorseProtocol.swift in Sources */,
 				4E29AC982BB595510023FD4F /* TapticServiceProtocol.swift in Sources */,

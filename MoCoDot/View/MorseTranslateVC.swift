@@ -652,7 +652,7 @@ extension MorseTranslateVC {
     }
 
     @objc private func didTappedTapticButton(_ sender: UIButton) {
-        viewModel.changeButtonBackgroundColor(at: sender)
+        viewModel.changeMorseButtonBackgroundColor(at: sender)
     }
 
     private func createFlashButton() {
@@ -673,7 +673,7 @@ extension MorseTranslateVC {
     }
 
     @objc private func didTappedFlashButton(_ sender: UIButton) {
-        viewModel.changeButtonBackgroundColor(at: sender)
+        viewModel.changeMorseButtonBackgroundColor(at: sender)
     }
 
     private func createSoundButton() {
@@ -694,7 +694,7 @@ extension MorseTranslateVC {
     }
 
     @objc private func didTappedSoundButton(_ sender: UIButton) {
-        viewModel.changeButtonBackgroundColor(at: sender)
+        viewModel.changeMorseButtonBackgroundColor(at: sender)
     }
 
     private func createPlayButton() {

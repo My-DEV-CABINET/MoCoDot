@@ -135,7 +135,12 @@ extension MorseTranslateViewModel {
         languagePlaceholderPublisher.send(str)
     }
 
-    func changeButtonBackgroundColor(at button: UIButton) {
+    // To-do Task
+    func changeLanguageButtonBackgroundColor(at button: UIButton) {
+        tapLanguageFloatingButtonsPublisher.send(button)
+    }
+
+    func changeMorseButtonBackgroundColor(at button: UIButton) {
         tapMorseFloatingButtonsPublisher.send(button)
     }
 

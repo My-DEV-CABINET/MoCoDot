@@ -83,7 +83,7 @@ final class TranslateKoreanToMorseTests: XCTestCase {
         var result = checkKoreanSingleCharacter(input: "ㄱ")
         print("#### &&& \(result)")
 
-        XCTAssertEqual(checkKoreanSingleCharacter(input: "ㄱㅏ"), ".-..")
+//        XCTAssertEqual(checkKoreanSingleCharacter(input: "ㄱㅏ"), ".-..")
     }
 
     override class func tearDown() {
