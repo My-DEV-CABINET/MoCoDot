@@ -103,7 +103,7 @@ final class VoiceRecognitionService: VoiceRecognitionServiceProtocol {
 
         // 사용자 안내 메시지 표시
         do {
-            try audioSession.setCategory(.playAndRecord, mode: .measurement, options: .mixWithOthers)
+            try audioSession.setCategory(.playAndRecord, mode: .measurement, options: .defaultToSpeaker)
             try audioEngine.start()
         } catch {
             print("audioEngine couldn't start because of an error.")

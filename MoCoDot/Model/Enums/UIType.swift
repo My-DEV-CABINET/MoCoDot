@@ -17,20 +17,20 @@ enum UIType {
     case text
     case placeHolder
 
-    func uiColor(forMode isDarkMode: Bool) -> UIColor {
+    var type: String {
         switch self {
         case .selectButton:
-            return isDarkMode ? .systemPink : .systemOrange
+            return "SelectButton"
         case .unSelectButton:
-            return isDarkMode ? .systemTeal : .systemIndigo
+            return "UnSelectButton"
         case .view:
-            return isDarkMode ? .systemGray5 : .systemGray.withAlphaComponent(0.5)
+            return "View"
         case .background:
-            return isDarkMode ? .white : .black
+            return "Background"
         case .text:
-            return isDarkMode ? .black : .white
+            return "Text"
         case .placeHolder:
-            return isDarkMode ? .systemGray : .systemGray6.withAlphaComponent(0.6)
+            return "Placeholder"
         }
     }
 }

@@ -63,7 +63,7 @@ extension MorseTranslateVC {
 
 extension MorseTranslateVC {
     private func setupUI() {
-        view.backgroundColor = UIType.background.uiColor(forMode: ModeManager.shared.currentMode)
+        view.backgroundColor = UIColor(named: UIType.background.type)
         addView()
 
         // 상단 버튼
@@ -139,52 +139,25 @@ extension MorseTranslateVC {
             .receive(on: RunLoop.main)
             .sink { result in
                 self.languageView.text = result
-                self.languageView.textColor = UIType.text.uiColor(forMode: ModeManager.shared.currentMode)
+                self.languageView.textColor = UIColor(named: UIType.text.type)
             }
             .store(in: &viewModel.subscriptions)
     }
 
+    #warning("작업 예정")
     private func modeSwitchBind() {
         viewModel.switchEventPublisher
             .receive(on: RunLoop.main)
             .sink { b in
                 ModeManager.shared.changeMode(b)
-                var image = b ? UIImage(systemName: "sun.max") : UIImage(systemName: "moon.stars")
+                let image = ModeManager.shared.currentMode ? UIImage(systemName: "sun.max") : UIImage(systemName: "moon.stars")
                 self.modeImageView.setImage(image, for: .normal)
-                self.modeImageView.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
 
-                self.view.backgroundColor = UIType.background.uiColor(forMode: ModeManager.shared.currentMode)
-                self.translateLanguageButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
-                self.languageView.backgroundColor = UIType.view.uiColor(forMode: ModeManager.shared.currentMode)
-
-                if self.languageView.text == self.viewModel.languagePlaceholder {
-                    self.languageView.textColor = UIType.placeHolder.uiColor(forMode: ModeManager.shared.currentMode)
-
+                if ModeManager.shared.currentMode == false {
+                    self.overrideUserInterfaceStyle = .dark
                 } else {
-                    self.languageView.textColor = UIType.text.uiColor(forMode: ModeManager.shared.currentMode)
+                    self.overrideUserInterfaceStyle = .light
                 }
-
-                self.changPositionViewButton.tintColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
-
-                self.morseCodeView.backgroundColor = UIType.view.uiColor(forMode: ModeManager.shared.currentMode)
-
-                if self.morseCodeView.text == self.viewModel.morsePlaceholder {
-                    self.morseCodeView.textColor = UIType.placeHolder.uiColor(forMode: ModeManager.shared.currentMode)
-                } else {
-                    self.morseCodeView.textColor = UIType.text.uiColor(forMode: ModeManager.shared.currentMode)
-                }
-
-                self.translateLanguageButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
-                self.translateButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
-
-                self.languageClearButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
-                self.languageVoiceRecognitionButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
-                self.languageFloatingButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
-
-                self.morseTapticButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
-                self.morseFlashButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
-                self.morseSoundButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
-                self.morseFloatingButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
             }
             .store(in: &viewModel.subscriptions)
     }
@@ -211,22 +184,22 @@ extension MorseTranslateVC {
         viewModel.tapLanguageFloatingButtonsPublisher
             .receive(on: RunLoop.main)
             .sink { button in
-                print("#### \(button.description)")
                 if button == self.languageClearButton {
-                    if button.backgroundColor == UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode) {
-                        button.backgroundColor = UIType.selectButton.uiColor(forMode: ModeManager.shared.currentMode)
-                        self.languageVoiceRecognitionButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+                    if button.backgroundColor == UIColor(named: UIType.unSelectButton.type) {
+                        button.backgroundColor = UIColor(named: UIType.selectButton.type)
+                        self.languageVoiceRecognitionButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
 
-                        self.languageView.text = nil
+                        self.languageView.text = self.viewModel.languagePlaceholder
+                        self.languageView.textColor = UIColor(named: UIType.placeHolder.type)
                         self.viewModel.touchEndView()
                         self.viewModel.stopRecording()
 
-                        button.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+                        button.backgroundColor = UIColor(named: UIType.unSelectButton.type)
                     }
                 } else if button == self.languageVoiceRecognitionButton {
-                    if button.backgroundColor == UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode) {
-                        button.backgroundColor = UIType.selectButton.uiColor(forMode: ModeManager.shared.currentMode)
-                        self.languageClearButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+                    if button.backgroundColor == UIColor(named: UIType.unSelectButton.type) {
+                        button.backgroundColor = UIColor(named: UIType.selectButton.type)
+                        self.languageClearButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
 
                         self.languageView.text = "말해 보세요. 듣고 있어요!!"
 
@@ -236,7 +209,7 @@ extension MorseTranslateVC {
 
                     } else {
                         self.viewModel.stopRecording()
-                        button.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+                        button.backgroundColor = UIColor(named: UIType.unSelectButton.type)
                     }
                 }
             }
@@ -248,36 +221,36 @@ extension MorseTranslateVC {
             .receive(on: RunLoop.main)
             .sink { button in
                 if button == self.morseTapticButton {
-                    if button.backgroundColor == UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode) {
-                        button.backgroundColor = UIType.selectButton.uiColor(forMode: ModeManager.shared.currentMode)
-                        self.morseFlashButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
-                        self.morseSoundButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+                    if button.backgroundColor == UIColor(named: UIType.unSelectButton.type) {
+                        button.backgroundColor = UIColor(named: UIType.selectButton.type)
+                        self.morseFlashButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
+                        self.morseSoundButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
 
                         self.viewModel.playHaptic(at: self.morseCodeView.text)
                         self.viewModel.toggleFlashOff()
                         self.viewModel.pauseMorseCodeSounds()
                     } else {
                         self.viewModel.stopHaptic()
-                        button.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+                        button.backgroundColor = UIColor(named: UIType.unSelectButton.type)
                     }
                 } else if button == self.morseFlashButton {
-                    if button.backgroundColor == UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode) {
-                        button.backgroundColor = UIType.selectButton.uiColor(forMode: ModeManager.shared.currentMode)
-                        self.morseTapticButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
-                        self.morseSoundButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+                    if button.backgroundColor == UIColor(named: UIType.unSelectButton.type) {
+                        button.backgroundColor = UIColor(named: UIType.selectButton.type)
+                        self.morseTapticButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
+                        self.morseSoundButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
 
                         self.viewModel.generatingMorseCodeFlashlight(at: self.morseCodeView.text)
                         self.viewModel.stopHaptic()
                         self.viewModel.pauseMorseCodeSounds()
                     } else {
                         self.viewModel.toggleFlashOff()
-                        button.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+                        button.backgroundColor = UIColor(named: UIType.unSelectButton.type)
                     }
                 } else {
-                    if button.backgroundColor == UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode) {
-                        button.backgroundColor = UIType.selectButton.uiColor(forMode: ModeManager.shared.currentMode)
-                        self.morseTapticButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
-                        self.morseFlashButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+                    if button.backgroundColor == UIColor(named: UIType.unSelectButton.type) {
+                        button.backgroundColor = UIColor(named: UIType.selectButton.type)
+                        self.morseTapticButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
+                        self.morseFlashButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
 
                         self.viewModel.generatingMorseCodeSounds(at: self.morseCodeView.text)
                         self.viewModel.stopHaptic()
@@ -285,7 +258,7 @@ extension MorseTranslateVC {
 
                     } else {
                         self.viewModel.pauseMorseCodeSounds()
-                        button.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+                        button.backgroundColor = UIColor(named: UIType.unSelectButton.type)
                     }
                 }
             }.store(in: &viewModel.subscriptions)
@@ -296,7 +269,7 @@ extension MorseTranslateVC {
             .receive(on: RunLoop.main)
             .sink { b in
                 if b {
-                    self.morseTapticButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+                    self.morseTapticButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
                 }
             }
             .store(in: &viewModel.subscriptions)
@@ -307,7 +280,7 @@ extension MorseTranslateVC {
             .receive(on: RunLoop.main)
             .sink { b in
                 if b {
-                    self.morseFlashButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+                    self.morseFlashButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
                 }
             }
             .store(in: &viewModel.subscriptions)
@@ -323,7 +296,7 @@ extension MorseTranslateVC {
         { _ in
             // CurrentItem 이 [CurrentItem]의 마지막 배열과 같으면, 모스코드 재생이 종료된 것으로 간주하여, 버튼 색상 변경
             if self.viewModel.soundService.player.currentItem == self.viewModel.soundService.player.items().last {
-                self.morseSoundButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+                self.morseSoundButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
             }
         }
     }
@@ -404,18 +377,18 @@ extension MorseTranslateVC {
         translateLanguageButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
 
         translateLanguageButton.tintColor = .white
-        translateLanguageButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+        translateLanguageButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
         translateLanguageButton.showsMenuAsPrimaryAction = true
 
         let seletedPriority = { (action: UIAction) in
             self.translateLanguageButton.setTitle(action.title, for: .normal)
 
             if self.languageView.text == self.viewModel.languagePlaceholder || self.languageView.text == nil {
-                self.languageView.textColor = UIType.placeHolder.uiColor(forMode: ModeManager.shared.currentMode)
+                self.languageView.textColor = UIColor(named: UIType.placeHolder.type)
             } else if self.languageView.text == nil {
-                self.languageView.textColor = UIType.text.uiColor(forMode: ModeManager.shared.currentMode)
+                self.languageView.textColor = UIColor(named: UIType.text.type)
             } else {
-                self.languageView.textColor = UIType.placeHolder.uiColor(forMode: ModeManager.shared.currentMode)
+                self.languageView.textColor = UIColor(named: UIType.placeHolder.type)
             }
 
             self.viewModel.changePlaceholder(at: action.title)
@@ -449,7 +422,7 @@ extension MorseTranslateVC {
         modeImageView.isEnabled = true
         modeImageView.tintColor = .systemYellow
         modeImageView.layer.cornerRadius = 10
-        modeImageView.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+        modeImageView.backgroundColor = UIColor(named: UIType.unSelectButton.type)
 
         modeImageView.snp.makeConstraints { make in
             make.top.equalTo(translateLanguageButton.snp.top)
@@ -483,11 +456,11 @@ extension MorseTranslateVC {
 extension MorseTranslateVC {
     private func createLanguageView() {
         languageView.layer.cornerRadius = 10
-        languageView.backgroundColor = UIType.view.uiColor(forMode: ModeManager.shared.currentMode)
+        languageView.backgroundColor = UIColor(named: UIType.view.type)
         languageView.text = viewModel.languagePlaceholder
 
         languageView.tag = 1
-        languageView.textColor = UIType.placeHolder.uiColor(forMode: ModeManager.shared.currentMode)
+        languageView.textColor = UIColor(named: UIType.placeHolder.type)
         languageView.font = .systemFont(ofSize: 30, weight: .bold)
         languageView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         languageView.delegate = self
@@ -504,7 +477,7 @@ extension MorseTranslateVC {
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .bold)
         let buttonImage = UIImage(systemName: "arrow.down", withConfiguration: imageConfig)
         changPositionViewButton.setImage(buttonImage, for: .normal)
-        changPositionViewButton.tintColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+        changPositionViewButton.tintColor = UIColor(named: UIType.unSelectButton.type)
         changPositionViewButton.addTarget(self, action: #selector(didTappedChangeButton), for: .touchUpInside)
 
         changPositionViewButton.snp.makeConstraints { make in
@@ -516,11 +489,11 @@ extension MorseTranslateVC {
 
     private func createMorseView() {
         morseCodeView.layer.cornerRadius = 10
-        morseCodeView.backgroundColor = UIType.view.uiColor(forMode: ModeManager.shared.currentMode)
+        morseCodeView.backgroundColor = UIColor(named: UIType.view.type)
         morseCodeView.text = LanguageModel.morse.type
 
         morseCodeView.tag = 2
-        morseCodeView.textColor = UIType.placeHolder.uiColor(forMode: ModeManager.shared.currentMode)
+        morseCodeView.textColor = UIColor(named: UIType.placeHolder.type)
         morseCodeView.font = .systemFont(ofSize: 30, weight: .bold)
         morseCodeView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: -10)
         morseCodeView.isEditable = false
@@ -537,7 +510,7 @@ extension MorseTranslateVC {
         translateButton.setTitle("변환하기", for: .normal)
         translateButton.titleLabel?.font = .systemFont(ofSize: 30, weight: .bold)
         translateButton.layer.cornerRadius = 10
-        translateButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+        translateButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
 
         translateButton.addTarget(self, action: #selector(didTappedTranslateButton), for: .touchUpInside)
 
@@ -564,11 +537,11 @@ extension MorseTranslateVC {
 
         if result.contains(where: { $0 == "." || $0 == "-" }) == false, (languageView.text == nil || languageView.text == viewModel.languagePlaceholder) {
             showBlankAlert()
-        } else if result.contains(where: { $0 == "." || $0 == "-" }) == false, (languageView.textColor == UIType.text.uiColor(forMode: true) || languageView.textColor == UIType.text.uiColor(forMode: false)) {
+        } else if result.contains(where: { $0 == "." || $0 == "-" }) == false, languageView.textColor == UIColor(named: UIType.text.type) {
             showTranslateErrorAlert()
         } else {
             morseCodeView.text = result
-            morseCodeView.textColor = UIType.text.uiColor(forMode: ModeManager.shared.currentMode)
+            morseCodeView.textColor = UIColor(named: UIType.text.type)
         }
     }
 
@@ -609,7 +582,7 @@ extension MorseTranslateVC {
     }
 
     private func createClearLanguageButton() {
-        languageClearButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+        languageClearButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
         languageClearButton.tintColor = .white
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
         let buttonImage = UIImage(systemName: "eraser", withConfiguration: imageConfig)
@@ -630,7 +603,7 @@ extension MorseTranslateVC {
     }
 
     private func creatVoiceRecognitionButton() {
-        languageVoiceRecognitionButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+        languageVoiceRecognitionButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
         languageVoiceRecognitionButton.tintColor = .white
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
         let buttonImage = UIImage(systemName: "mic", withConfiguration: imageConfig)
@@ -651,7 +624,7 @@ extension MorseTranslateVC {
     }
 
     private func createLanguageViewMenuButton() {
-        languageFloatingButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+        languageFloatingButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
         languageFloatingButton.tintColor = .white
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
         let buttonImage = UIImage(systemName: "plus", withConfiguration: imageConfig)
@@ -687,7 +660,7 @@ extension MorseTranslateVC {
     }
 
     private func createTapticButton() {
-        morseTapticButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+        morseTapticButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
         morseTapticButton.tintColor = .white
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
         let buttonImage = UIImage(systemName: "iphone.gen1.radiowaves.left.and.right", withConfiguration: imageConfig)
@@ -708,7 +681,7 @@ extension MorseTranslateVC {
     }
 
     private func createFlashButton() {
-        morseFlashButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+        morseFlashButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
         morseFlashButton.tintColor = .white
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
         let buttonImage = UIImage(systemName: "flashlight.on.fill", withConfiguration: imageConfig)
@@ -729,7 +702,7 @@ extension MorseTranslateVC {
     }
 
     private func createSoundButton() {
-        morseSoundButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+        morseSoundButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
         morseSoundButton.tintColor = .white
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
         let buttonImage = UIImage(systemName: "speaker.wave.3", withConfiguration: imageConfig)
@@ -750,7 +723,7 @@ extension MorseTranslateVC {
     }
 
     private func createPlayButton() {
-        morseFloatingButton.backgroundColor = UIType.unSelectButton.uiColor(forMode: ModeManager.shared.currentMode)
+        morseFloatingButton.backgroundColor = UIColor(named: UIType.unSelectButton.type)
         morseFloatingButton.tintColor = .white
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
         let buttonImage = UIImage(systemName: "plus", withConfiguration: imageConfig)
@@ -802,17 +775,17 @@ extension MorseTranslateVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == viewModel.languagePlaceholder {
             textView.text = nil
-            textView.textColor = UIType.text.uiColor(forMode: ModeManager.shared.currentMode)
+            textView.textColor = UIColor(named: UIType.text.type)
         } else if textView.text == nil {
             textView.text = nil
-            textView.textColor = UIType.text.uiColor(forMode: ModeManager.shared.currentMode)
+            textView.textColor = UIColor(named: UIType.text.type)
         }
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == true {
             textView.text = viewModel.languagePlaceholder
-            textView.textColor = UIType.placeHolder.uiColor(forMode: ModeManager.shared.currentMode)
+            textView.textColor = UIColor(named: UIType.placeHolder.type)
         }
     }
 }

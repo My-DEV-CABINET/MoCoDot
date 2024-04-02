@@ -46,9 +46,9 @@ final class KoreanToMorseTranslateService: KoreanToMorseTranslateProtocol {
             let y = utfList[1] >= 0
             let z = utfList[2] >= 0
 
-            answer += x ? morseList[0][utfList[0]].morseCode : ""
-            answer += y ? morseList[1][utfList[1]].morseCode : ""
-            answer += z ? morseList[2][utfList[2]].morseCode : ""
+            answer += x ? morseList[0][utfList[0]].morseCode + " " : ""
+            answer += y ? morseList[1][utfList[1]].morseCode + " " : ""
+            answer += z ? morseList[2][utfList[2]].morseCode + " " : ""
 
             if x == false, y == false, z == false {
                 for d in zip(morseList[0], morseList[1]) {
