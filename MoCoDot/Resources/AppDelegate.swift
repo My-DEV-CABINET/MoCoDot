@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         container.register(type: KoreanToMorseTranslateProtocol.self, service: KoreanToMorseTranslateService())
         container.register(type: SoundServiceProtocol.self, service: SoundService())
         container.register(type: FlashServiceProtocol.self, service: FlashService())
+        container.register(type: VoiceRecognitionServiceProtocol.self, service: VoiceRecognitionService())
 
         #if DEVELOPMENT
         container.register(type: TapticServiceProtocol.self, service: TapticService())

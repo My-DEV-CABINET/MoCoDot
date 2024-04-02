@@ -24,6 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let soundService = self.container.resolve(type: SoundServiceProtocol.self)!
         // 핸드폰 불빛 On/Off 서비스
         let flashService = self.container.resolve(type: FlashServiceProtocol.self)!
+        // 음성 인식 서비스
+        let voiceRecognitionService = self.container.resolve(type: VoiceRecognitionServiceProtocol.self)!
 
         #if DEVELOPMENT
         // 핸드폰 진동 On/Off 서비스
@@ -34,7 +36,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         #endif
 
         // 의존성 주입
-        rootViewController.viewModel = MorseTranslateViewModel(englishTranslateService: englishTranslateService, koreanTranslateService: koreanTranslateService, soundService: soundService, flashService: flashService, tapticService: tapticService)
+        rootViewController.viewModel = MorseTranslateViewModel(
+            englishTranslateService: englishTranslateService,
+            koreanTranslateService: koreanTranslateService,
+            soundService: soundService,
+            flashService: flashService,
+            tapticService: tapticService,
+            voiceRecognitionService: voiceRecognitionService
+        )
 
         let rootNavigationController = UINavigationController(rootViewController: rootViewController)
 

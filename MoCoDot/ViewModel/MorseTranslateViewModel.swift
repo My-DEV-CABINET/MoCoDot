@@ -15,6 +15,7 @@ final class MorseTranslateViewModel {
     let soundService: SoundServiceProtocol
     let flashService: FlashServiceProtocol
     let tapticService: TapticServiceProtocol
+    let voiceRecognitionService: VoiceRecognitionServiceProtocol
 
     // 스위치 이벤트 값 전달
     var switchEventPublisher = CurrentValueSubject<Bool, Never>(ModeManager.shared.currentMode)
@@ -47,13 +48,15 @@ final class MorseTranslateViewModel {
         koreanTranslateService: KoreanToMorseTranslateProtocol,
         soundService: SoundServiceProtocol,
         flashService: FlashServiceProtocol,
-        tapticService: TapticServiceProtocol
+        tapticService: TapticServiceProtocol,
+        voiceRecognitionService: VoiceRecognitionServiceProtocol
     ) {
         self.englishTranslateService = englishTranslateService
         self.koreanTranslateService = koreanTranslateService
         self.soundService = soundService
         self.flashService = flashService
         self.tapticService = tapticService
+        self.voiceRecognitionService = voiceRecognitionService
     }
 }
 
@@ -117,6 +120,18 @@ extension MorseTranslateViewModel {
     }
 }
 
+// MARK: - VoiceRecognitionServiceProtocol Method
+
+extension MorseTranslateViewModel {
+    func startRecording() {
+        voiceRecognitionService.startRecording()
+    }
+
+    func stopRecording() {
+        voiceRecognitionService.stopRecording()
+    }
+}
+
 // MARK: - ViewModel's Original Method
 
 extension MorseTranslateViewModel {
@@ -135,7 +150,6 @@ extension MorseTranslateViewModel {
         languagePlaceholderPublisher.send(str)
     }
 
-    // To-do Task
     func changeLanguageButtonBackgroundColor(at button: UIButton) {
         tapLanguageFloatingButtonsPublisher.send(button)
     }
