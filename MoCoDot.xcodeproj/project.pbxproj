@@ -49,6 +49,8 @@
 		4ED734332B74971F00071FEF /* EnglishToMorseTranslateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED734322B74971F00071FEF /* EnglishToMorseTranslateProtocol.swift */; };
 		4ED7343A2B749A5C00071FEF /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED734392B749A5C00071FEF /* CustomButton.swift */; };
 		4ED7343C2B749A6800071FEF /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED7343B2B749A6800071FEF /* CustomTextView.swift */; };
+		4EDCDF9F2BBC9B5C0039F4DF /* MorseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDCDF9E2BBC9B5C0039F4DF /* MorseCell.swift */; };
+		4EDCDFA12BBCBCD50039F4DF /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDCDFA02BBCBCD50039F4DF /* SectionHeaderView.swift */; };
 		4EE2FE902BB87B19006882C8 /* MoCoDotLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 4EE2FE8F2BB87B19006882C8 /* MoCoDotLibrary */; };
 		4EF230E12B7626DA001B4186 /* CustomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF230E02B7626DA001B4186 /* CustomStackView.swift */; };
 /* End PBXBuildFile section */
@@ -109,6 +111,8 @@
 		4ED734322B74971F00071FEF /* EnglishToMorseTranslateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnglishToMorseTranslateProtocol.swift; sourceTree = "<group>"; };
 		4ED734392B749A5C00071FEF /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		4ED7343B2B749A6800071FEF /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
+		4EDCDF9E2BBC9B5C0039F4DF /* MorseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorseCell.swift; sourceTree = "<group>"; };
+		4EDCDFA02BBCBCD50039F4DF /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		4EF230E02B7626DA001B4186 /* CustomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -221,6 +225,17 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		4E8DC0592BBC671300698238 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				4E8DC0512BBC583600698238 /* AppCoordinator.swift */,
+				4E8DC0532BBC65C900698238 /* Coordinator+.swift */,
+				4E8DC0552BBC65F900698238 /* MorseTranslateCoordinator.swift */,
+				4E8DC0572BBC661600698238 /* MorseListCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 		4EA599352B4EF3800064726E = {
 			isa = PBXGroup;
 			children = (
@@ -258,6 +273,8 @@
 			children = (
 				4EA599452B4EF3800064726E /* MorseTranslateVC.swift */,
 				4E8DC04D2BBC46D800698238 /* MorseListVC.swift */,
+				4EDCDFA02BBCBCD50039F4DF /* SectionHeaderView.swift */,
+				4EDCDF9E2BBC9B5C0039F4DF /* MorseCell.swift */,
 				4ED7343D2B749A7D00071FEF /* Subcomponents */,
 			);
 			path = View;
@@ -286,14 +303,11 @@
 		4ED734302B7496EC00071FEF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4E8DC0592BBC671300698238 /* Coordinators */,
 				4E29AC992BB595690023FD4F /* Protocols */,
 				4E59F6BA2BBAA883008D4C37 /* Morse */,
 				4E02DE752BB6AE5D0039E6DC /* Enums */,
 				4E68771F2BB6EC7100EF56DB /* Mocks */,
-				4E8DC0512BBC583600698238 /* AppCoordinator.swift */,
-				4E8DC0532BBC65C900698238 /* Coordinator+.swift */,
-				4E8DC0552BBC65F900698238 /* MorseTranslateCoordinator.swift */,
-				4E8DC0572BBC661600698238 /* MorseListCoordinator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -473,7 +487,9 @@
 				4E8DC0542BBC65C900698238 /* Coordinator+.swift in Sources */,
 				4ED7343A2B749A5C00071FEF /* CustomButton.swift in Sources */,
 				4E112C102BBBDF25000B2C67 /* VoiceRecognitionServiceProtocol.swift in Sources */,
+				4EDCDFA12BBCBCD50039F4DF /* SectionHeaderView.swift in Sources */,
 				4EA599442B4EF3800064726E /* SceneDelegate.swift in Sources */,
+				4EDCDF9F2BBC9B5C0039F4DF /* MorseCell.swift in Sources */,
 				4E96813B2B8DC98700E14E3C /* MorseProtocol.swift in Sources */,
 				4E29AC982BB595510023FD4F /* TapticServiceProtocol.swift in Sources */,
 				4E01C76C2BB565A600C55EC6 /* SoundServiceProtocol.swift in Sources */,

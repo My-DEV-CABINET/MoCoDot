@@ -7,12 +7,24 @@
 
 import Foundation
 
-struct KoreanMorse: MorseProtocol {
+struct KoreanMorse: MorseProtocol, Hashable {
     var alphabetName: String
     var morseCode: String
     var isChoSung: Bool // 초성 여부
     var isJungSung: Bool // 중성 여부
     var isJongSung: Bool // 종성 여부
+
+    // `Hashable` 프로토콜의 요구사항을 충족하기 위한 `hash(into:)` 메서드 구현
+    func hash(into hasher: inout Hasher) {
+        // 프로퍼티를 사용하여 해시 값을 생성합니다.
+        hasher.combine(alphabetName)
+        hasher.combine(morseCode)
+    }
+
+    // `Equatable` 프로토콜의 요구사항을 충족하기 위한 `==` 연산자 구현
+    static func ==(lhs: KoreanMorse, rhs: KoreanMorse) -> Bool {
+        return lhs.alphabetName == rhs.alphabetName && lhs.morseCode == rhs.morseCode
+    }
 }
 
 extension KoreanMorse {

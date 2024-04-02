@@ -20,8 +20,6 @@ final class SoundService: SoundServiceProtocol {
     /// 변환된 모스코드를 재생하는 메서드
     /// - Parameter message: 변환된 모스부호들
     func generatingMorseCodeSounds(at message: String) {
-        print("#### 여기 잡히는가?")
-
         var items: [AVPlayerItem] = []
 
         let longBeepURL = Bundle.main.url(forResource: "beep_long", withExtension: "mp3")
@@ -34,7 +32,6 @@ final class SoundService: SoundServiceProtocol {
         }
 
         for character in message.enumerated() {
-            print("#### 여기도 잡히는가? \(character)")
             if character.element == "-" {
                 items.append(AVPlayerItem(url: longBeepURL))
             } else if character.element == "." {
@@ -47,8 +44,8 @@ final class SoundService: SoundServiceProtocol {
         }
 
         DispatchQueue.main.async { [weak self] in
-            print("#### 여기도 잡히는가? \(items)")
             self?.player.removeAllItems()
+            self?.player.rate = 0.7
             self?.player = AVQueuePlayer(items: items)
             self?.player.play()
         }

@@ -22,7 +22,7 @@ final class MorseListCoordinator: Coordinator {
         let soundService = self.container.resolve(type: SoundServiceProtocol.self)!
 
         let vc = MorseListVC()
-        vc.viewmodel = MorseListViewModel(soundService: soundService)
+        vc.viewModel = MorseListViewModel(soundService: soundService)
 
         let modalVC = UINavigationController(rootViewController: vc)
         modalVC.modalPresentationStyle = .pageSheet
