@@ -24,13 +24,13 @@ enum UIType {
         case .unSelectButton:
             return isDarkMode ? .systemTeal : .systemIndigo
         case .view:
-            return isDarkMode ? .systemGray.withAlphaComponent(0.5) : .systemGray5
+            return isDarkMode ? .systemGray5 : .systemGray.withAlphaComponent(0.5)
         case .background:
             return isDarkMode ? .white : .black
         case .text:
             return isDarkMode ? .black : .white
         case .placeHolder:
-            return isDarkMode ? .systemGray6.withAlphaComponent(0.6) : .systemGray
+            return isDarkMode ? .systemGray : .systemGray6.withAlphaComponent(0.6)
         }
     }
 }

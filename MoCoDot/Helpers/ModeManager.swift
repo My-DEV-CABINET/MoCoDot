@@ -11,11 +11,14 @@ final class ModeManager {
     static let shared = ModeManager()
 
     private let defaults = UserDefaults.standard
-    private var mode = true
-    var currentMode = UserDefaults.standard.bool(forKey: UserDefaultsKey.mode.str)
+
+    var currentMode: Bool {
+        get { return defaults.bool(forKey: UserDefaultsKey.mode.str) }
+        set { defaults.set(newValue, forKey: UserDefaultsKey.mode.str) }
+    }
 
     func changeMode(_ bool: Bool) {
-        defaults.set(bool, forKey: UserDefaultsKey.mode.str)
+        currentMode = bool
     }
 
     private init() {}
