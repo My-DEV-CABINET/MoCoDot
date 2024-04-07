@@ -1,0 +1,4 @@
+type("appstore")
+storage_mode("git")
+app_identifier("com.Junwoo.Jununu.MoCoDot")
+git_url("git@github.com:My-iOS/MoCoDot-fastlane-certificate.git")
