@@ -501,7 +501,6 @@ extension MorseTranslateVC {
         }
     }
 
-    #warning("Coordinator 패턴 적용해야함. 현재 의존성 주입 X")
     @objc private func didTapShowMorseList(_ sender: UIButton) {
         delegate?.showMorseList()
     }
@@ -518,7 +517,7 @@ extension MorseTranslateVC {
         languageView.tag = 1
         languageView.textColor = UIColor(named: UIType.placeHolder.type)
         languageView.font = .systemFont(ofSize: 30, weight: .bold)
-        languageView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        languageView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 5)
         languageView.delegate = self
 
         languageView.snp.makeConstraints { make in
@@ -551,7 +550,7 @@ extension MorseTranslateVC {
         morseCodeView.tag = 2
         morseCodeView.textColor = UIColor(named: UIType.placeHolder.type)
         morseCodeView.font = .systemFont(ofSize: 30, weight: .bold)
-        morseCodeView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: -10)
+        morseCodeView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 5)
         morseCodeView.isEditable = false
 
         morseCodeView.snp.makeConstraints { make in

@@ -24,7 +24,7 @@ enum LanguageModel {
             return "모스부호"
         }
     }
-    
+
     var identifier: String {
         switch self {
         case .english:
