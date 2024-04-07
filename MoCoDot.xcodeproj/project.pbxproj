@@ -43,6 +43,14 @@
 		4ECA99182BB49357007C5870 /* KoreanToMorseTranslateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECA99172BB49357007C5870 /* KoreanToMorseTranslateProtocol.swift */; };
 		4ECA991A2BB4936F007C5870 /* KoreanToMorseTranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECA99192BB4936F007C5870 /* KoreanToMorseTranslateService.swift */; };
 		4ECA991C2BB49915007C5870 /* TranslateKoreanToMorseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECA991B2BB49915007C5870 /* TranslateKoreanToMorseTests.swift */; };
+		4ED148662BC2395400E7D40F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED148652BC2395400E7D40F /* WidgetKit.framework */; };
+		4ED148682BC2395400E7D40F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED148672BC2395400E7D40F /* SwiftUI.framework */; };
+		4ED1486B2BC2395400E7D40F /* MoCoDotWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1486A2BC2395400E7D40F /* MoCoDotWidgetBundle.swift */; };
+		4ED1486D2BC2395400E7D40F /* MoCoDotWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1486C2BC2395400E7D40F /* MoCoDotWidgetLiveActivity.swift */; };
+		4ED1486F2BC2395400E7D40F /* MoCoDotWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1486E2BC2395400E7D40F /* MoCoDotWidget.swift */; };
+		4ED148712BC2395400E7D40F /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED148702BC2395400E7D40F /* AppIntent.swift */; };
+		4ED148732BC2395500E7D40F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ED148722BC2395500E7D40F /* Assets.xcassets */; };
+		4ED148772BC2395500E7D40F /* MoCoDotWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4ED148642BC2395400E7D40F /* MoCoDotWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4ED734282B74950400071FEF /* MorseTranslateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED734272B74950400071FEF /* MorseTranslateViewModel.swift */; };
 		4ED7342D2B74964500071FEF /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED7342C2B74964500071FEF /* DIContainer.swift */; };
 		4ED7342F2B74965200071FEF /* DICProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED7342E2B74965200071FEF /* DICProtocol.swift */; };
@@ -63,7 +71,28 @@
 			remoteGlobalIDString = 4EA5993D2B4EF3800064726E;
 			remoteInfo = MoCoDot;
 		};
+		4ED148752BC2395500E7D40F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4EA599362B4EF3800064726E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4ED148632BC2395400E7D40F;
+			remoteInfo = MoCoDotWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4ED1487C2BC2395500E7D40F /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4ED148772BC2395500E7D40F /* MoCoDotWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4E01C76B2BB565A600C55EC6 /* SoundServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundServiceProtocol.swift; sourceTree = "<group>"; };
@@ -105,6 +134,15 @@
 		4ECA99172BB49357007C5870 /* KoreanToMorseTranslateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreanToMorseTranslateProtocol.swift; sourceTree = "<group>"; };
 		4ECA99192BB4936F007C5870 /* KoreanToMorseTranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreanToMorseTranslateService.swift; sourceTree = "<group>"; };
 		4ECA991B2BB49915007C5870 /* TranslateKoreanToMorseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateKoreanToMorseTests.swift; sourceTree = "<group>"; };
+		4ED148642BC2395400E7D40F /* MoCoDotWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MoCoDotWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4ED148652BC2395400E7D40F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		4ED148672BC2395400E7D40F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		4ED1486A2BC2395400E7D40F /* MoCoDotWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoCoDotWidgetBundle.swift; sourceTree = "<group>"; };
+		4ED1486C2BC2395400E7D40F /* MoCoDotWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoCoDotWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		4ED1486E2BC2395400E7D40F /* MoCoDotWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoCoDotWidget.swift; sourceTree = "<group>"; };
+		4ED148702BC2395400E7D40F /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		4ED148722BC2395500E7D40F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4ED148742BC2395500E7D40F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4ED734272B74950400071FEF /* MorseTranslateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorseTranslateViewModel.swift; sourceTree = "<group>"; };
 		4ED7342C2B74964500071FEF /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		4ED7342E2B74965200071FEF /* DICProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DICProtocol.swift; sourceTree = "<group>"; };
@@ -129,6 +167,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EE2FE902BB87B19006882C8 /* MoCoDotLibrary in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4ED148612BC2395400E7D40F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4ED148682BC2395400E7D40F /* SwiftUI.framework in Frameworks */,
+				4ED148662BC2395400E7D40F /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +288,7 @@
 			children = (
 				4EA599402B4EF3800064726E /* MoCoDot */,
 				4E4808402BB47C6900FBF06D /* MoCoDotTests */,
+				4ED148692BC2395400E7D40F /* MoCoDotWidget */,
 				4EA5993F2B4EF3800064726E /* Products */,
 				4EE2FE8E2BB87B19006882C8 /* Frameworks */,
 			);
@@ -251,6 +299,7 @@
 			children = (
 				4EA5993E2B4EF3800064726E /* MoCoDot.app */,
 				4E48083F2BB47C6900FBF06D /* MoCoDotTests.xctest */,
+				4ED148642BC2395400E7D40F /* MoCoDotWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -266,6 +315,19 @@
 				4EA5994F2B4EF3810064726E /* Info.plist */,
 			);
 			path = MoCoDot;
+			sourceTree = "<group>";
+		};
+		4ED148692BC2395400E7D40F /* MoCoDotWidget */ = {
+			isa = PBXGroup;
+			children = (
+				4ED1486A2BC2395400E7D40F /* MoCoDotWidgetBundle.swift */,
+				4ED1486C2BC2395400E7D40F /* MoCoDotWidgetLiveActivity.swift */,
+				4ED1486E2BC2395400E7D40F /* MoCoDotWidget.swift */,
+				4ED148702BC2395400E7D40F /* AppIntent.swift */,
+				4ED148722BC2395500E7D40F /* Assets.xcassets */,
+				4ED148742BC2395500E7D40F /* Info.plist */,
+			);
+			path = MoCoDotWidget;
 			sourceTree = "<group>";
 		};
 		4ED734292B74950900071FEF /* View */ = {
@@ -337,6 +399,8 @@
 		4EE2FE8E2BB87B19006882C8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4ED148652BC2395400E7D40F /* WidgetKit.framework */,
+				4ED148672BC2395400E7D40F /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -369,10 +433,12 @@
 				4EA5993A2B4EF3800064726E /* Sources */,
 				4EA5993B2B4EF3800064726E /* Frameworks */,
 				4EA5993C2B4EF3800064726E /* Resources */,
+				4ED1487C2BC2395500E7D40F /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4ED148762BC2395500E7D40F /* PBXTargetDependency */,
 			);
 			name = MoCoDot;
 			packageProductDependencies = (
@@ -381,6 +447,23 @@
 			productName = MoCoDot;
 			productReference = 4EA5993E2B4EF3800064726E /* MoCoDot.app */;
 			productType = "com.apple.product-type.application";
+		};
+		4ED148632BC2395400E7D40F /* MoCoDotWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4ED148782BC2395500E7D40F /* Build configuration list for PBXNativeTarget "MoCoDotWidgetExtension" */;
+			buildPhases = (
+				4ED148602BC2395400E7D40F /* Sources */,
+				4ED148612BC2395400E7D40F /* Frameworks */,
+				4ED148622BC2395400E7D40F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MoCoDotWidgetExtension;
+			productName = MoCoDotWidgetExtension;
+			productReference = 4ED148642BC2395400E7D40F /* MoCoDotWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -398,6 +481,9 @@
 					};
 					4EA5993D2B4EF3800064726E = {
 						CreatedOnToolsVersion = 15.2;
+					};
+					4ED148632BC2395400E7D40F = {
+						CreatedOnToolsVersion = 15.3;
 					};
 				};
 			};
@@ -419,6 +505,7 @@
 			targets = (
 				4EA5993D2B4EF3800064726E /* MoCoDot */,
 				4E48083E2BB47C6900FBF06D /* MoCoDotTests */,
+				4ED148632BC2395400E7D40F /* MoCoDotWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -440,6 +527,14 @@
 				4E01C7712BB5665D00C55EC6 /* beep_long.mp3 in Resources */,
 				4EA5994B2B4EF3810064726E /* Assets.xcassets in Resources */,
 				4E01C7722BB5665D00C55EC6 /* beep_short.mp3 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4ED148622BC2395400E7D40F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4ED148732BC2395500E7D40F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +595,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4ED148602BC2395400E7D40F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4ED1486D2BC2395400E7D40F /* MoCoDotWidgetLiveActivity.swift in Sources */,
+				4ED148712BC2395400E7D40F /* AppIntent.swift in Sources */,
+				4ED1486F2BC2395400E7D40F /* MoCoDotWidget.swift in Sources */,
+				4ED1486B2BC2395400E7D40F /* MoCoDotWidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -507,6 +613,11 @@
 			isa = PBXTargetDependency;
 			target = 4EA5993D2B4EF3800064726E /* MoCoDot */;
 			targetProxy = 4E4808432BB47C6900FBF06D /* PBXContainerItemProxy */;
+		};
+		4ED148762BC2395500E7D40F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4ED148632BC2395400E7D40F /* MoCoDotWidgetExtension */;
+			targetProxy = 4ED148752BC2395500E7D40F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -635,6 +746,7 @@
 		4E68773C2BB7180700EF56DB /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -806,6 +918,7 @@
 		4EA599532B4EF3810064726E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -834,6 +947,7 @@
 		4EA599542B4EF3810064726E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -857,6 +971,90 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development com.Junwoo.Jununu.MoCoDot";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4ED148792BC2395500E7D40F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4MN45GZSDT;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MoCoDotWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MoCoDotWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Junwoo.Jununu.MoCoDot.MoCoDotWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4ED1487A2BC2395500E7D40F /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4MN45GZSDT;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MoCoDotWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MoCoDotWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Junwoo.Jununu.MoCoDot.MoCoDotWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Development;
+		};
+		4ED1487B2BC2395500E7D40F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MoCoDotWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MoCoDotWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Junwoo.Jununu.MoCoDot.MoCoDotWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -892,6 +1090,16 @@
 				4EA599532B4EF3810064726E /* Debug */,
 				4E68773C2BB7180700EF56DB /* Development */,
 				4EA599542B4EF3810064726E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4ED148782BC2395500E7D40F /* Build configuration list for PBXNativeTarget "MoCoDotWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4ED148792BC2395500E7D40F /* Debug */,
+				4ED1487A2BC2395500E7D40F /* Development */,
+				4ED1487B2BC2395500E7D40F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
