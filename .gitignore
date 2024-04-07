@@ -46,7 +46,6 @@ DerivedData/
 ## Playgrounds
 timeline.xctimeline
 playground.xcworkspace
-*.xcuserstate
 
 # Swift Package Manager
 # Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
@@ -99,7 +98,7 @@ iOSInjectionProject/
 Packages
 xcuserdata
 *.xcodeproj
-
+*.xcuserstate
 
 ### SwiftPM ###
 
