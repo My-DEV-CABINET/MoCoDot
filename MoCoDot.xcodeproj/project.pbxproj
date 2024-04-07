@@ -43,14 +43,14 @@
 		4ECA99182BB49357007C5870 /* KoreanToMorseTranslateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECA99172BB49357007C5870 /* KoreanToMorseTranslateProtocol.swift */; };
 		4ECA991A2BB4936F007C5870 /* KoreanToMorseTranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECA99192BB4936F007C5870 /* KoreanToMorseTranslateService.swift */; };
 		4ECA991C2BB49915007C5870 /* TranslateKoreanToMorseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECA991B2BB49915007C5870 /* TranslateKoreanToMorseTests.swift */; };
-		4ED148662BC2395400E7D40F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED148652BC2395400E7D40F /* WidgetKit.framework */; };
-		4ED148682BC2395400E7D40F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED148672BC2395400E7D40F /* SwiftUI.framework */; };
 		4ED1486B2BC2395400E7D40F /* MoCoDotWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1486A2BC2395400E7D40F /* MoCoDotWidgetBundle.swift */; };
 		4ED1486D2BC2395400E7D40F /* MoCoDotWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1486C2BC2395400E7D40F /* MoCoDotWidgetLiveActivity.swift */; };
 		4ED1486F2BC2395400E7D40F /* MoCoDotWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1486E2BC2395400E7D40F /* MoCoDotWidget.swift */; };
 		4ED148712BC2395400E7D40F /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED148702BC2395400E7D40F /* AppIntent.swift */; };
 		4ED148732BC2395500E7D40F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ED148722BC2395500E7D40F /* Assets.xcassets */; };
 		4ED148772BC2395500E7D40F /* MoCoDotWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4ED148642BC2395400E7D40F /* MoCoDotWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4ED1487D2BC2570600E7D40F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED148652BC2395400E7D40F /* WidgetKit.framework */; };
+		4ED148802BC2570800E7D40F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED148672BC2395400E7D40F /* SwiftUI.framework */; };
 		4ED734282B74950400071FEF /* MorseTranslateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED734272B74950400071FEF /* MorseTranslateViewModel.swift */; };
 		4ED7342D2B74964500071FEF /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED7342C2B74964500071FEF /* DIContainer.swift */; };
 		4ED7342F2B74965200071FEF /* DICProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED7342E2B74965200071FEF /* DICProtocol.swift */; };
@@ -143,6 +143,8 @@
 		4ED148702BC2395400E7D40F /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		4ED148722BC2395500E7D40F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4ED148742BC2395500E7D40F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4ED148822BC25A0D00E7D40F /* MoCoDotRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoCoDotRelease.entitlements; sourceTree = "<group>"; };
+		4ED148832BC25A2100E7D40F /* MoCoDotWidgetExtensionRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoCoDotWidgetExtensionRelease.entitlements; sourceTree = "<group>"; };
 		4ED734272B74950400071FEF /* MorseTranslateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorseTranslateViewModel.swift; sourceTree = "<group>"; };
 		4ED7342C2B74964500071FEF /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		4ED7342E2B74965200071FEF /* DICProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DICProtocol.swift; sourceTree = "<group>"; };
@@ -174,8 +176,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4ED148682BC2395400E7D40F /* SwiftUI.framework in Frameworks */,
-				4ED148662BC2395400E7D40F /* WidgetKit.framework in Frameworks */,
+				4ED148802BC2570800E7D40F /* SwiftUI.framework in Frameworks */,
+				4ED1487D2BC2570600E7D40F /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +288,7 @@
 		4EA599352B4EF3800064726E = {
 			isa = PBXGroup;
 			children = (
+				4ED148832BC25A2100E7D40F /* MoCoDotWidgetExtensionRelease.entitlements */,
 				4EA599402B4EF3800064726E /* MoCoDot */,
 				4E4808402BB47C6900FBF06D /* MoCoDotTests */,
 				4ED148692BC2395400E7D40F /* MoCoDotWidget */,
@@ -307,6 +310,7 @@
 		4EA599402B4EF3800064726E /* MoCoDot */ = {
 			isa = PBXGroup;
 			children = (
+				4ED148822BC25A0D00E7D40F /* MoCoDotRelease.entitlements */,
 				4ED734312B7496F400071FEF /* Resources */,
 				4ED734302B7496EC00071FEF /* Model */,
 				4ED7342B2B74962700071FEF /* Helpers */,
@@ -641,7 +645,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4MN45GZSDT;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Junwoo.Jununu.MoCoDotTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -660,14 +664,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4MN45GZSDT;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Junwoo.Jununu.MoCoDotTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -749,16 +755,18 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4MN45GZSDT;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 4MN45GZSDT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MoCoDot/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -766,6 +774,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Junwoo.Jununu.MoCoDot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development com.Junwoo.Jununu.MoCoDot";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -780,7 +794,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4MN45GZSDT;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Junwoo.Jununu.MoCoDotTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -921,16 +935,18 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4MN45GZSDT;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 4MN45GZSDT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MoCoDot/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -938,6 +954,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Junwoo.Jununu.MoCoDot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development com.Junwoo.Jununu.MoCoDot";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -950,6 +972,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MoCoDot/MoCoDotRelease.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -961,7 +984,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -971,6 +994,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development com.Junwoo.Jununu.MoCoDot";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -989,7 +1016,7 @@
 				INFOPLIST_FILE = MoCoDotWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MoCoDotWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -999,6 +1026,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Junwoo.Jununu.MoCoDot.MoCoDotWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1017,7 +1048,7 @@
 				INFOPLIST_FILE = MoCoDotWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MoCoDotWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1027,6 +1058,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Junwoo.Jununu.MoCoDot.MoCoDotWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1038,14 +1073,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = MoCoDotWidgetExtensionRelease.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4MN45GZSDT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MoCoDotWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MoCoDotWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1054,7 +1091,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Junwoo.Jununu.MoCoDot.MoCoDotWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
