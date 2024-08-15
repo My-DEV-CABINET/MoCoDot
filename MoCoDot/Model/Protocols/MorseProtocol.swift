@@ -8,8 +8,6 @@
 import Foundation
 
 protocol MorseProtocol {
-    /// 영어 : 알파벳
-    /// 한글 : 자음/모음
-    var alphabetName: String { get }
-    var morseCode: String { get }
+    var alphabetName: String { get } /// 알파벳
+    var morseCode: String { get } /// 모스부호
 }
