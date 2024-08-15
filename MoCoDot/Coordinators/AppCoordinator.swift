@@ -11,13 +11,23 @@ import UIKit
 
 final class AppCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
-    private var naviagtionController: UINavigationController!
+    private let navigationController: UINavigationController
+    let window: UIWindow
 
-    init(naviagtionController: UINavigationController) {
-        self.naviagtionController = naviagtionController
+    init(window: UIWindow, navigationController: UINavigationController) {
+        self.window = window
+        self.navigationController = navigationController
+        window.rootViewController = navigationController
     }
 
     func start() {
-        //
+        showSplashViewAndTabView()
+    }
+
+    private func showSplashViewAndTabView() {
+        let tabCoordinator = TabCoordinator(navigationController: navigationController)
+        childCoordinators.append(tabCoordinator)
+        tabCoordinator.start()
+        window.makeKeyAndVisible()
     }
 }

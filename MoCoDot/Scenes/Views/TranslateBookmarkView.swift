@@ -14,6 +14,6 @@ final class TranslateBookmarkView: UIViewController {}
 extension TranslateBookmarkView {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .green
     }
 }

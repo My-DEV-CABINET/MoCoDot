@@ -14,6 +14,6 @@ final class TranslateHistoryView: UIViewController {}
 extension TranslateHistoryView {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .yellow
     }
 }

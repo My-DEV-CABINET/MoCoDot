@@ -14,6 +14,6 @@ final class LanguageTranslateView: UIViewController {}
 extension LanguageTranslateView {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .red
     }
 }

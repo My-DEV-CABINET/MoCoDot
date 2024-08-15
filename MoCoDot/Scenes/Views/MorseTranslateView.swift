@@ -14,6 +14,6 @@ final class MorseTranslateView: UIViewController {}
 extension MorseTranslateView {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .blue
     }
 }
