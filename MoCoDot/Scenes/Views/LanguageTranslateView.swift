@@ -34,6 +34,9 @@ final class LanguageTranslateView: UIViewController {
     // 사용자 입력 뷰
     private var inputBaseView: UIView = .init(frame: .zero)
     private var inputTextView: UITextView = .init(frame: .zero) // 사용자 텍스트 입력
+
+    // 사용자 입력 뷰 버튼
+    private var inputBtnStackView: UIStackView = .init(frame: .zero)
     private var listenBtn: UIButton = .init(frame: .zero) // 사용자 음성 -> Text 입력(STT)
     private var voiceBtn: UIButton = .init(frame: .zero) // 사용자 Text 입력 -> 음성 출력(TTS)
     private var clearBtn: UIButton = .init(frame: .zero) // 사용자 입력 초기화
@@ -42,6 +45,9 @@ final class LanguageTranslateView: UIViewController {
     // 모스코드 출력 결과 뷰
     private var outputBaseView: UIView = .init(frame: .zero)
     private var outputMorseLb: UILabel = .init(frame: .zero)
+
+    // 모스코드 출력 뷰 버튼
+    private var outputBtnStackView: UIStackView = .init(frame: .zero)
     private var speakBtn: UIButton = .init(frame: .zero) // 모스코드 재생 버튼
     private var bookmarkBtn: UIButton = .init(frame: .zero) // 변환된 모스코드 북마크 버튼, 입력값과 출력값 둘 다 같이 저장
     private var copyBtn: UIButton = .init(frame: .zero) // 출력된 모스코드 복사 버튼
@@ -88,10 +94,21 @@ extension LanguageTranslateView {
     private func addView() {
         view.addSubview(scrollView)
         scrollView.addSubview(scaffoldView)
+
+        /// 기본 Scaffold View 등록
         [adView, guideView, inputBaseView, outputBaseView].forEach { scaffoldView.addSubview($0) }
+
+        /// Guide View 등록
         [nationalFlagImage, nationalLb, directionImage, morseGuideLb, morseImage].forEach { guideView.addSubview($0) }
-        [inputTextView, listenBtn, voiceBtn, clearBtn, translateBtn].forEach { inputBaseView.addSubview($0) }
-        [outputMorseLb, speakBtn, bookmarkBtn, copyBtn].forEach { outputBaseView.addSubview($0) }
+
+        /// InputBase View 등록
+        [inputTextView, inputBtnStackView].forEach { inputBaseView.addSubview($0) }
+        [listenBtn, voiceBtn, clearBtn].forEach { inputBtnStackView.addArrangedSubview($0) }
+        inputBaseView.addSubview(translateBtn)
+
+        /// OutputBase Veiw 등록
+        [outputMorseLb, outputBtnStackView].forEach { outputBaseView.addSubview($0) }
+        [speakBtn, bookmarkBtn, copyBtn].forEach { outputBtnStackView.addArrangedSubview($0) }
     }
 
     private func confirmScaffold() {
@@ -123,7 +140,7 @@ extension LanguageTranslateView {
             make.centerX.equalToSuperview()
             make.top.equalToSuperview()
             make.left.equalToSuperview()
-            make.height.equalTo(view.snp.height).multipliedBy(0.05)
+            make.height.equalTo(view.snp.height).multipliedBy(0.07)
         }
 
         /// GuideView
@@ -165,6 +182,7 @@ extension LanguageTranslateView {
     /// Google Add View Autolayout 처리
     private func confirmAdView() {
         // adView
+        // TODO: Google 광고 등록
     }
 
     /// Language Guide View Autolayout 처리
@@ -245,12 +263,87 @@ extension LanguageTranslateView {
 
     /// Input View Autolayout 처리
     private func confirmInputView() {
-        // inputTextView, listenBtn, voiceBtn, clearBtn, translateBtn
+        // inputTextView, inputBtnStackView, listenBtn, voiceBtn, clearBtn, translateBtn
+
+        /// InputTextView
+        inputTextView.text = "Enter text to translate"
+        inputTextView.backgroundColor = .systemPink
+        inputTextView.font = .systemFont(ofSize: 16, weight: .regular)
+        inputTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+
+        inputTextView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(8)
+            make.left.equalToSuperview().inset(8)
+        }
+
+        /// inputBtnStackView
+        inputBtnStackView.backgroundColor = .systemPink
+        inputBtnStackView.axis = .horizontal
+        inputBtnStackView.alignment = .fill // 중앙 정렬
+        inputBtnStackView.distribution = .fillEqually // 내용 균등하게
+        inputBtnStackView.spacing = 5
+        inputBtnStackView.setContentHuggingPriority(UILayoutPriority(755), for: .vertical)
+
+        inputBtnStackView.snp.makeConstraints { make in
+            make.top.equalTo(inputTextView.snp.bottom).offset(12)
+            make.left.equalTo(inputTextView.snp.left)
+            make.right.equalTo(translateBtn.snp.left).offset(-40)
+            make.bottom.equalToSuperview().inset(12)
+
+            make.height.equalTo(inputBtnStackView.snp.width).multipliedBy(0.2)
+        }
+
+        let listenImageConfiguration = UIImage.SymbolConfiguration(pointSize: 22, weight: .medium)
+        let listenNormalImage = UIImage(systemName: "speaker.wave.2", withConfiguration: listenImageConfiguration)
+        let listenSelectedImage = UIImage(systemName: "speaker.wave.2.fill", withConfiguration: listenImageConfiguration)
+        listenBtn.setImage(listenNormalImage, for: .normal)
+        listenBtn.setImage(listenSelectedImage, for: .selected)
+        listenBtn.contentMode = .scaleAspectFit
+        listenBtn.contentScaleFactor = 0.8
+        listenBtn.backgroundColor = .systemYellow
+
+        let voiceImageConfiguration = UIImage.SymbolConfiguration(pointSize: 22, weight: .medium)
+        let voiceNormalImage = UIImage(systemName: "speaker.wave.2", withConfiguration: voiceImageConfiguration)
+        let voiceSelectedImage = UIImage(systemName: "speaker.wave.2.fill", withConfiguration: voiceImageConfiguration)
+        voiceBtn.setImage(voiceNormalImage, for: .normal)
+        voiceBtn.setImage(voiceSelectedImage, for: .selected)
+        voiceBtn.contentMode = .scaleAspectFit
+        voiceBtn.contentScaleFactor = 0.8
+        voiceBtn.backgroundColor = .systemYellow
+
+        let clearImageConfiguration = UIImage.SymbolConfiguration(pointSize: 22, weight: .medium)
+        let clearNormalImage = UIImage(systemName: "speaker.wave.2", withConfiguration: clearImageConfiguration)
+        let clearSelectedImage = UIImage(systemName: "speaker.wave.2.fill", withConfiguration: clearImageConfiguration)
+        clearBtn.setImage(clearNormalImage, for: .normal)
+        clearBtn.setImage(clearSelectedImage, for: .selected)
+        clearBtn.contentMode = .scaleAspectFit
+        clearBtn.contentScaleFactor = 0.8
+        clearBtn.backgroundColor = .systemYellow
+
+        var translateBtnConfig = UIButton.Configuration.plain()
+        translateBtnConfig.title = "Translate"
+        translateBtnConfig.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+        translateBtn.configuration = translateBtnConfig
+        translateBtn.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
+        translateBtn.tintColor = .white
+        translateBtn.layer.cornerRadius = 10
+        translateBtn.backgroundColor = .systemBlue
+        translateBtn.setContentHuggingPriority(UILayoutPriority(755), for: .horizontal)
+
+        translateBtn.snp.makeConstraints { make in
+            make.top.equalTo(inputTextView.snp.bottom).offset(12)
+            make.right.equalToSuperview().inset(12)
+            make.bottom.equalToSuperview().inset(12)
+
+            make.height.equalTo(inputBtnStackView.snp.height)
+            make.width.equalTo(inputBtnStackView.snp.width).multipliedBy(0.5)
+        }
     }
 
     /// Output View Autolayout 처리
     private func confirmOutputView() {
-        // outputMorseLb, speakBtn, bookmarkBtn, copyBtn
+        // outputMorseLb, outputBtnStackView, speakBtn, bookmarkBtn, copyBtn
     }
 }
 
