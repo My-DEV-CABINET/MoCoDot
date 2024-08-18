@@ -44,7 +44,7 @@ final class LanguageTranslateView: UIViewController {
 
     // 모스코드 출력 결과 뷰
     private var outputBaseView: UIView = .init(frame: .zero)
-    private var outputMorseLb: UILabel = .init(frame: .zero)
+    private var outputTextView: UITextView = .init(frame: .zero)
 
     // 모스코드 출력 뷰 버튼
     private var outputBtnStackView: UIStackView = .init(frame: .zero)
@@ -60,14 +60,14 @@ final class LanguageTranslateView: UIViewController {
 extension LanguageTranslateView {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .systemBackground
         setupUI()
-        bind()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         disposeBag = DisposeBag()
+        bind()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -107,20 +107,20 @@ extension LanguageTranslateView {
         inputBaseView.addSubview(translateBtn)
 
         /// OutputBase Veiw 등록
-        [outputMorseLb, outputBtnStackView].forEach { outputBaseView.addSubview($0) }
+        [outputTextView, outputBtnStackView].forEach { outputBaseView.addSubview($0) }
         [speakBtn, bookmarkBtn, copyBtn].forEach { outputBtnStackView.addArrangedSubview($0) }
     }
 
     private func confirmScaffold() {
         // scrollView
-        scrollView.backgroundColor = .systemPink
+        scrollView.backgroundColor = .systemBackground
 
         scrollView.snp.makeConstraints { make in
             make.top.left.right.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view.snp.bottom).offset(-100)
         }
 
-        scaffoldView.backgroundColor = .systemBlue
+        scaffoldView.backgroundColor = .systemBackground
 
         scaffoldView.snp.makeConstraints { make in
             make.edges.equalTo(scrollView.contentLayoutGuide)
@@ -144,8 +144,16 @@ extension LanguageTranslateView {
         }
 
         /// GuideView
-        guideView.backgroundColor = .systemOrange
+        guideView.backgroundColor = .systemGray6
         guideView.layer.cornerRadius = 10
+
+        guideView.layer.borderColor = UIColor.systemGray5.cgColor
+        guideView.layer.borderWidth = 1.0
+
+        guideView.layer.shadowColor = UIColor.systemGray3.cgColor
+        guideView.layer.shadowOpacity = 1.0
+        guideView.layer.shadowRadius = 5.0
+        guideView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
 
         guideView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -155,8 +163,16 @@ extension LanguageTranslateView {
         }
 
         /// InputBaseView
-        inputBaseView.backgroundColor = .systemOrange
+        inputBaseView.backgroundColor = .systemGray6
         inputBaseView.layer.cornerRadius = 10
+
+        inputBaseView.layer.borderColor = UIColor.systemGray5.cgColor
+        inputBaseView.layer.borderWidth = 1.0
+
+        inputBaseView.layer.shadowColor = UIColor.systemGray3.cgColor
+        inputBaseView.layer.shadowOpacity = 1.0
+        inputBaseView.layer.shadowRadius = 5.0
+        inputBaseView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
 
         inputBaseView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -166,8 +182,16 @@ extension LanguageTranslateView {
         }
 
         /// OutputBaseView
-        outputBaseView.backgroundColor = .systemOrange
+        outputBaseView.backgroundColor = .systemGray6
         outputBaseView.layer.cornerRadius = 10
+
+        outputBaseView.layer.borderColor = UIColor.systemGray5.cgColor
+        outputBaseView.layer.borderWidth = 1.0
+
+        outputBaseView.layer.shadowColor = UIColor.systemGray3.cgColor
+        outputBaseView.layer.shadowOpacity = 1.0
+        outputBaseView.layer.shadowRadius = 5.0
+        outputBaseView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
 
         outputBaseView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -209,7 +233,8 @@ extension LanguageTranslateView {
         /// National Name Label
         nationalLb.text = "English"
         nationalLb.adjustsFontSizeToFitWidth = true
-        nationalLb.backgroundColor = .systemYellow
+        nationalLb.textAlignment = .left
+        nationalLb.backgroundColor = .clear
         nationalLb.font = .systemFont(ofSize: 16, weight: .semibold)
 
         nationalLb.snp.makeConstraints { make in
@@ -221,7 +246,9 @@ extension LanguageTranslateView {
 
         /// Direction Image
         directionImage.image = UIImage(systemName: "arrow.forward")
-        directionImage.backgroundColor = .systemYellow
+        directionImage.contentMode = .center
+        directionImage.tintColor = .label
+        directionImage.backgroundColor = .clear
         directionImage.setContentHuggingPriority(UILayoutPriority(255), for: .horizontal)
 
         directionImage.snp.makeConstraints { make in
@@ -231,9 +258,10 @@ extension LanguageTranslateView {
         }
 
         /// Morse Code Label
-        morseGuideLb.text = "MorseCode"
+        morseGuideLb.text = "Morse Code"
         morseGuideLb.adjustsFontSizeToFitWidth = true
-        morseGuideLb.backgroundColor = .systemYellow
+        morseGuideLb.textAlignment = .right
+        morseGuideLb.backgroundColor = .clear
         morseGuideLb.font = .systemFont(ofSize: 16, weight: .semibold)
 
         morseGuideLb.snp.makeConstraints { make in
@@ -267,9 +295,15 @@ extension LanguageTranslateView {
 
         /// InputTextView
         inputTextView.text = "Enter text to translate"
-        inputTextView.backgroundColor = .systemPink
+        inputTextView.backgroundColor = .clear
         inputTextView.font = .systemFont(ofSize: 16, weight: .regular)
         inputTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+
+        inputTextView.layer.masksToBounds = true
+        inputTextView.layer.cornerRadius = 6
+
+        inputTextView.layer.borderColor = UIColor.systemBackground.cgColor
+        inputTextView.layer.borderWidth = 1.0
 
         inputTextView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -278,7 +312,10 @@ extension LanguageTranslateView {
         }
 
         /// inputBtnStackView
-        inputBtnStackView.backgroundColor = .systemPink
+        inputBtnStackView.backgroundColor = .clear
+        inputBtnStackView.layer.masksToBounds = true
+        inputBtnStackView.layer.cornerRadius = 10
+
         inputBtnStackView.axis = .horizontal
         inputBtnStackView.alignment = .fill // 중앙 정렬
         inputBtnStackView.distribution = .fillEqually // 내용 균등하게
@@ -294,41 +331,77 @@ extension LanguageTranslateView {
             make.height.equalTo(inputBtnStackView.snp.width).multipliedBy(0.2)
         }
 
-        let listenImageConfiguration = UIImage.SymbolConfiguration(pointSize: 22, weight: .medium)
+        /// Listen Button(TTS)
+        let listenImageConfiguration = UIImage.SymbolConfiguration(pointSize: 18, weight: .medium)
         let listenNormalImage = UIImage(systemName: "speaker.wave.2", withConfiguration: listenImageConfiguration)
         let listenSelectedImage = UIImage(systemName: "speaker.wave.2.fill", withConfiguration: listenImageConfiguration)
+
         listenBtn.setImage(listenNormalImage, for: .normal)
         listenBtn.setImage(listenSelectedImage, for: .selected)
+
         listenBtn.contentMode = .scaleAspectFit
         listenBtn.contentScaleFactor = 0.8
-        listenBtn.backgroundColor = .systemYellow
+        listenBtn.backgroundColor = .white
+        listenBtn.tintColor = .black
 
-        let voiceImageConfiguration = UIImage.SymbolConfiguration(pointSize: 22, weight: .medium)
-        let voiceNormalImage = UIImage(systemName: "speaker.wave.2", withConfiguration: voiceImageConfiguration)
-        let voiceSelectedImage = UIImage(systemName: "speaker.wave.2.fill", withConfiguration: voiceImageConfiguration)
+        listenBtn.layer.masksToBounds = true
+        listenBtn.layer.cornerRadius = 10
+
+        listenBtn.layer.borderColor = UIColor.black.cgColor
+        listenBtn.layer.borderWidth = 2.0
+
+        /// Voice Button(STT)
+        let voiceImageConfiguration = UIImage.SymbolConfiguration(pointSize: 18, weight: .medium)
+        let voiceNormalImage = UIImage(systemName: "mic", withConfiguration: voiceImageConfiguration)
+        let voiceSelectedImage = UIImage(systemName: "mic.fill", withConfiguration: voiceImageConfiguration)
         voiceBtn.setImage(voiceNormalImage, for: .normal)
         voiceBtn.setImage(voiceSelectedImage, for: .selected)
+
         voiceBtn.contentMode = .scaleAspectFit
         voiceBtn.contentScaleFactor = 0.8
-        voiceBtn.backgroundColor = .systemYellow
+        voiceBtn.backgroundColor = .white
+        voiceBtn.tintColor = .black
 
-        let clearImageConfiguration = UIImage.SymbolConfiguration(pointSize: 22, weight: .medium)
-        let clearNormalImage = UIImage(systemName: "speaker.wave.2", withConfiguration: clearImageConfiguration)
-        let clearSelectedImage = UIImage(systemName: "speaker.wave.2.fill", withConfiguration: clearImageConfiguration)
+        voiceBtn.layer.masksToBounds = true
+        voiceBtn.layer.cornerRadius = 10
+
+        voiceBtn.layer.borderColor = UIColor.black.cgColor
+        voiceBtn.layer.borderWidth = 2.0
+
+        /// TextView Clear Button
+        let clearImageConfiguration = UIImage.SymbolConfiguration(pointSize: 18, weight: .medium)
+        let clearNormalImage = UIImage(systemName: "trash", withConfiguration: clearImageConfiguration)
+        let clearSelectedImage = UIImage(systemName: "trash.fill", withConfiguration: clearImageConfiguration)
         clearBtn.setImage(clearNormalImage, for: .normal)
         clearBtn.setImage(clearSelectedImage, for: .selected)
+
         clearBtn.contentMode = .scaleAspectFit
         clearBtn.contentScaleFactor = 0.8
-        clearBtn.backgroundColor = .systemYellow
+        clearBtn.backgroundColor = .white
+        clearBtn.tintColor = .black
 
+        clearBtn.layer.masksToBounds = true
+        clearBtn.layer.cornerRadius = 10
+
+        clearBtn.layer.borderColor = UIColor.black.cgColor
+        clearBtn.layer.borderWidth = 2.0
+
+        /// Translate Button
         var translateBtnConfig = UIButton.Configuration.plain()
         translateBtnConfig.title = "Translate"
         translateBtnConfig.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
         translateBtn.configuration = translateBtnConfig
         translateBtn.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
+
+        translateBtn.backgroundColor = .systemOrange
         translateBtn.tintColor = .white
+
+        translateBtn.layer.masksToBounds = true
         translateBtn.layer.cornerRadius = 10
-        translateBtn.backgroundColor = .systemBlue
+
+        translateBtn.layer.borderColor = UIColor.white.cgColor
+        translateBtn.layer.borderWidth = 2.0
+
         translateBtn.setContentHuggingPriority(UILayoutPriority(755), for: .horizontal)
 
         translateBtn.snp.makeConstraints { make in
@@ -343,7 +416,97 @@ extension LanguageTranslateView {
 
     /// Output View Autolayout 처리
     private func confirmOutputView() {
-        // outputMorseLb, outputBtnStackView, speakBtn, bookmarkBtn, copyBtn
+        // outputTextView, outputBtnStackView, speakBtn, bookmarkBtn, copyBtn
+
+        /// Translated Morese Code Output Text
+        outputTextView.text = "Morse Code is Here!!"
+        outputTextView.backgroundColor = .clear
+        outputTextView.font = .systemFont(ofSize: 16, weight: .regular)
+        outputTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+
+        outputTextView.layer.masksToBounds = true
+        outputTextView.layer.cornerRadius = 6
+
+        outputTextView.layer.borderColor = UIColor.systemBackground.cgColor
+        outputTextView.layer.borderWidth = 1.0
+
+        outputTextView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(8)
+            make.left.equalToSuperview().inset(8)
+        }
+
+        /// Output Button StackView
+        outputBtnStackView.axis = .horizontal
+        outputBtnStackView.alignment = .fill
+        outputBtnStackView.distribution = .fillEqually
+        outputBtnStackView.spacing = 5
+
+        outputBtnStackView.backgroundColor = .clear
+        outputBtnStackView.layer.masksToBounds = true
+        outputBtnStackView.layer.cornerRadius = 10
+
+        outputBtnStackView.setContentHuggingPriority(UILayoutPriority(255), for: .vertical)
+
+        outputBtnStackView.snp.makeConstraints { make in
+            make.top.equalTo(outputTextView.snp.bottom).offset(12)
+            make.bottom.equalToSuperview().inset(12)
+            make.right.equalToSuperview().inset(12)
+
+            make.height.equalTo(inputBtnStackView.snp.height)
+            make.width.equalTo(inputBtnStackView.snp.width)
+        }
+
+        /// Morse Code Mp3 Play Button
+        let speakerImageConfiguration = UIImage.SymbolConfiguration(pointSize: 18, weight: .medium)
+        let speakerNormalImage = UIImage(systemName: "speaker.wave.2", withConfiguration: speakerImageConfiguration)
+        let speakerSelectedImage = UIImage(systemName: "speaker.wave.2.fill", withConfiguration: speakerImageConfiguration)
+        speakBtn.setImage(speakerNormalImage, for: .normal)
+        speakBtn.setImage(speakerSelectedImage, for: .selected)
+        speakBtn.contentMode = .scaleAspectFit
+        speakBtn.contentScaleFactor = 0.8
+        speakBtn.backgroundColor = .white
+        speakBtn.tintColor = .black
+
+        speakBtn.layer.masksToBounds = true
+        speakBtn.layer.cornerRadius = 10
+
+        speakBtn.layer.borderColor = UIColor.black.cgColor
+        speakBtn.layer.borderWidth = 2.0
+
+        /// Bookmark Button
+        let bookmarkImageConfiguration = UIImage.SymbolConfiguration(pointSize: 18, weight: .medium)
+        let bookmarkNormalImage = UIImage(systemName: "bookmark", withConfiguration: bookmarkImageConfiguration)
+        let bookmarkSelectedImage = UIImage(systemName: "bookmark.fill", withConfiguration: bookmarkImageConfiguration)
+        bookmarkBtn.setImage(bookmarkNormalImage, for: .normal)
+        bookmarkBtn.setImage(bookmarkSelectedImage, for: .selected)
+        bookmarkBtn.contentMode = .scaleAspectFit
+        bookmarkBtn.contentScaleFactor = 0.8
+        bookmarkBtn.backgroundColor = .white
+        bookmarkBtn.tintColor = .black
+
+        bookmarkBtn.layer.masksToBounds = true
+        bookmarkBtn.layer.cornerRadius = 10
+
+        bookmarkBtn.layer.borderColor = UIColor.black.cgColor
+        bookmarkBtn.layer.borderWidth = 2.0
+
+        /// Copy Board Button
+        let copyImageConfiguration = UIImage.SymbolConfiguration(pointSize: 18, weight: .medium)
+        let copyNormalImage = UIImage(systemName: "doc.on.doc", withConfiguration: copyImageConfiguration)
+        let copySelectedImage = UIImage(systemName: "doc.on.doc.fill", withConfiguration: copyImageConfiguration)
+        copyBtn.setImage(copyNormalImage, for: .normal)
+        copyBtn.setImage(copySelectedImage, for: .selected)
+        copyBtn.contentMode = .scaleAspectFit
+        copyBtn.contentScaleFactor = 0.8
+        copyBtn.backgroundColor = .white
+        copyBtn.tintColor = .black
+
+        copyBtn.layer.masksToBounds = true
+        copyBtn.layer.cornerRadius = 10
+
+        copyBtn.layer.borderColor = UIColor.black.cgColor
+        copyBtn.layer.borderWidth = 2.0
     }
 }
 
@@ -361,15 +524,121 @@ extension LanguageTranslateView {
         // adView, guideView
         // adView: 광고 클릭시, 광고 페이지 이동
         // guideView: 클릭시, 언어 변경 페이지 표시
+
+        /// Guide View Bind
     }
 
     /// Input 관련 버튼 Rx 메서드
     private func inputBtnBind() {
         // listenBtn, voiceBtn, clearBtn, translateBtn
+
+        /// Listen Button Rx
+        listenBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+
+                // 버튼의 상태를 토글
+                self.listenBtn.isSelected.toggle()
+
+                DispatchQueue.main.async {
+                    self.listenBtn.tintColor = self.listenBtn.isSelected ? .systemRed : .black
+                }
+
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: Listen Button 클릭")
+            })
+            .disposed(by: disposeBag)
+
+        /// Voice Button Rx
+        voiceBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+
+                // 버튼의 상태를 토글
+                self.voiceBtn.isSelected.toggle()
+
+                DispatchQueue.main.async {
+                    self.voiceBtn.tintColor = self.voiceBtn.isSelected ? .systemRed : .black
+                }
+
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: Voice Button 클릭")
+            })
+            .disposed(by: disposeBag)
+
+        /// Clear Button Rx
+        clearBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+
+                // 버튼의 상태를 토글
+                self.clearBtn.isSelected.toggle()
+
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: Clear Button 클릭")
+            })
+            .disposed(by: disposeBag)
+
+        /// Translate Button Rx
+        translateBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: Translate Button 클릭")
+            })
+            .disposed(by: disposeBag)
     }
 
     /// Output 관련 버튼 Rx 메서드
     private func outputBtnBind() {
         // speakBtn, bookmarkBtn, copyBtn
+
+        /// Speaker Button Rx
+        speakBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+
+                // 버튼의 상태를 토글
+                self.speakBtn.isSelected.toggle()
+
+                DispatchQueue.main.async {
+                    self.speakBtn.tintColor = self.speakBtn.isSelected ? .systemRed : .black
+                }
+
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: Morse Speaker Button 클릭")
+            })
+            .disposed(by: disposeBag)
+
+        /// Bookmark Button Rx
+        bookmarkBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+
+                // 버튼의 상태를 토글
+                self.bookmarkBtn.isSelected.toggle()
+
+                DispatchQueue.main.async {
+                    self.bookmarkBtn.tintColor = self.bookmarkBtn.isSelected ? .systemOrange : .black
+                }
+
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: Result Bookmark Button 클릭")
+            })
+            .disposed(by: disposeBag)
+
+        /// Copy Button Rx
+        copyBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+
+                // 버튼의 상태를 토글
+                self.copyBtn.isSelected.toggle()
+
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: Copy Button 클릭")
+            })
+            .disposed(by: disposeBag)
     }
 }

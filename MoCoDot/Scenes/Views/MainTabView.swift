@@ -51,6 +51,9 @@ extension MainTabView {
     private func setView() {
         view.addSubview(tabbarView)
         tabbarView.backgroundColor = .black
+        tabbarView.layer.borderColor = UIColor.systemBackground.cgColor
+        tabbarView.layer.borderWidth = 1
+
         tabbarView.layer.cornerRadius = 30
         tabbarView.layer.masksToBounds = true
 
