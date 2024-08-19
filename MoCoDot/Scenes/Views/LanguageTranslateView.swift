@@ -526,6 +526,7 @@ extension LanguageTranslateView {
         // guideView: 클릭시, 언어 변경 페이지 표시
 
         /// Guide View Bind
+        guideView.rx.tapGesture()
     }
 
     /// Input 관련 버튼 Rx 메서드

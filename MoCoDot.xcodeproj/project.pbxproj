@@ -37,6 +37,7 @@
 		4E01C7712BB5665D00C55EC6 /* dash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4E01C76F2BB5665D00C55EC6 /* dash.mp3 */; };
 		4E01C7722BB5665D00C55EC6 /* dot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4E01C7702BB5665D00C55EC6 /* dot.mp3 */; };
 		4E01C7742BB56CF800C55EC6 /* space.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4E01C7732BB56CF800C55EC6 /* space.mp3 */; };
+		4E03BD4A2C730E5200343217 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 4E03BD492C730E5200343217 /* RxGesture */; };
 		4E8DC0522BBC583600698238 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DC0512BBC583600698238 /* AppCoordinator.swift */; };
 		4E8DC0542BBC65C900698238 /* Coordinator+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DC0532BBC65C900698238 /* Coordinator+.swift */; };
 		4E9681392B8DC98700E14E3C /* MorseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9681362B8DC98700E14E3C /* MorseCode.swift */; };
@@ -113,6 +114,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E0011D62C6EA5630051EB9C /* Alamofire in Frameworks */,
+				4E03BD4A2C730E5200343217 /* RxGesture in Frameworks */,
 				4E0011CC2C6EA5470051EB9C /* Lottie in Frameworks */,
 				4E0011D42C6EA55E0051EB9C /* SnapKit in Frameworks */,
 				4E0011D02C6EA5580051EB9C /* RealmSwift in Frameworks */,
@@ -351,6 +353,7 @@
 				4E0011CF2C6EA5580051EB9C /* RealmSwift */,
 				4E0011D32C6EA55E0051EB9C /* SnapKit */,
 				4E0011D52C6EA5630051EB9C /* Alamofire */,
+				4E03BD492C730E5200343217 /* RxGesture */,
 			);
 			productName = MoCoDot;
 			productReference = 4EA5993E2B4EF3800064726E /* MoCoDot.app */;
@@ -387,6 +390,7 @@
 				4E0011A12C6E95D20051EB9C /* XCRemoteSwiftPackageReference "SnapKit" */,
 				4E0011A22C6E95E40051EB9C /* XCRemoteSwiftPackageReference "Alamofire" */,
 				4E0011BD2C6E9B060051EB9C /* XCRemoteSwiftPackageReference "RxSwift" */,
+				4E03BD482C730E5200343217 /* XCRemoteSwiftPackageReference "RxGesture" */,
 			);
 			productRefGroup = 4EA5993F2B4EF3800064726E /* Products */;
 			projectDirPath = "";
@@ -818,6 +822,14 @@
 				minimumVersion = 6.7.1;
 			};
 		};
+		4E03BD482C730E5200343217 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -860,6 +872,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4E0011A22C6E95E40051EB9C /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		4E03BD492C730E5200343217 /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E03BD482C730E5200343217 /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
