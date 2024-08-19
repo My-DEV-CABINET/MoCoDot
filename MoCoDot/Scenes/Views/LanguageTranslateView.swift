@@ -7,6 +7,7 @@
 
 // Rx
 import RxCocoa
+import RxGesture
 import RxSwift
 
 // Autolayout
@@ -424,6 +425,9 @@ extension LanguageTranslateView {
         outputTextView.font = .systemFont(ofSize: 16, weight: .regular)
         outputTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
 
+        outputTextView.isEditable = false
+        outputTextView.isSelectable = false
+
         outputTextView.layer.masksToBounds = true
         outputTextView.layer.cornerRadius = 6
 
@@ -527,6 +531,12 @@ extension LanguageTranslateView {
 
         /// Guide View Bind
         guideView.rx.tapGesture()
+            .when(.recognized)
+            .withUnretained(self)
+            .subscribe(onNext: { (owner, _) in
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: GuideView 눌렀습니다.")
+            })
+            .disposed(by: disposeBag)
     }
 
     /// Input 관련 버튼 Rx 메서드
