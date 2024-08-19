@@ -524,6 +524,7 @@ extension LanguageTranslateView {
         outputBtnBind()
     }
 
+    /// View 관련 Rx 메서드
     private func viewBind() {
         // adView, guideView
         // adView: 광고 클릭시, 광고 페이지 이동

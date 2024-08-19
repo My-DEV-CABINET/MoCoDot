@@ -50,13 +50,86 @@ final class MorseTranslateView: UIViewController {
     private var outputSpeakerBtn: UIButton = .init(frame: .zero) // 변환된 언어 음성 출력 버튼
     private var outputBookmarkBtn: UIButton = .init(frame: .zero)
     private var outputCopyBtn: UIButton = .init(frame: .zero)
+
+    private var disposeBag: DisposeBag!
 }
 
-// MARK: - View Life Cycle
+// MARK: - 뷰 생명주기 메서드
 
 extension MorseTranslateView {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
+        view.backgroundColor = .systemBackground
+        setupUI()
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        disposeBag = DisposeBag()
+        bind()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        disposeBag = DisposeBag()
+    }
+}
+
+// MARK: - 뷰 UI 관련 메서드
+
+extension MorseTranslateView {
+    /// UI 총괄 메서드
+    private func setupUI() {
+        addView()
+        confirmScaffold()
+        confirmBaseView()
+        confirmAdView()
+        confirmGuideView()
+        confirmInputView()
+        confirmOutputView()
+    }
+
+    /// View 등록
+    private func addView() {}
+
+    /// ScrollView & Scaffold View Autolayout 처리
+    private func confirmScaffold() {}
+
+    /// BaseView Autolayout 처리
+    private func confirmBaseView() {}
+
+    /// Google Add View Autolayout 처리
+    private func confirmAdView() {
+        // adView
+        // TODO: Google 광고 등록
+    }
+
+    /// Language Guide View Autolayout 처리
+    private func confirmGuideView() {}
+
+    /// Input View Autolayout 처리
+    private func confirmInputView() {}
+
+    /// Output View Autolayout 처리
+    private func confirmOutputView() {}
+}
+
+// MARK: - 뷰 바인딩 관련 메서드
+
+extension MorseTranslateView {
+    /// Bind 총괄 메서드
+    private func bind() {
+        viewBind()
+        inputBtnBind()
+        outputBtnBind()
+    }
+
+    /// View 관련 Rx 메서드
+    private func viewBind() {}
+
+    /// Input 관련 버튼 Rx 메서드
+    private func inputBtnBind() {}
+
+    /// Output 관련 버튼 Rx 메서드
+    private func outputBtnBind() {}
 }
