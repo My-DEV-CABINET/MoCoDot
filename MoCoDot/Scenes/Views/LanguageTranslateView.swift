@@ -65,6 +65,17 @@ extension LanguageTranslateView {
         setupUI()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        // cornerRadius 설정
+        morseImage.layer.cornerRadius = morseImage.bounds.width / 2
+        morseImage.clipsToBounds = true
+
+        nationalFlagImage.layer.cornerRadius = nationalFlagImage.bounds.width / 2
+        nationalFlagImage.clipsToBounds = true
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         disposeBag = DisposeBag()
@@ -103,9 +114,8 @@ extension LanguageTranslateView {
         [nationalFlagImage, nationalLb, directionImage, morseGuideLb, morseImage].forEach { guideView.addSubview($0) }
 
         /// InputBase View 등록
-        [inputTextView, inputBtnStackView].forEach { inputBaseView.addSubview($0) }
+        [inputTextView, inputBtnStackView, translateBtn].forEach { inputBaseView.addSubview($0) }
         [listenBtn, voiceBtn, clearBtn].forEach { inputBtnStackView.addArrangedSubview($0) }
-        inputBaseView.addSubview(translateBtn)
 
         /// OutputBase Veiw 등록
         [outputTextView, outputBtnStackView].forEach { outputBaseView.addSubview($0) }
@@ -219,11 +229,6 @@ extension LanguageTranslateView {
         nationalFlagImage.backgroundColor = .systemYellow
         nationalFlagImage.setContentHuggingPriority(UILayoutPriority(255), for: .horizontal)
 
-        DispatchQueue.main.async {
-            self.nationalFlagImage.layer.cornerRadius = self.nationalFlagImage.bounds.width / 2
-            self.nationalFlagImage.clipsToBounds = true
-        }
-
         nationalFlagImage.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.left.equalToSuperview().inset(12)
@@ -276,11 +281,6 @@ extension LanguageTranslateView {
         morseImage.image = UIImage(systemName: "flag.circle.fill") // 임시
         morseImage.backgroundColor = .systemYellow
         morseImage.setContentHuggingPriority(UILayoutPriority(255), for: .horizontal)
-
-        DispatchQueue.main.async {
-            self.morseImage.layer.cornerRadius = self.morseImage.bounds.width / 2
-            self.morseImage.clipsToBounds = true
-        }
 
         morseImage.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
