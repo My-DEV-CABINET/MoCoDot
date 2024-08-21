@@ -512,11 +512,112 @@ extension MorseTranslateView {
     }
 
     /// View 관련 Rx 메서드
-    private func viewBind() {}
+    private func viewBind() {
+        /// Guide View Bind
+        guideView.rx.tapGesture()
+            .when(.recognized)
+            .withUnretained(self)
+            .subscribe(onNext: { (owner, _) in
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: GuideView 눌렀습니다.")
+            })
+            .disposed(by: disposeBag)
+
+        inputTextView.rx.tapGesture()
+            .when(.recognized)
+            .withUnretained(self)
+            .subscribe(onNext: { (owner, _) in
+
+                let vc = MorseCodeEnterView()
+                vc.isModalInPresentation = true
+                owner.present(vc, animated: true)
+
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: Input TextView 눌렀습니다.")
+            })
+            .disposed(by: disposeBag)
+    }
 
     /// Input 관련 버튼 Rx 메서드
-    private func inputBtnBind() {}
+    private func inputBtnBind() {
+        intputSpeakerBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+
+                // 버튼의 상태를 토글
+                self.intputSpeakerBtn.isSelected.toggle()
+
+                DispatchQueue.main.async {
+                    self.intputSpeakerBtn.tintColor = self.intputSpeakerBtn.isSelected ? .systemRed : .black
+                }
+
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: Input Speaker Button 눌렀습니다.")
+            })
+            .disposed(by: disposeBag)
+
+        inputClearBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+
+                // 버튼의 상태를 토글
+                self.inputClearBtn.isSelected.toggle()
+
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: Input TextView Clear Button 눌렀습니다.")
+            })
+            .disposed(by: disposeBag)
+
+        translateBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: Input Translate Button 눌렀습니다.")
+            })
+            .disposed(by: disposeBag)
+    }
 
     /// Output 관련 버튼 Rx 메서드
-    private func outputBtnBind() {}
+    private func outputBtnBind() {
+        outputSpeakerBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+
+                // 버튼의 상태를 토글
+                self.outputSpeakerBtn.isSelected.toggle()
+
+                DispatchQueue.main.async {
+                    self.outputSpeakerBtn.tintColor = self.outputSpeakerBtn.isSelected ? .systemRed : .black
+                }
+
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: Output Speaker Button 눌렀습니다.")
+            })
+            .disposed(by: disposeBag)
+
+        outputBookmarkBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+
+                // 버튼의 상태를 토글
+                self.outputBookmarkBtn.isSelected.toggle()
+
+                DispatchQueue.main.async {
+                    self.outputBookmarkBtn.tintColor = self.outputBookmarkBtn.isSelected ? .systemOrange : .black
+                }
+
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: Output Bookmark Button 눌렀습니다.")
+            })
+            .disposed(by: disposeBag)
+
+        outputCopyBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+
+                // 버튼의 상태를 토글
+                self.outputCopyBtn.isSelected.toggle()
+
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: Output Copy Button 눌렀습니다.")
+            })
+            .disposed(by: disposeBag)
+    }
 }
