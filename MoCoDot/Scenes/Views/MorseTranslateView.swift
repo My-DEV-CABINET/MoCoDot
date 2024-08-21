@@ -529,6 +529,7 @@ extension MorseTranslateView {
 
                 let vc = MorseCodeEnterView()
                 vc.isModalInPresentation = true
+                vc.modalPresentationStyle = .pageSheet
                 owner.present(vc, animated: true)
 
                 print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: Input TextView 눌렀습니다.")

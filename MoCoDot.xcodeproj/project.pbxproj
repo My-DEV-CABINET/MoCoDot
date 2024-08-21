@@ -39,6 +39,7 @@
 		4E01C7742BB56CF800C55EC6 /* space.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4E01C7732BB56CF800C55EC6 /* space.mp3 */; };
 		4E03BD4A2C730E5200343217 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 4E03BD492C730E5200343217 /* RxGesture */; };
 		4E103C402C745B60005B8725 /* MorseCodeEnterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E103C3F2C745B60005B8725 /* MorseCodeEnterView.swift */; };
+		4E103C422C759B40005B8725 /* CustomLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E103C412C759B40005B8725 /* CustomLanguageView.swift */; };
 		4E8DC0522BBC583600698238 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DC0512BBC583600698238 /* AppCoordinator.swift */; };
 		4E8DC0542BBC65C900698238 /* Coordinator+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DC0532BBC65C900698238 /* Coordinator+.swift */; };
 		4E9681392B8DC98700E14E3C /* MorseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9681362B8DC98700E14E3C /* MorseCode.swift */; };
@@ -97,6 +98,7 @@
 		4E01C7702BB5665D00C55EC6 /* dot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dot.mp3; sourceTree = "<group>"; };
 		4E01C7732BB56CF800C55EC6 /* space.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = space.mp3; sourceTree = "<group>"; };
 		4E103C3F2C745B60005B8725 /* MorseCodeEnterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MorseCodeEnterView.swift; path = MoCoDot/Scenes/Views/MorseCodeEnterView.swift; sourceTree = SOURCE_ROOT; };
+		4E103C412C759B40005B8725 /* CustomLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLanguageView.swift; sourceTree = "<group>"; };
 		4E8DC0512BBC583600698238 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		4E8DC0532BBC65C900698238 /* Coordinator+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinator+.swift"; sourceTree = "<group>"; };
 		4E9681362B8DC98700E14E3C /* MorseCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorseCode.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				4E0011A82C6E973A0051EB9C /* LanguageTranslateView.swift */,
 				4E0011AA2C6E97500051EB9C /* MorseTranslateView.swift */,
 				4E103C3F2C745B60005B8725 /* MorseCodeEnterView.swift */,
+				4E103C412C759B40005B8725 /* CustomLanguageView.swift */,
 				4E0011AC2C6E97740051EB9C /* QuizListView.swift */,
 				4E0011AE2C6E978F0051EB9C /* TranslateHistoryView.swift */,
 				4E0011B02C6E979F0051EB9C /* TranslateBookmarkView.swift */,
@@ -440,6 +443,7 @@
 				4E0011B52C6E97E90051EB9C /* MorseTranslateViewModel.swift in Sources */,
 				4E0011B92C6E98240051EB9C /* TranslateBookmarkViewModel.swift in Sources */,
 				4E0011AB2C6E97500051EB9C /* MorseTranslateView.swift in Sources */,
+				4E103C422C759B40005B8725 /* CustomLanguageView.swift in Sources */,
 				4E96813B2B8DC98700E14E3C /* MorseProtocol.swift in Sources */,
 				4E0011AF2C6E978F0051EB9C /* TranslateHistoryView.swift in Sources */,
 				4E0011DE2C6EA8CF0051EB9C /* BookmarkCoordinator.swift in Sources */,
