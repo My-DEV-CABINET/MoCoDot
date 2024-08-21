@@ -32,6 +32,8 @@ final class MorseCodeEnterView: UIViewController {
     private var deleteBtn: UIButton = .init(frame: .zero) // 한 글자 지우기 버튼
 
     private var doneBtn: UIButton = .init(frame: .zero) // 완료 버튼
+
+    var disposeBag: DisposeBag!
 }
 
 // MARK: - 뷰 상태 관련 메서드
@@ -49,6 +51,17 @@ extension MorseCodeEnterView {
 
         resetBtn.layer.masksToBounds = true
         resetBtn.layer.cornerRadius = exitBtn.bounds.width / 2
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        disposeBag = DisposeBag()
+        bind()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        disposeBag = DisposeBag()
     }
 }
 
@@ -238,6 +251,65 @@ extension MorseCodeEnterView {
 
 extension MorseCodeEnterView {
     private func bind() {
-        //
+        btnBind()
+    }
+
+    private func btnBind() {
+        // exitBtn, resetBtn, dotBtn, dashBtn, spaceBtn, deleteBtn, doneBtn
+        exitBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.dismiss(animated: true)
+            })
+            .disposed(by: disposeBag)
+
+        resetBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: 초기화 버튼 눌렀다.")
+            })
+            .disposed(by: disposeBag)
+
+        dotBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: . 버튼 눌렀다.")
+            })
+            .disposed(by: disposeBag)
+
+        dashBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: - 버튼 눌렀다.")
+            })
+            .disposed(by: disposeBag)
+
+        spaceBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: 띄우기 버튼 눌렀다.")
+            })
+            .disposed(by: disposeBag)
+
+        deleteBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                print("#### 클래스명: \(String(describing: type(of: self))), 함수명: \(#function), Line: \(#line), 출력 Log: 한 글자 지우기 버튼 눌렀다.")
+            })
+            .disposed(by: disposeBag)
+
+        doneBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.dismiss(animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }
