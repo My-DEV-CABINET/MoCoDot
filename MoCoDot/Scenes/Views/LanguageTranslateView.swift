@@ -53,6 +53,8 @@ final class LanguageTranslateView: UIViewController {
     private var bookmarkBtn: UIButton = .init(frame: .zero) // 변환된 모스코드 북마크 버튼, 입력값과 출력값 둘 다 같이 저장
     private var copyBtn: UIButton = .init(frame: .zero) // 출력된 모스코드 복사 버튼
 
+    private var testBarBtn: UIBarButtonItem!
+
     private var disposeBag: DisposeBag!
 }
 
@@ -79,12 +81,31 @@ extension LanguageTranslateView {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         disposeBag = DisposeBag()
+        confirmTestBarBtn()
         bind()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         disposeBag = DisposeBag()
+    }
+
+    private func confirmTestBarBtn() {
+        testBarBtn = UIBarButtonItem(title: "TEST", style: .plain, target: self, action: nil)
+        tabBarController?.navigationItem.rightBarButtonItem = testBarBtn
+
+        testBarBtn.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                let ttsView = TTSView()
+                let customLgView = CustomLanguageView()
+
+                customLgView.modalPresentationStyle = .popover
+                self.present(customLgView, animated: true)
+
+            })
+            .disposed(by: disposeBag)
     }
 }
 
